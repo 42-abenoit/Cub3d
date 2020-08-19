@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:06:16 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/18 20:47:53 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/19 18:10:32 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int				ft_strcmp(char *s1, char *s2);
 **	str_utils_2.c
 */
 char			*ft_strdup(const char *s1);
+int				ft_atoi_base(char *str, char *set);
 
 /*
 **	ft_split.c
 */
-char			**ft_split(char const *s, char c);
+char			**ft_split(char const *s, char *set);
 
 /*
 **	ft_strtrim.c

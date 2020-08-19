@@ -6,20 +6,21 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:39:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/18 16:10:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/19 11:33:41 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "ft_utils.h"
 
-static size_t		wordlen(char const *s, char c)
+static size_t		wordlen(char const *s, char *set)
 {
 	size_t	i;
 	size_t	count;
 
 	i = 0;
 	count = 0;
-	while (s[i] && s[i] != c)
+	while (s[i] && !ft_isset(s[i], set))
 	{
 		i++;
 		count++;
@@ -27,7 +28,7 @@ static size_t		wordlen(char const *s, char c)
 	return (count);
 }
 
-static size_t		wordcount(char const *s, char c)
+static size_t		wordcount(char const *s, char *set)
 {
 	size_t	i;
 	size_t	count;
@@ -36,10 +37,10 @@ static size_t		wordcount(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if (s[i] != c)
+		if (!ft_isset(s[i], set))
 		{
 			count++;
-			i += wordlen(&s[i], c);
+			i += wordlen(&s[i], set);
 		}
 		else
 			i++;
@@ -47,12 +48,12 @@ static size_t		wordcount(char const *s, char c)
 	return (count);
 }
 
-static char			*wordcpy(char *dst, const char *src, char c)
+static char			*wordcpy(char *dst, const char *src, char *set)
 {
 	int	i;
 
 	i = 0;
-	while (src[i] != c && src[i])
+	while (src[i] && !ft_isset(src[i], set))
 	{
 		dst[i] = src[i];
 		i++;
@@ -75,7 +76,7 @@ static char			**ft_free(char **ret, int j)
 	return (NULL);
 }
 
-char				**ft_split(char const *s, char c)
+char				**ft_split(char const *s, char *set)
 {
 	int		i;
 	int		j;
@@ -83,19 +84,19 @@ char				**ft_split(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	if (!(ret = malloc((wordcount(s, c) + 2) * sizeof(char*))))
+	if (!(ret = malloc((wordcount(s, set) + 2) * sizeof(char*))))
 		return (NULL);
 	i = 0;
 	j = 0;
 	while (s[i])
 	{
-		if (s[i] != c)
+		if (!(ft_isset(s[i], set)))
 		{
-			if (!(ret[j] = malloc(((wordlen(&s[i], c) + 2)) * sizeof(char))))
+			if (!(ret[j] = malloc(((wordlen(&s[i], set) + 2)) * sizeof(char))))
 				return (ft_free(ret, j));
-			wordcpy(ret[j], &s[i], c);
+			wordcpy(ret[j], &s[i], set);
 			j++;
-			i += wordlen(&s[i], c);
+			i += wordlen(&s[i], set);
 		}
 		else
 			i++;

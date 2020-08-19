@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   id_filler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/19 14:53:08 by abenoit          ###   ########.fr       */
+/*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
+/*   Updated: 2020/08/19 18:22:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "cub3d.h"
+#include "ft_utils.h"
 
-int		ft_exit(int err_code, t_param *prm)
+static int	elem_count(char **elem)
 {
-	t_parse		*tmp;
-	int			i;
+	int		i;
 
-	tmp = ((t_parse*)(prm->ptr));
-	free(tmp->buff);
 	i = 0;
-	while (tmp->id_strings[i] != NULL)
-	{
-		free(tmp->id_strings[i]);
-		(tmp->id_strings[i]) = NULL;
+	while (elem[i] != NULL)
 		i++;
-	}
-	free(tmp->id_strings);
-	free(prm->ptr);
-	if (err_code == 0)
-		return (0);
-	else
-		return (ft_error(err_code));
+	return (i);
+}
+
+int			id_res_filler(char **elem)
+{
+	int	tmp;
+
+	if (elem_count(elem) != 3)
+		return (WRONG_RES_ELEM);
+	tmp = ft_atoi_base(elem[1], BASE_10);
+	printf("res_x = %d\n", tmp);
+	tmp = ft_atoi_base(elem[2], BASE_10);
+	printf("res_y = %d\n", tmp);
+	return (0);
 }

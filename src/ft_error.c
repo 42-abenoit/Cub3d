@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/18 21:25:22 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/19 17:55:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ static int	arg_error(int err_code)
 
 static int	description_error(int err_code)
 {
-	ft_putstr("DESCRIPTION_ERROR : ");
-	if (err_code == WRONG_ID_CHAR)
-		ft_putstr("Invalid character in cub file\n");
+	ft_putstr("DESCRIPTION_ERR : ");
+	if (err_code == ID_SPLIT_ERR)
+		ft_putstr("Parsing initialisation failed\n");
+	if (err_code == NOT_ID_CHAR)
+		ft_putstr("First character in line is not an identifier\n");
+	if (err_code == WRONG_ID_STR)
+		ft_putstr("Invalid line identifier\n");
 	if (err_code == NO_MAP_FOUND)
 		ft_putstr("No map description found in cub file\n");
+	if (err_code == WRONG_RES_ELEM)
+		ft_putstr("Invalid number of arguments in resolution line\n");
 	return (0);
 }
 
