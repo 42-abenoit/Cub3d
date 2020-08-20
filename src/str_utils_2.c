@@ -6,14 +6,14 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 19:18:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/19 18:21:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/20 16:20:49 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_utils.h"
 
-char	*ft_strdup(const char *s1)
+char		*ft_strdup(const char *s1)
 {
 	size_t	i;
 	char	*cpy;
@@ -47,7 +47,7 @@ static int	ft_isbase(char c, char *base)
 	return (-1);
 }
 
-int		ft_atoi_base(char *str, char *base)
+int			ft_atoi_base(char *str, char *base)
 {
 	int		i;
 	int		nbr;

@@ -6,11 +6,12 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/19 17:55:10 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/20 18:40:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "cub_macro.h"
 #include "ft_utils.h"
 
 static int	arg_error(int err_code)
@@ -38,8 +39,18 @@ static int	description_error(int err_code)
 		ft_putstr("Invalid line identifier\n");
 	if (err_code == NO_MAP_FOUND)
 		ft_putstr("No map description found in cub file\n");
+	if (err_code == RES_ALRD_SET)
+		ft_putstr("Redefinition of res\n");
+	if (err_code == TX_ALRD_SET)
+		ft_putstr("Redefinition of texture path\n");
 	if (err_code == WRONG_RES_ELEM)
 		ft_putstr("Invalid number of arguments in resolution line\n");
+	if (err_code == WRONG_TX_ELEM)
+		ft_putstr("Invalid number of arguments in texture line\n");
+	if (err_code == WRONG_TX_PATH)
+		ft_putstr("Texture path is invalid\n");
+	if (err_code == HCC_ALRD_SET)
+		ft_putstr("Redefinition of element color code\n");
 	return (0);
 }
 
@@ -50,6 +61,14 @@ static int	malloc_error(int err_code)
 		ft_putstr("Parsing structure allocation failed\n");
 	if (err_code == MAL_ERR_FILENAME)
 		ft_putstr("Error duplicating filename to buffer\n");
+	if (err_code == MAL_ERR_DATA)
+		ft_putstr("Error allocating data structure\n");
+	if (err_code == MAL_ERR_LIST)
+		ft_putstr("Error allocating list element\n");
+	if (err_code == MAL_ERR_TX_FD)
+		ft_putstr("Error creating texture file fd\n");
+	if (err_code == MAL_ERR_HCC)
+		ft_putstr("Error creating hex color code element\n");
 	return (0);
 }
 

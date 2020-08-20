@@ -6,12 +6,13 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 14:37:08 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/19 17:58:35 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/20 18:21:26 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "cub3d.h"
+#include "cub_macro.h"
 #include "ft_utils.h"
 
 static int	clear_buffer(char **tmp, int ret)
@@ -42,7 +43,7 @@ static int	check_identifier(char *str, char **id_strings)
 	return (-1);
 }
 
-int	parse_line(t_param *prm)
+int			parse_line(t_param *prm)
 {
 	t_parse		*ptr;
 	char		**tmp;
@@ -53,10 +54,10 @@ int	parse_line(t_param *prm)
 	if ((id = check_identifier(tmp[0], ptr->id_strings)) < 0)
 		return (clear_buffer(tmp, WRONG_ID_STR));
 	if (id == ID_RES)
-		 return (clear_buffer(tmp, id_res_filler(tmp)));
-	else if (id >= ID_TEX_NORTH && id <= ID_TEX_SPRITE)
-		printf("ID_TEX_%d\n", id);
-	else if (id >= ID_COLOR_FLOOR && id <= ID_COLOR_CEIL)
-		printf("ID_COLOR_%d\n", id);
+		return (clear_buffer(tmp, id_res_filler(prm, tmp)));
+	else if (id >= ID_TX_NO && id <= ID_TX_S)
+		return (clear_buffer(tmp, id_fd_filler(prm, tmp, id)));
+	else if (id >= ID_HCC_F && id <= ID_HCC_C)
+		return (clear_buffer(tmp, id_hcc_filler(prm, tmp, id)));
 	return (clear_buffer(tmp, 0));
 }

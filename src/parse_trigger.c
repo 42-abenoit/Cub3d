@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 20:43:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/19 14:38:54 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/20 16:21:36 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include "cub3d.h"
+#include "cub_macro.h"
 #include "ft_utils.h"
-
 
 static int	parse_map(t_param *prm)
 {
