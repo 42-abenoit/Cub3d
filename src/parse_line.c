@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 14:37:08 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 18:21:26 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/21 16:20:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	clear_buffer(char **tmp, int ret)
 		i++;
 	}
 	free(tmp);
+	tmp = NULL;
 	return (ret);
 }
 

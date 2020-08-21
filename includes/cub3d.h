@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 17:24:54 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/21 15:00:59 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,19 @@ int				parse_trigger(t_param *prm);
 int				parse_line(t_param *prm);
 
 /*
+**	parse_map.c
+*/
+int				parse_map(t_param *prm);
+
+/*
 **	id_filler.c
 */
 int				id_res_filler(t_param *prm, char **elem);
 int				id_fd_filler(t_param *prm, char **elem, int id);
+
+/*
+**	id_filler.c
+*/
 int				id_hcc_filler(t_param *prm, char **elem, int id);
 
 /*

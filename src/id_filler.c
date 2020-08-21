@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 18:59:07 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/21 14:54:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			id_fd_filler(t_param *prm, char **elem, int id)
 	t_fd		*fd;
 	char		tmp;
 	const int	bitmask[] = {0, TX_NO_SET, TX_SO_SET, TX_WE_SET,
-							TX_EA_SET, TX_S_SET};
+		TX_EA_SET, TX_S_SET};
 
 	if (prm->booleans & bitmask[id])
 		return (TX_ALRD_SET);
@@ -75,48 +75,5 @@ int			id_fd_filler(t_param *prm, char **elem, int id)
 	if (get_lst_elem(prm->dlist, id) == NULL)
 		return (id_clean_exit(MAL_ERR_LIST, fd));
 	prm->booleans += bitmask[id];
-	return (0);
-}
-
-static int	hcc_extract(unsigned int *hcc, int *j, char **buff)
-{
-	int		i;
-	int		tmp;
-
-	i = 0;
-	while (buff[i] != NULL)
-	{
-		if ((tmp = ft_atoi_base(buff[i], BASE_10)) < 256 && tmp >= 0)
-			*hcc += tmp << ((*j * 8) - 8);
-		free(buff[i]);
-		i++;
-		*j += 1;
-	}
-	return (*j);
-}
-
-int			id_hcc_filler(t_param *prm, char **elem, int id)
-{
-	int			i;
-	int			j;
-	t_hcc		*hcc;
-	char		**buff;
-	const int	bitmask[] = {HCC_F_SET, HCC_C_SET};
-
-	if (prm->booleans & bitmask[id - 6])
-		return (HCC_ALRD_SET);
-	if (!(hcc = malloc(sizeof(t_hcc))))
-		return(MAL_ERR_HCC);
-	i = 1;
-	j = 0;
-	hcc->hcc = 0;
-	while (elem[i] != NULL)
-	{
-		buff = ft_split(elem[i], ",");
-		if ((j = hcc_extract(&(hcc->hcc), &j, buff)) < 0)
-			return (id_clean_exit(j, hcc));
-		i++;
-	}
-	printf("hcc = %x\n", hcc->hcc);
 	return (0);
 }

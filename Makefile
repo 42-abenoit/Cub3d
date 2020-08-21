@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/20 16:15:40 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/21 15:01:17 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRC_NAME =	main.c \
 		ft_split.c \
 		parse_trigger.c \
 		parse_line.c \
+		parse_map.c \
 		id_filler.c \
+		id_filler_2.c \
 		rec_gnl.c
 
 

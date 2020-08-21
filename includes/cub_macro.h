@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 18:39:28 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/21 16:01:54 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define WRONG_SAVE_STR 		-2
 # define WRONG_FILE_EXT 		-3
 # define WRONG_FILE_PATH 		-4
+# define MISS_CONF_INFO			-5
 
 # define ID_SPLIT_ERR			-11
 # define NOT_ID_CHAR 			-12
@@ -31,13 +32,15 @@
 # define WRONG_TX_ELEM			-18
 # define WRONG_TX_PATH			-19
 # define HCC_ALRD_SET			-20
+# define WRONG_HCC_ELEM			-21
 
-# define MAL_ERR_PARSE_STRUCT 	-31
-# define MAL_ERR_FILENAME 		-32
-# define MAL_ERR_DATA	 		-33
-# define MAL_ERR_LIST	 		-34
-# define MAL_ERR_TX_FD	 		-35
-# define MAL_ERR_HCC	 		-36
+# define MAL_ERR_PARSE_STRUCT 	-41
+# define MAL_ERR_FILENAME 		-42
+# define MAL_ERR_DATA	 		-43
+# define MAL_ERR_LIST	 		-44
+# define MAL_ERR_TX_FD	 		-45
+# define MAL_ERR_HCC	 		-46
+# define MAL_ERR_MAP	 		-47
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
@@ -48,7 +51,7 @@
 # define WHITESPACES			"\t\n\v\f\r' '"
 
 /*
-**	IDENTIFIERS VERIFICATION
+**	PARSING IDENTIFIERS
 */
 # define IS_ID					"RNSWEFC"
 # define ID_STRINGS				"R/NO/SO/WE/EA/S/F/C"
@@ -62,9 +65,9 @@
 # define ID_HCC_C				7
 
 /*
-**	MAP CHARACTER SET
+**	MAP IDENTIFIERS
 */
-# define VALID_MAP				"012NSWE"
+# define MAP_VALID_CHAR			"012NSWE' '"
 
 /*
 **	BOOLEANS BITS MASKS
@@ -78,5 +81,7 @@
 # define TX_S_SET				0x00000040
 # define HCC_F_SET				0x00000080
 # define HCC_C_SET				0x00000100
+
+# define CONF_SET				0x000001FE
 
 #endif

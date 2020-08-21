@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 16:34:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/21 15:45:40 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@ typedef struct	s_hcc
 {
 	unsigned int	hcc;
 }				t_hcc;
+
+typedef struct	s_coord
+{
+	double			x;
+	double			y;
+}				t_coord;
+
+typedef struct	s_map
+{
+	char			**grid;
+	int				size_x;
+	int				size_y;
+}				t_map;
+
+typedef struct	s_ent
+{
+	t_coord			pos;
+	t_coord			dir;
+	t_coord			plane;
+}				t_ent;
 
 typedef struct	s_list
 {

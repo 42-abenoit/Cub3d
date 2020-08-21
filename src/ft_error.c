@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 18:40:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/21 16:02:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	arg_error(int err_code)
 		ft_putstr("File extension invalid\n");
 	if (err_code == WRONG_FILE_PATH)
 		ft_putstr("File doesn't exist\n");
+	if (err_code == MISS_CONF_INFO)
+		ft_putstr("Configuration informations missing\n");
 	return (0);
 }
 
@@ -51,6 +53,15 @@ static int	description_error(int err_code)
 		ft_putstr("Texture path is invalid\n");
 	if (err_code == HCC_ALRD_SET)
 		ft_putstr("Redefinition of element color code\n");
+	if (err_code == WRONG_HCC_ELEM)
+		ft_putstr("Invalid number of arguments in hex color code line\n");
+	return (0);
+}
+
+static int	map_error(int err_code)
+{
+	ft_putstr("MAP_ERROR : ");
+	printf("%d\n", err_code);
 	return (0);
 }
 
@@ -69,6 +80,8 @@ static int	malloc_error(int err_code)
 		ft_putstr("Error creating texture file fd\n");
 	if (err_code == MAL_ERR_HCC)
 		ft_putstr("Error creating hex color code element\n");
+	if (err_code == MAL_ERR_MAP)
+		ft_putstr("Error creating map structure\n");
 	return (0);
 }
 
@@ -77,9 +90,11 @@ int			ft_error(int err_code)
 	ft_putstr("Error\n");
 	if (err_code >= -10)
 		return (arg_error(err_code));
-	if (err_code >= -20)
+	else if (err_code >= -30)
 		return (description_error(err_code));
-	if (err_code < -30)
+	else if (err_code >= -40)
+		return (map_error(err_code));
+	else if (err_code < -40)
 		return (malloc_error(err_code));
 	return (0);
 }

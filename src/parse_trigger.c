@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 20:43:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 16:21:36 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/21 16:50:13 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,6 @@
 #include "cub_macro.h"
 #include "ft_utils.h"
 
-static int	parse_map(t_param *prm)
-{
-	t_parse		*tmp;
-
-	tmp = ((t_parse*)(prm->ptr));
-	printf("bool = %x\n", prm->booleans);
-	printf("buff = %s\n", tmp->buff);
-	ft_exit(0, prm);
-	return (0);
-}
-
 static int	open_path(t_parse *tmp)
 {
 	tmp->fd = open(tmp->buff, O_RDONLY);
@@ -36,6 +25,26 @@ static int	open_path(t_parse *tmp)
 	if (read(tmp->fd, &tmp->buff, 0) < 0)
 		return (0);
 	return (1);
+}
+
+static int	verify_conf(t_param *prm)
+{
+	int			i;
+	t_parse		*tmp;
+
+	tmp = ((t_parse*)(prm->ptr));
+	i = 0;
+	while (tmp->id_strings[i] != NULL)
+	{
+		free(tmp->id_strings[i]);
+		tmp->id_strings[i] = NULL;
+		i++;
+	}
+	free(tmp->id_strings);
+	tmp->id_strings = NULL;
+	if ((prm->booleans & CONF_SET) != 0x1FE)
+		return (ft_exit(MISS_CONF_INFO, prm));
+	return (ft_exit(parse_map(prm), prm));
 }
 
 int			parse_trigger(t_param *prm)
@@ -55,12 +64,13 @@ int			parse_trigger(t_param *prm)
 			if ((ret = parse_line(prm)) < 0)
 				return (ft_exit(ret, prm));
 		}
-		else if (ft_isset(tmp->buff[0], VALID_MAP)
+		else if (ft_isset(tmp->buff[0], MAP_VALID_CHAR)
 					|| ft_isset(tmp->buff[0], WHITESPACES))
-			return (parse_map(prm));
+			return (verify_conf(prm));
 		else if (ft_strlen(tmp->buff) > 0)
 			return (ft_exit(NOT_ID_CHAR, prm));
 		free(tmp->buff);
+		tmp->buff = NULL;
 	}
 	return (ft_exit(NO_MAP_FOUND, prm));
 }
