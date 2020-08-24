@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 15:43:03 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 20:06:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,18 @@
 # define MAP_CHAR_INVALID		-31
 # define MAP_ALRD_SET			-32
 # define MAP_LEAKS				-33
+# define START_ALRD_SET			-34
 
 # define MAL_ERR_PARSE_STRUCT 	-41
 # define MAL_ERR_FILENAME 		-42
-# define MAL_ERR_DATA	 		-43
+# define MAL_ERR_SCREEN	 		-43
 # define MAL_ERR_LIST	 		-44
 # define MAL_ERR_TX_FD	 		-45
 # define MAL_ERR_HCC	 		-46
 # define MAL_ERR_MAP	 		-47
 # define MAL_ERR_MAP_DUP		-48
 # define MAL_ERR_GRID			-49
+# define MAL_ERR_PLAYER			-50
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
@@ -62,6 +64,10 @@
 */
 # define IS_ID					"RNSWEFC"
 # define ID_STRINGS				"R/NO/SO/WE/EA/S/F/C"
+
+/*
+**	DLIST IDENTIFIERS
+*/
 # define ID_RES					0
 # define ID_TX_NO				1
 # define ID_TX_SO				2
@@ -70,11 +76,11 @@
 # define ID_TX_S				5
 # define ID_HCC_F				6
 # define ID_HCC_C				7
+# define ID_MAP					8
 
 /*
 **	MAP IDENTIFIERS
 */
-# define ID_MAP					8
 # define MAP_VALID_CHAR			"012NSWE' '"
 # define MAP_EMPTY				"' '"
 # define MAP_OBSTACLE			"12"
@@ -95,6 +101,7 @@
 # define HCC_F_SET				0x00000080
 # define HCC_C_SET				0x00000100
 # define MAP_SET				0x00000200
+# define START_SET				0x00000400
 
 # define CONF_SET				0x000001FE
 

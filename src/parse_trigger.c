@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 20:43:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 11:57:07 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 20:22:46 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	open_path(t_parse *tmp)
 static int	verify_conf(t_param *prm)
 {
 	int			i;
+	int			ret;
 	t_parse		*tmp;
 
 	tmp = ((t_parse*)(prm->ptr));
@@ -44,7 +45,13 @@ static int	verify_conf(t_param *prm)
 	tmp->id_strings = NULL;
 	if ((prm->booleans & CONF_SET) != 0x1FE)
 		return (ft_exit(MISS_CONF_INFO, prm));
-	return (ft_exit(parse_map(prm), prm));
+	if ((ret = parse_map(prm)) < 0)
+		return (ft_exit(ret, prm));
+	free(tmp->buff);
+	tmp->buff = NULL;
+	free(prm->ptr);
+	prm->ptr = NULL;
+	return (game_struct_init(prm));
 }
 
 int			parse_trigger(t_param *prm)

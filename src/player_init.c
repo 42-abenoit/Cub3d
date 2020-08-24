@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_init.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
+/*   Updated: 2020/08/24 20:41:20 by abenoit          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+#include "cub3d.h"
+#include "cub_struct.h"
+#include "cub_macro.h"
+#include "ft_utils.h"
+
+static int	player_clean_exit(int ret, t_ent *player)
+{
+	free(player);
+	return (ret);
+}
+
+static void	player_set_dir(t_ent *player, int dir_x, int dir_y)
+{
+	player->dir.x = dir_x;
+	player->dir.y = dir_y;
+	if (dir_x == 0)
+	{
+		player->plane.x = (dir_y < 0) ? 0.65 : -0.65;
+		player->plane.y = 0.0;
+	}
+	if (dir_y == 0)
+	{
+		player->plane.x = 0.0;
+		player->plane.y = (dir_x > 0) ? 0.65 : -0.65;
+	}
+}
+
+static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
+{
+	t_map	*map;
+	char	dir;
+
+	map = (t_map*)(get_lst_elem(prm->dlist, ID_MAP)->content);
+	dir = map->grid[y][x];
+	if (prm->booleans & START_SET)
+		return (START_ALRD_SET);
+	if (dir == 'N')
+		player_set_dir(player, 0.0, -1.0);
+	if (dir == 'S')
+		player_set_dir(player, 0.0, 1.0);
+	if (dir == 'W')
+		player_set_dir(player, -1.0, 0.0);
+	if (dir == 'E')
+		player_set_dir(player, 1.0, 0.0);
+	player->dir.x = prm->dlist->type;
+	player->pos.x = x;
+	player->pos.y = y;
+	prm->booleans += START_SET;
+	return (0);
+}
+
+int			player_init(t_param *prm)
+{
+	t_ent	*player;
+	t_map	*map;
+	int		ret;
+	int		x;
+	int		y;
+
+	if (!(player = malloc(sizeof(t_ent))))
+		return (MAL_ERR_PLAYER);
+	map = (t_map*)(get_lst_elem(prm->dlist, ID_MAP)->content);
+	y = 0;
+	while (map->grid[y])
+	{
+		x = 0;
+		while (map->grid[y][x])
+		{
+			if (ft_isset(map->grid[y][x], MAP_START))
+				if ((ret = player_set_start(prm, x, y, player)) < 0)
+					return (player_clean_exit(ret, player));
+			x++;
+		}
+		y++;
+	}
+	return (player_clean_exit(0, player));
+}

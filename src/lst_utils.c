@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:27:46 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 12:26:53 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:38:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		ft_lstadd_back(t_list **alst, t_list *new)
 	}
 }
 
-static void	ft_lstclear_content(t_list *lst)
+void	ft_lstclear_content(t_list *lst)
 {
 	t_map	*ptr;
 	int		i;

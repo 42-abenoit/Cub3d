@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 15:47:04 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 20:07:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static int	map_error(int err_code)
 		ft_putstr("Trying to redefine map grid\n");
 	if (err_code == MAP_LEAKS)
 		ft_putstr("Map is not closed or contains invalid character\n");
+	if (err_code == START_ALRD_SET)
+		ft_putstr("Multiple starting positions in map description\n");
 	return (0);
 }
 
@@ -77,8 +79,8 @@ static int	malloc_error(int err_code)
 		ft_putstr("Parsing structure allocation failed\n");
 	if (err_code == MAL_ERR_FILENAME)
 		ft_putstr("Error duplicating filename to buffer\n");
-	if (err_code == MAL_ERR_DATA)
-		ft_putstr("Error allocating data structure\n");
+	if (err_code == MAL_ERR_SCREEN)
+		ft_putstr("Error allocating screen structure\n");
 	if (err_code == MAL_ERR_LIST)
 		ft_putstr("Error allocating list element\n");
 	if (err_code == MAL_ERR_TX_FD)
@@ -90,6 +92,8 @@ static int	malloc_error(int err_code)
 	if (err_code == MAL_ERR_MAP_DUP)
 		ft_putstr("Error copiying map line to grid\n");
 	if (err_code == MAL_ERR_GRID)
+		ft_putstr("Error creating map grid\n");
+	if (err_code == MAL_ERR_PLAYER)
 		ft_putstr("Error creating map grid\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 14:07:12 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 20:24:29 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ int				parse_trigger(t_param *prm);
 int				parse_line(t_param *prm);
 
 /*
+**	id_filler.c
+*/
+int				id_res_filler(t_param *prm, char **elem);
+int				id_fd_filler(t_param *prm, char **elem, int id);
+
+/*
+**	id_filler.c
+*/
+int				id_hcc_filler(t_param *prm, char **elem, int id);
+
+/*
 **	parse_map.c
 */
 int				parse_map(t_param *prm);
@@ -46,15 +57,14 @@ int				parse_map(t_param *prm);
 int				control_map(t_param *prm);
 
 /*
-**	id_filler.c
+**	game_struct.c
 */
-int				id_res_filler(t_param *prm, char **elem);
-int				id_fd_filler(t_param *prm, char **elem, int id);
+int				game_struct_init(t_param *prm);
 
 /*
-**	id_filler.c
+**	player_init.c
 */
-int				id_hcc_filler(t_param *prm, char **elem, int id);
+int				player_init(t_param *prm);
 
 /*
 **	ft_error.c

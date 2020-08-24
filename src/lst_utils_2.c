@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   lst_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 17:10:17 by abenoit          ###   ########.fr       */
+/*   Created: 2020/08/24 18:27:12 by abenoit           #+#    #+#             */
+/*   Updated: 2020/08/24 18:49:38 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "cub3d.h"
+#include "cub_macro.h"
 #include "ft_utils.h"
 
-int		ft_exit(int err_code, t_param *prm)
+void		ft_lst_delone(t_list **lst, t_list *one)
 {
-	t_parse		*tmp;
-	int			i;
+	t_list *ptr;
 
-	if (prm->ptr != NULL)
+	if (lst == NULL || one == NULL)
+		return ;
+	if (*lst == one)
 	{
-		tmp = ((t_parse*)(prm->ptr));
-		if (tmp->buff != NULL)
-			free(tmp->buff);
-		i = 0;
-		if (tmp->id_strings != NULL)
-		{
-			while (tmp->id_strings[i] != NULL)
-			{
-				free(tmp->id_strings[i]);
-				i++;
-			}
-			free(tmp->id_strings);
-		}
-		free(tmp);
+		*lst = (*lst)->next;
+		ft_lstclear_content(one);
+		one = NULL;
 	}
-	ft_dlist_clear(&prm->dlist);
-	if (err_code >= 0)
-		return (0);
 	else
-		return (ft_error(err_code));
+	{
+		ptr = *lst;
+		while (ptr->next != NULL)
+		{
+			if (ptr->next == one)
+			{
+				ptr->next = one->next;
+				ft_lstclear_content(one);
+				one = NULL;
+			}
+			else
+				ptr = ptr->next;
+		}
+	}
 }

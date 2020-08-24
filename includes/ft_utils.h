@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:06:16 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 15:44:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 18:38:31 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ int				verify_extension(char *file_name, char *ext);
 t_list			*get_lst_elem(t_list *alst, int type);
 t_list			*ft_lstnew(int type, void *content);
 void			ft_lstadd_back(t_list **alst, t_list *new);
+void			ft_lstclear_content(t_list *lst);
 void			ft_dlist_clear(t_list **lst);
 
 /*
 **	lst_utils_2.c
 */
-void			ft_clear_content_data(t_data *content);
+void			ft_lst_delone(t_list **lst, t_list *one);
 
 /*
 **	ft_split.c
