@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/21 14:54:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 10:58:22 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int			id_res_filler(t_param *prm, char **elem)
 	if (!(data = malloc(sizeof(t_data))))
 		return (MAL_ERR_DATA);
 	tmp = ft_atoi_base(elem[1], BASE_10);
-	data->img_width = tmp;
+	data->width = tmp;
 	tmp = ft_atoi_base(elem[2], BASE_10);
-	data->img_height = tmp;
+	data->height = tmp;
 	ft_lstadd_back(&(prm->dlist), ft_lstnew(ID_RES, data));
 	if (get_lst_elem(prm->dlist, ID_RES) == NULL)
 		return (id_clean_exit(MAL_ERR_LIST, data));

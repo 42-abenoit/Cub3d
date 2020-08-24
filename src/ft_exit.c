@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/21 16:48:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 12:24:22 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_exit(int err_code, t_param *prm)
 	}
 	free(prm->ptr);
 	ft_dlist_clear(&prm->dlist);
-	if (err_code == 0)
+	if (err_code >= 0)
 		return (0);
 	else
 		return (ft_error(err_code));

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/21 16:01:54 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 12:10:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # define HCC_ALRD_SET			-20
 # define WRONG_HCC_ELEM			-21
 
+# define MAP_CHAR_INVALID		-31
+# define MAP_ALRD_SET			-32
+
 # define MAL_ERR_PARSE_STRUCT 	-41
 # define MAL_ERR_FILENAME 		-42
 # define MAL_ERR_DATA	 		-43
@@ -41,6 +44,8 @@
 # define MAL_ERR_TX_FD	 		-45
 # define MAL_ERR_HCC	 		-46
 # define MAL_ERR_MAP	 		-47
+# define MAL_ERR_MAP_DUP		-48
+# define MAL_ERR_GRID			-49
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
@@ -67,7 +72,12 @@
 /*
 **	MAP IDENTIFIERS
 */
+# define ID_MAP					8
 # define MAP_VALID_CHAR			"012NSWE' '"
+# define MAP_EMPTY				"' '"
+# define MAP_OBSTACLE			"12"
+# define MAP_WALKABLE			"0NSWE"
+# define MAP_START				"NSWE"
 
 /*
 **	BOOLEANS BITS MASKS
@@ -81,6 +91,7 @@
 # define TX_S_SET				0x00000040
 # define HCC_F_SET				0x00000080
 # define HCC_C_SET				0x00000100
+# define MAP_SET				0x00000200
 
 # define CONF_SET				0x000001FE
 

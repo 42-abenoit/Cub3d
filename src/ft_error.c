@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/21 16:02:52 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 12:01:39 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 static int	arg_error(int err_code)
 {
 	ft_putstr("ARGUMENT_ERROR : ");
+	printf("%d\n", err_code);
 	if (err_code == WRONG_ARG_NUM)
 		ft_putstr("Invalid number of arguments\n");
 	if (err_code == WRONG_SAVE_STR)
@@ -61,7 +62,10 @@ static int	description_error(int err_code)
 static int	map_error(int err_code)
 {
 	ft_putstr("MAP_ERROR : ");
-	printf("%d\n", err_code);
+	if (err_code == MAP_CHAR_INVALID)
+		ft_putstr("Invalid character in map description line\n");
+	if (err_code == MAP_ALRD_SET)
+		ft_putstr("Trying to redefine map grid\n");
 	return (0);
 }
 
@@ -82,6 +86,10 @@ static int	malloc_error(int err_code)
 		ft_putstr("Error creating hex color code element\n");
 	if (err_code == MAL_ERR_MAP)
 		ft_putstr("Error creating map structure\n");
+	if (err_code == MAL_ERR_MAP_DUP)
+		ft_putstr("Error copiying map line to grid\n");
+	if (err_code == MAL_ERR_GRID)
+		ft_putstr("Error creating map grid\n");
 	return (0);
 }
 

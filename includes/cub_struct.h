@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/21 15:45:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 10:58:35 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct	s_parse
 
 typedef struct	s_data
 {
-	int				img_width;
-	int				img_height;
+	int				width;
+	int				height;
 }				t_data;
 
 typedef struct	s_fd
