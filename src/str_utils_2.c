@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 19:18:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 16:20:49 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:44:29 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,21 @@ int			ft_atoi_base(char *str, char *base)
 	}
 	return (nbr);
 }
+
+int			verify_extension(char *file_name, char *ext)
+{
+	int	i;
+	int	j;
+
+	j = 3;
+	i = ft_strlen(file_name) - 1;
+	while (i > -1 && j > -1)
+	{
+		if (file_name[i] != ext[j])
+			return (0);
+		i--;
+		j--;
+	}
+	return (1);
+}
+

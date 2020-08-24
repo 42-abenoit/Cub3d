@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 10:58:22 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:45:53 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int			id_fd_filler(t_param *prm, char **elem, int id)
 		return (TX_ALRD_SET);
 	if (elem_count(elem) != 2)
 		return (WRONG_TX_ELEM);
+	if (!verify_extension(elem[1], XPM_EXT))
+		return (WRONG_FILE_EXT);
 	if (!(fd = malloc(sizeof(t_fd))))
 		return (MAL_ERR_TX_FD);
 	fd->fd = open(elem[1], O_RDONLY);

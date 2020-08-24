@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:06:16 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/20 16:25:41 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:44:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int				ft_strcmp(char *s1, char *s2);
 */
 char			*ft_strdup(const char *s1);
 int				ft_atoi_base(char *str, char *set);
+int				verify_extension(char *file_name, char *ext);
 
 /*
 **	lst_utils.c

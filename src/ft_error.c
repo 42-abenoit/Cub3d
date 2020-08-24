@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 12:01:39 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:47:04 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 static int	arg_error(int err_code)
 {
 	ft_putstr("ARGUMENT_ERROR : ");
-	printf("%d\n", err_code);
 	if (err_code == WRONG_ARG_NUM)
 		ft_putstr("Invalid number of arguments\n");
 	if (err_code == WRONG_SAVE_STR)
 		ft_putstr("Second argument invalid\n");
 	if (err_code == WRONG_FILE_EXT)
-		ft_putstr("File extension invalid\n");
+		ft_putstr("File extension invalid, only .cub and .xpm accepted\n");
 	if (err_code == WRONG_FILE_PATH)
 		ft_putstr("File doesn't exist\n");
 	if (err_code == MISS_CONF_INFO)
@@ -66,6 +65,8 @@ static int	map_error(int err_code)
 		ft_putstr("Invalid character in map description line\n");
 	if (err_code == MAP_ALRD_SET)
 		ft_putstr("Trying to redefine map grid\n");
+	if (err_code == MAP_LEAKS)
+		ft_putstr("Map is not closed or contains invalid character\n");
 	return (0);
 }
 

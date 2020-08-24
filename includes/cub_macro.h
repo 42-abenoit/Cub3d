@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 12:10:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:43:03 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 # define MAP_CHAR_INVALID		-31
 # define MAP_ALRD_SET			-32
+# define MAP_LEAKS				-33
 
 # define MAL_ERR_PARSE_STRUCT 	-41
 # define MAL_ERR_FILENAME 		-42
@@ -52,7 +53,8 @@
 */
 # define BASE_10				"0123456789"
 # define SAVE_STR				"--save"
-# define VALID_EXT				".cub"
+# define CUB_EXT				".cub"
+# define XPM_EXT				".xpm"
 # define WHITESPACES			"\t\n\v\f\r' '"
 
 /*
@@ -76,6 +78,7 @@
 # define MAP_VALID_CHAR			"012NSWE' '"
 # define MAP_EMPTY				"' '"
 # define MAP_OBSTACLE			"12"
+# define MAP_PLAY_AREA			"02NSWE"
 # define MAP_WALKABLE			"0NSWE"
 # define MAP_START				"NSWE"
 

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:11:40 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 11:55:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:47:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,6 @@ static int		prm_init(t_param *prm)
 	return (1);
 }
 
-static int		verify_extension(char *file_name)
-{
-	int	i;
-	int	j;
-
-	j = 3;
-	i = ft_strlen(file_name) - 1;
-	while (i > -1 && j > -1)
-	{
-		if (file_name[i] != VALID_EXT[j])
-			return (0);
-		i--;
-		j--;
-	}
-	return (1);
-}
-
 int				main(int ac, char **av)
 {
 	t_param	prm;
@@ -58,7 +41,7 @@ int				main(int ac, char **av)
 				return (ft_exit(WRONG_SAVE_STR, &prm));
 			prm.booleans += BMP_SAVE;
 		}
-		if (verify_extension(av[1]))
+		if (verify_extension(av[1], CUB_EXT))
 		{
 			if (!(((t_parse*)(prm.ptr))->buff = ft_strdup(av[1])))
 				return (ft_exit(MAL_ERR_FILENAME, &prm));

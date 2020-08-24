@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 14:58:54 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 12:34:39 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/24 15:19:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,22 @@
 #include "cub_macro.h"
 #include "ft_utils.h"
 
-#include <unistd.h>
-
 static int	map_clean_exit(int ret, t_map *map)
 {
+	int		i;
+
+	i = 0;
+	if (map->grid != NULL)
+	{
+		while (map->grid[i])
+		{
+			free(map->grid[i]);
+			map->grid[i] = NULL;
+			i++;
+		}
+		free(map->grid);
+		map->grid = NULL;
+	}
 	free(map);
 	return (ret);
 }
@@ -42,7 +54,7 @@ static int	map_check_line(t_map *map, char *tmp)
 	return (1);
 }
 
-int			gnl_map_alloc(t_map *map, char *tmp, int y)
+static int	gnl_map_alloc(t_map *map, char *tmp, int y)
 {
 	if (map->grid == NULL)
 	{
@@ -106,5 +118,5 @@ int			parse_map(t_param *prm)
 	if (get_lst_elem(prm->dlist, ID_MAP) == NULL)
 		return (map_clean_exit(MAL_ERR_LIST, map));
 	prm->booleans += MAP_SET;
-	return (0);
+	return (control_map(prm));
 }
