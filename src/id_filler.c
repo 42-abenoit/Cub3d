@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 17:23:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 14:58:26 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			id_fd_filler(t_param *prm, char **elem, int id)
 		return (MAL_ERR_TX_FD);
 	fd->fd = open(elem[1], O_RDONLY);
 	if (read(fd->fd, &tmp, 0) < 0)
-		return (WRONG_TX_PATH);
+		return (id_clean_exit(WRONG_TX_PATH, fd));
 	ft_lstadd_back(&(prm->dlist), ft_lstnew(id, fd));
 	if (get_lst_elem(prm->dlist, id) == NULL)
 		return (id_clean_exit(MAL_ERR_LIST, fd));
