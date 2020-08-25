@@ -61,8 +61,8 @@ int			parse_trigger(t_param *prm)
 		else if (ft_isset(tmp->buff[0], MAP_VALID_CHAR)
 					|| ft_isset(tmp->buff[0], WHITESPACES))
 		{
-				if ((ret = parse_map(prm)) < 0)
-					return (ft_exit(ret, prm));
+			if ((ret = parse_map(prm)) < 0)
+				return (ft_exit(ret, prm));
 		}
 		else if (ft_strlen(tmp->buff) > 0)
 			return (ft_exit(NOT_ID_CHAR, prm));
