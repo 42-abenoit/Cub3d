@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 14:58:26 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 17:58:09 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ int			id_res_filler(t_param *prm, char **elem)
 		return (RES_ALRD_SET);
 	if (elem_count(elem) != 3)
 		return (WRONG_RES_ELEM);
+	if (ft_contains_notset(elem[1], BASE_10)
+			|| ft_contains_notset(elem[2], BASE_10))
+			return (WRONG_RES_CHAR);
 	if (!(screen = malloc(sizeof(t_screen))))
 		return (MAL_ERR_SCREEN);
 	tmp = ft_atoi_base(elem[1], BASE_10);

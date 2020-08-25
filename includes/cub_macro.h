@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 11:47:23 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 18:00:03 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,27 @@
 # define WRONG_FILE_EXT 		-3
 # define WRONG_FILE_PATH 		-4
 # define MISS_CONF_INFO			-5
+# define ID_SPLIT_ERR			-6
+# define NOT_ID_CHAR 			-7
+# define WRONG_ID_STR 			-8
+# define NO_MAP_FOUND 			-9
 
-# define ID_SPLIT_ERR			-11
-# define NOT_ID_CHAR 			-12
-# define WRONG_ID_STR 			-13
-# define NO_MAP_FOUND 			-14
-# define RES_ALRD_SET			-15
-# define TX_ALRD_SET			-16
-# define WRONG_RES_ELEM			-17
-# define WRONG_TX_ELEM			-18
-# define WRONG_TX_PATH			-19
-# define HCC_ALRD_SET			-20
-# define WRONG_HCC_ELEM			-21
+# define RES_ALRD_SET			-11
+# define TX_ALRD_SET			-12
+# define WRONG_RES_ELEM			-13
+# define WRONG_RES_CHAR			-14
+# define WRONG_TX_ELEM			-15
+# define WRONG_TX_PATH			-16
+# define HCC_ALRD_SET			-17
+# define WRONG_HCC_ELEM			-18
+# define WRONG_HCC_CHAR			-19
+# define WRONG_HCC_VAL			-20
 
 # define MAP_CHAR_INVALID		-31
 # define MAP_ALRD_SET			-32
 # define MAP_LEAKS				-33
 # define START_ALRD_SET			-34
+# define NO_START_POS			-35
 
 # define MAL_ERR_PARSE_STRUCT 	-41
 # define MAL_ERR_FILENAME 		-42
@@ -84,7 +88,7 @@
 **	MAP IDENTIFIERS
 */
 # define MAP_VALID_CHAR			"012NSWE' '"
-# define MAP_EMPTY				"' '"
+# define MAP_EMPTY				" "
 # define MAP_OBSTACLE			"12"
 # define MAP_PLAY_AREA			"02NSWE"
 # define MAP_WALKABLE			"0NSWE"

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 11:48:59 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 16:16:54 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
 
 static int	create_player_dlist(t_param *prm, t_ent *player)
 {
+	if (!(prm->booleans & START_SET))
+			return(player_clean_exit(NO_START_POS, player));
 	ft_lstadd_back(&(prm->dlist), ft_lstnew(ID_PLAYER, player));
 	if (get_lst_elem(prm->dlist, ID_PLAYER) == NULL)
 		return (player_clean_exit(MAL_ERR_LIST, player));

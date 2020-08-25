@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 14:51:05 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/21 14:53:46 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 17:58:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ static int	hcc_extract(unsigned int *hcc, int *j, char **buff)
 	{
 		if (ft_strlen(buff[i]) != 0)
 		{
+			if (ft_contains_notset(buff[i], BASE_10))
+				return (WRONG_HCC_CHAR);
 			if ((tmp = ft_atoi_base(buff[i], BASE_10)) < 256 && tmp >= 0)
 				*hcc += tmp << ((*j * 8) - 8);
+			else
+				return (WRONG_HCC_VAL);
 			*j -= 1;
 		}
 		free(buff[i]);

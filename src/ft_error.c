@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 20:07:11 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 17:59:42 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ static int	arg_error(int err_code)
 		ft_putstr("File doesn't exist\n");
 	if (err_code == MISS_CONF_INFO)
 		ft_putstr("Configuration informations missing\n");
-	return (0);
-}
-
-static int	description_error(int err_code)
-{
-	ft_putstr("DESCRIPTION_ERR : ");
 	if (err_code == ID_SPLIT_ERR)
 		ft_putstr("Parsing initialisation failed\n");
 	if (err_code == NOT_ID_CHAR)
@@ -41,12 +35,20 @@ static int	description_error(int err_code)
 		ft_putstr("Invalid line identifier\n");
 	if (err_code == NO_MAP_FOUND)
 		ft_putstr("No map description found in cub file\n");
+	return (0);
+}
+
+static int	description_error(int err_code)
+{
+	ft_putstr("DESCRIPTION_ERR : ");
 	if (err_code == RES_ALRD_SET)
 		ft_putstr("Redefinition of res\n");
 	if (err_code == TX_ALRD_SET)
 		ft_putstr("Redefinition of texture path\n");
 	if (err_code == WRONG_RES_ELEM)
 		ft_putstr("Invalid number of arguments in resolution line\n");
+	if (err_code == WRONG_RES_CHAR)
+		ft_putstr("Invalid character in resolution line\n");
 	if (err_code == WRONG_TX_ELEM)
 		ft_putstr("Invalid number of arguments in texture line\n");
 	if (err_code == WRONG_TX_PATH)
@@ -55,6 +57,10 @@ static int	description_error(int err_code)
 		ft_putstr("Redefinition of element color code\n");
 	if (err_code == WRONG_HCC_ELEM)
 		ft_putstr("Invalid number of arguments in hex color code line\n");
+	if (err_code == WRONG_HCC_CHAR)
+		ft_putstr("Invalid character in hex color code line\n");
+	if (err_code == WRONG_HCC_VAL)
+		ft_putstr("Hex color code value is lesser than 0 or greater than 255\n");
 	return (0);
 }
 
@@ -69,6 +75,8 @@ static int	map_error(int err_code)
 		ft_putstr("Map is not closed or contains invalid character\n");
 	if (err_code == START_ALRD_SET)
 		ft_putstr("Multiple starting positions in map description\n");
+	if (err_code == NO_START_POS)
+		ft_putstr("No starting positions in map description\n");
 	return (0);
 }
 

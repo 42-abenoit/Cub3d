@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 20:43:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 20:22:46 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 17:33:47 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			parse_trigger(t_param *prm)
 	tmp = ((t_parse*)(prm->ptr));
 	if ((ret = open_path(tmp)) < 0)
 		return (ft_exit(ret, prm));
-	while (rec_gnl(tmp->fd, &tmp->buff) == 1)
+	while (rec_gnl(tmp->fd, &tmp->buff) >= 1)
 	{
 		if (ft_isset(tmp->buff[0], IS_ID))
 		{

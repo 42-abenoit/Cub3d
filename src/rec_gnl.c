@@ -6,7 +6,7 @@
 /*   By: abenoit <abenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 18:00:38 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/18 20:48:08 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 17:32:29 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		recursive_get_line(char **line, int fd, int offset)
 	ret = read(fd, &buffer, 1);
 	if (ret == 1)
 	{
-		if (buffer == '\n')
+		if (buffer == '\n' || buffer == '\0')
 			return (line_init(line, offset, 1));
 		else
 		{

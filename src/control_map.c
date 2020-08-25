@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 14:06:45 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 15:26:39 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 17:24:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ static int	flood_fill(int x, int y, char **grid, char **vgrid)
 	{
 		vgrid[y][x] = '1';
 		if ((flood_fill(x + 1, y, grid, vgrid) == 1)
+				&& (flood_fill(x - 1, y -1, grid, vgrid) == 1)
+				&& (flood_fill(x - 1, y + 1, grid, vgrid) == 1)
+				&& (flood_fill(x + 1, y +1, grid, vgrid) == 1)
+				&& (flood_fill(x + 1, y -1, grid, vgrid) == 1)
 				&& (flood_fill(x - 1, y, grid, vgrid) == 1)
 				&& (flood_fill(x, y + 1, grid, vgrid) == 1)
 				&& (flood_fill(x, y - 1, grid, vgrid) == 1))
@@ -104,8 +108,8 @@ int			control_map(t_param *prm)
 		x = 0;
 		while (map->grid[y][x])
 		{
-			if (vgrid[y][x] == '0' && ft_isset(map->grid[y][x], MAP_PLAY_AREA))
-				if (!((ret = flood_fill(x, y, map->grid, vgrid)) == 1))
+			if (vgrid[y][x] != '1' && ft_isset(map->grid[y][x], MAP_PLAY_AREA))
+				if ((ret = flood_fill(x, y, map->grid, vgrid) != 1))
 					return (ctrl_clean_exit(MAP_LEAKS, vgrid));
 			x++;
 		}

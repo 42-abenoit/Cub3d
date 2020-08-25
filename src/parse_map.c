@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 14:58:54 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 15:19:19 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 17:35:34 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	gnl_map_extract(t_map *map, int fd, char *buff, int y)
 			if ((map->grid[y] = ft_strdup(buff)) == NULL)
 				return (MAL_ERR_MAP_DUP);
 	}
-	else if ((ret = rec_gnl(fd, &tmp)) == 1)
+	else if ((ret = rec_gnl(fd, &tmp)) >= 0)
 	{
 		if ((ret = map_check_line(map, tmp)) == 1)
 			ret = gnl_map_extract(map, fd, buff, y + 1);
