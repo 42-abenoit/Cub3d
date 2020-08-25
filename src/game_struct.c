@@ -22,11 +22,10 @@ int		game_struct_init(t_param *prm)
 
 	if (!(render = malloc(sizeof(t_render))))
 		return (ft_exit(MAL_ERR_RENDER, prm));
-	render->mlx = mlx_init();
-	if (render->mlx == NULL)
-		return (MLX_INIT_FAIL);
+//	render->mlx = mlx_init();
+//	if (render->mlx == NULL)
+//		return (MLX_INIT_FAIL);
 	prm->ptr = render;
 	prm->booleans += START_RENDER;
-	
 	return (ft_exit(0, prm));
 }

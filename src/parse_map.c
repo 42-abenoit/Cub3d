@@ -104,6 +104,8 @@ int			parse_map(t_param *prm)
 	t_map		*map;
 	t_parse		*tmp;
 
+	if (prm->booleans & MAP_SET)
+		return (MAP_ALRD_SET);
 	tmp = ((t_parse*)(prm->ptr));
 	if (!(map = malloc(sizeof(t_map))))
 		return (MAL_ERR_MAP);

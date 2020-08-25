@@ -15,7 +15,7 @@
 #include "cub_macro.h"
 #include "ft_utils.h"
 
-int	clean_parse(t_param *prm)
+int		clean_parse(t_param *prm)
 {
 	t_parse		*tmp;
 	int			i;
@@ -41,7 +41,7 @@ int	clean_parse(t_param *prm)
 	return (0);
 }
 
-int	clean_render(t_param *prm)
+int		clean_render(t_param *prm)
 {
 	t_render	*tmp;
 
@@ -50,7 +50,7 @@ int	clean_render(t_param *prm)
 		tmp = ((t_render*)(prm->ptr));
 		free(tmp);
 	}
-	return  (0);
+	return (0);
 }
 
 int		ft_exit(int err_code, t_param *prm)

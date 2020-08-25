@@ -61,7 +61,7 @@ void		ft_lstadd_back(t_list **alst, t_list *new)
 	}
 }
 
-void	ft_lstclear_content(t_list *lst)
+void		ft_lstclear_content(t_list *lst)
 {
 	t_map	*ptr;
 	int		i;
