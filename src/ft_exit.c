@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 17:10:17 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 11:31:51 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,5 @@ int		ft_exit(int err_code, t_param *prm)
 		free(tmp);
 	}
 	ft_dlist_clear(&prm->dlist);
-	if (err_code >= 0)
-		return (0);
-	else
-		return (ft_error(err_code));
+	return ((err_code >= 0) ? 0 : ft_error(err_code));
 }

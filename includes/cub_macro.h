@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 20:06:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 11:47:23 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@
 # define ID_HCC_F				6
 # define ID_HCC_C				7
 # define ID_MAP					8
+# define ID_PLAYER				9
 
 /*
 **	MAP IDENTIFIERS

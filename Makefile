@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/24 20:27:58 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/25 11:39:18 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ INC = -I includes
 CC = gcc
 RM = rm -f
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g
 
 all: $(NAME)
 

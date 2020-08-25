@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 20:41:20 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/25 11:48:59 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
 	return (0);
 }
 
+static int	create_player_dlist(t_param *prm, t_ent *player)
+{
+	ft_lstadd_back(&(prm->dlist), ft_lstnew(ID_PLAYER, player));
+	if (get_lst_elem(prm->dlist, ID_PLAYER) == NULL)
+		return (player_clean_exit(MAL_ERR_LIST, player));
+	return (0);
+}
+
 int			player_init(t_param *prm)
 {
 	t_ent	*player;
@@ -86,5 +94,5 @@ int			player_init(t_param *prm)
 		}
 		y++;
 	}
-	return (player_clean_exit(0, player));
+	return (create_player_dlist(prm, player));
 }
