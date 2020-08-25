@@ -49,6 +49,7 @@
 # define MAL_ERR_MAP_DUP		-48
 # define MAL_ERR_GRID			-49
 # define MAL_ERR_PLAYER			-50
+# define MAL_ERR_RENDER			-51
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
@@ -104,6 +105,9 @@
 # define MAP_SET				0x00000200
 # define START_SET				0x00000400
 
+# define START_RENDER			0x00000800
+
 # define CONF_SET				0x000001FE
+# define PARSE_END				0x00000FFE
 
 #endif

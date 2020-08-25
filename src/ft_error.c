@@ -94,7 +94,9 @@ static int	malloc_error(int err_code)
 	if (err_code == MAL_ERR_GRID)
 		ft_putstr("Error creating map grid\n");
 	if (err_code == MAL_ERR_PLAYER)
-		ft_putstr("Error creating map grid\n");
+		ft_putstr("Error creating player data structure\n");
+	if (err_code == MAL_ERR_RENDER)
+		ft_putstr("Error creating render engine structure\n");
 	return (0);
 }
 
@@ -107,7 +109,7 @@ int			ft_error(int err_code)
 		return (description_error(err_code));
 	else if (err_code >= -40)
 		return (map_error(err_code));
-	else if (err_code < -40)
+	else if (err_code >= -60)
 		return (malloc_error(err_code));
 	return (0);
 }

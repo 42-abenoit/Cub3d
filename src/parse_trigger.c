@@ -29,28 +29,15 @@ static int	open_path(t_parse *tmp)
 
 static int	verify_conf(t_param *prm)
 {
-	int			i;
 	int			ret;
-	t_parse		*tmp;
 
-	tmp = ((t_parse*)(prm->ptr));
-	i = 0;
-	while (tmp->id_strings[i] != NULL)
-	{
-		free(tmp->id_strings[i]);
-		tmp->id_strings[i] = NULL;
-		i++;
-	}
-	free(tmp->id_strings);
-	tmp->id_strings = NULL;
 	if ((prm->booleans & CONF_SET) != 0x1FE)
 		return (ft_exit(MISS_CONF_INFO, prm));
 	if ((ret = parse_map(prm)) < 0)
 		return (ft_exit(ret, prm));
-	free(tmp->buff);
-	tmp->buff = NULL;
-	free(prm->ptr);
-	prm->ptr = NULL;
+	if ((ret = player_init(prm)) < 0)
+		return (ft_exit(ret, prm));
+	clean_parse(prm);
 	return (game_struct_init(prm));
 }
 

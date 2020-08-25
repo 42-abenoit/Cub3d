@@ -74,6 +74,8 @@ int				ft_error(int err_code);
 /*
 **	ft_exit.c
 */
+int				clean_parse(t_param *prm);
+int				clean_render(t_param *prm);
 int				ft_exit(int err_code, t_param *prm);
 
 #endif

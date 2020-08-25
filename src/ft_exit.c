@@ -12,9 +12,10 @@
 
 #include <stdlib.h>
 #include "cub3d.h"
+#include "cub_macro.h"
 #include "ft_utils.h"
 
-int		ft_exit(int err_code, t_param *prm)
+int	clean_parse(t_param *prm)
 {
 	t_parse		*tmp;
 	int			i;
@@ -34,8 +35,30 @@ int		ft_exit(int err_code, t_param *prm)
 			}
 			free(tmp->id_strings);
 		}
+		free(prm->ptr);
+		prm->ptr = NULL;
+	}
+	return (0);
+}
+
+int	clean_render(t_param *prm)
+{
+	t_render	*tmp;
+
+	if (prm->ptr != NULL)
+	{
+		tmp = ((t_render*)(prm->ptr));
 		free(tmp);
 	}
+	return  (0);
+}
+
+int		ft_exit(int err_code, t_param *prm)
+{
+	if ((prm->booleans & PARSE_END) < PARSE_END)
+		clean_parse(prm);
+	else
+		clean_render(prm);
 	ft_dlist_clear(&prm->dlist);
 	return ((err_code >= 0) ? 0 : ft_error(err_code));
 }

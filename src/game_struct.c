@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "cub3d.h"
 #include "cub_struct.h"
 #include "cub_macro.h"
@@ -17,9 +18,15 @@
 
 int		game_struct_init(t_param *prm)
 {
-	int		ret;
+	t_render	*render;
 
-	if ((ret = player_init(prm)) < 0)
-		return (ft_exit(ret, prm));
+	if (!(render = malloc(sizeof(t_render))))
+		return (ft_exit(MAL_ERR_RENDER, prm));
+	render->mlx = mlx_init();
+	if (render->mlx == NULL)
+		return (MLX_INIT_FAIL);
+	prm->ptr = render;
+	prm->booleans += START_RENDER;
+	
 	return (ft_exit(0, prm));
 }
