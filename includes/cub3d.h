@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/24 20:24:29 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 12:37:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ int				player_init(t_param *prm);
 **	ft_error.c
 */
 int				ft_error(int err_code);
+
+/*
+**	ft_error_2.c
+*/
+int				render_error(int err_code);
 
 /*
 **	ft_exit.c

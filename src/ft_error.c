@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 17:59:42 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 12:35:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int			ft_error(int err_code)
 		return (map_error(err_code));
 	else if (err_code >= -60)
 		return (malloc_error(err_code));
-	return (0);
+	else
+		return (render_error(err_code));
 }

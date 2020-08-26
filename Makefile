@@ -6,14 +6,18 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/25 15:38:39 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/26 12:39:37 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
+OS_NAME := $(shell uname -s | tr A-Z a-z)
 
 SRC_DIR = src
 
 SRC_NAME =	main.c \
 		ft_error.c \
+		ft_error_2.c \
 		ft_exit.c \
 		str_utils.c \
 		str_utils_2.c \
@@ -42,14 +46,30 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
 NAME = Cub3d
 
-INC = -I includes
+INC = -I includes -I$(MLX_DIR)
 
 CC = gcc
 RM = rm -f
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
-all: $(NAME)
+MLX = libmlx.a
+
+MLX_LIBS = -lmlx
+
+MLX_INC = -L$(MLX_DIR)
+
+MLX_DIR =
+ifeq ($(OS_NAME),Darwin)
+	MLX_DIR += mlx_macos
+	MLX_LIBS += -framework OpenGL -framework AppKit
+else
+	MLX_DIR += mlx_linux
+	MLX_LIBS += -lXext -lX11 -lm -lz
+endif
+
+
+all: $(MLX) $(NAME)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	    $(CC) $(INC) $(CFLAGS) -c $< -o $@
@@ -58,13 +78,17 @@ $(OBJ_DIR):
 		mkdir -p $@
 
 $(NAME): $(OBJ)
-		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(INC)
+		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(INC) $(MLX_INC) $(MLX_LIBS)
+
+$(MLX):
+		@make -C $(MLX_DIR) $(MLX_LIBS)
 
 clean:
 		$(RM) -r $(OBJ_DIR)
 
 fclean:		clean
 		$(RM) $(NAME)
+		@make -C $(MLX_DIR) clean
 
 re:		fclean all
 

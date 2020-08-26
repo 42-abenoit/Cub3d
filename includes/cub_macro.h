@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 18:00:03 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 12:34:13 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@
 # define MAL_ERR_GRID			-49
 # define MAL_ERR_PLAYER			-50
 # define MAL_ERR_RENDER			-51
+
+# define MLX_INIT_FAIL			-61
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS

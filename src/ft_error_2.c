@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_struct.c                                      :+:      :+:    :+:   */
+/*   ft_error_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 12:00:45 by abenoit          ###   ########.fr       */
+/*   Created: 2020/08/26 12:33:41 by abenoit           #+#    #+#             */
+/*   Updated: 2020/08/26 12:38:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "cub3d.h"
-#include "cub_struct.h"
 #include "cub_macro.h"
 #include "ft_utils.h"
-#include "mlx.h"
 
-int		game_struct_init(t_param *prm)
+static int	mlx_error(int err_code)
 {
-	t_render	*render;
+	ft_putstr("MALLOC_ERROR : ");
+	if (err_code == MAL_ERR_PARSE_STRUCT)
+		ft_putstr("Parsing structure allocation failed\n");
+	return (0);
+}
 
-	if (!(render = malloc(sizeof(t_render))))
-		return (ft_exit(MAL_ERR_RENDER, prm));
-	render->mlx = mlx_init();
-	if (render->mlx == NULL)
-		return (MLX_INIT_FAIL);
-	prm->ptr = render;
-	prm->booleans += START_RENDER;
-	return (ft_exit(0, prm));
+int			render_error(int err_code)
+{
+	if (err_code >= 80)
+		return (mlx_error(err_code));
+	return (0);
 }
