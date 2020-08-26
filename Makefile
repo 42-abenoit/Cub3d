@@ -6,12 +6,12 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/26 12:39:37 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/26 12:53:13 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-OS_NAME := $(shell uname -s | tr A-Z a-z)
+OS_NAME := $(shell uname -s)
 
 SRC_DIR = src
 
@@ -62,7 +62,7 @@ MLX_INC = -L$(MLX_DIR)
 MLX_DIR =
 ifeq ($(OS_NAME),Darwin)
 	MLX_DIR += mlx_macos
-	MLX_LIBS += -framework OpenGL -framework AppKit
+	MLX_INC += -framework OpenGL -framework AppKit
 else
 	MLX_DIR += mlx_linux
 	MLX_LIBS += -lXext -lX11 -lm -lz
