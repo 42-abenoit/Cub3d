@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:06:16 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 17:53:56 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 18:04:38 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ int				ft_contains_notset(char *str, char *set);
 t_list			*get_lst_elem(t_list *alst, int type);
 t_list			*ft_lstnew(int type, void *content);
 void			ft_lstadd_back(t_list **alst, t_list *new);
-void			ft_lstclear_content(t_list *lst);
-void			ft_dlist_clear(t_list **lst);
 
 /*
 **	lst_utils_2.c
 */
 void			ft_lst_delone(t_list **lst, t_list *one);
+void			ft_lstclear_content(t_list *lst);
+void			ft_dlist_clear(t_list **lst);
+
+/*
+**	mlx_utils.c
+*/
+int				my_mlx_destroy_tx(void *mlx, t_list *elem);
+int				my_mlx_tx_from_path(void *mlx, t_list *elem);
 
 /*
 **	ft_split.c

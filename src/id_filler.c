@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 17:58:09 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 18:13:57 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,27 +58,29 @@ int			id_res_filler(t_param *prm, char **elem)
 	return (0);
 }
 
-int			id_fd_filler(t_param *prm, char **elem, int id)
+int			id_path_filler(t_param *prm, char **elem, int id)
 {
-	t_fd		*fd;
+	int			fd;
+	char		*path;
 	char		tmp;
 	const int	bitmask[] = {0, TX_NO_SET, TX_SO_SET, TX_WE_SET,
 		TX_EA_SET, TX_S_SET};
 
+	path = NULL;
 	if (prm->booleans & bitmask[id])
 		return (TX_ALRD_SET);
 	if (elem_count(elem) != 2)
 		return (WRONG_TX_ELEM);
 	if (!verify_extension(elem[1], XPM_EXT))
 		return (WRONG_FILE_EXT);
-	if (!(fd = malloc(sizeof(t_fd))))
-		return (MAL_ERR_TX_FD);
-	fd->fd = open(elem[1], O_RDONLY);
-	if (read(fd->fd, &tmp, 0) < 0)
-		return (id_clean_exit(WRONG_TX_PATH, fd));
-	ft_lstadd_back(&(prm->dlist), ft_lstnew(id, fd));
+	fd = open(elem[1], O_RDONLY);
+	if (read(fd, &tmp, 0) < 0)
+		return (id_clean_exit(WRONG_TX_PATH, path));
+	if ((path = ft_strdup(elem[1])) == NULL)
+		return (MAL_ERR_TX_PATH);
+	ft_lstadd_back(&(prm->dlist), ft_lstnew(id, path));
 	if (get_lst_elem(prm->dlist, id) == NULL)
-		return (id_clean_exit(MAL_ERR_LIST, fd));
+		return (id_clean_exit(MAL_ERR_LIST, path));
 	prm->booleans += bitmask[id];
 	return (0);
 }

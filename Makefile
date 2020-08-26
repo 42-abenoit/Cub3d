@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/26 12:53:13 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/26 18:39:07 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_NAME =	main.c \
 		str_utils_2.c \
 		lst_utils.c \
 		lst_utils_2.c \
+		mlx_utils.c \
 		ft_strtrim.c \
 		ft_split.c \
 		parse_trigger.c \
@@ -53,6 +54,8 @@ RM = rm -f
 
 CFLAGS = -Wall -Werror -Wextra
 
+MLX_DEF = -D $(OS_NAME)
+
 MLX = libmlx.a
 
 MLX_LIBS = -lmlx
@@ -72,7 +75,7 @@ endif
 all: $(MLX) $(NAME)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
-	    $(CC) $(INC) $(CFLAGS) -c $< -o $@
+	    $(CC) $(INC) $(CFLAGS) $(MLX_DEF) -c $< -o $@
 
 $(OBJ_DIR):
 		mkdir -p $@

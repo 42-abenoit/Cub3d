@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 16:16:54 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 16:12:28 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,14 @@ static int	player_clean_exit(int ret, t_ent *player)
 
 static void	player_set_dir(t_ent *player, int dir_x, int dir_y)
 {
+	player->view_angle = 33.0;
 	player->dir.x = dir_x;
 	player->dir.y = dir_y;
-	if (dir_x == 0)
-	{
-		player->plane.x = (dir_y < 0) ? 0.65 : -0.65;
-		player->plane.y = 0.0;
-	}
-	if (dir_y == 0)
-	{
-		player->plane.x = 0.0;
-		player->plane.y = (dir_x > 0) ? 0.65 : -0.65;
-	}
+/*
+**	equations for plane calculations :
+**	plane.x = -dir_y * ((player->view_angle * M_PI) / 180);
+**	plane.y = dir_x * ((player->view_angle * M_PI) / 180);
+*/
 }
 
 static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
@@ -55,7 +51,6 @@ static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
 		player_set_dir(player, -1.0, 0.0);
 	if (dir == 'E')
 		player_set_dir(player, 1.0, 0.0);
-	player->dir.x = prm->dlist->type;
 	player->pos.x = x;
 	player->pos.y = y;
 	prm->booleans += START_SET;

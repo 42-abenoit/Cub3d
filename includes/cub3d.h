@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 12:37:11 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 16:51:36 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				parse_line(t_param *prm);
 **	id_filler.c
 */
 int				id_res_filler(t_param *prm, char **elem);
-int				id_fd_filler(t_param *prm, char **elem, int id);
+int				id_path_filler(t_param *prm, char **elem, int id);
 
 /*
 **	id_filler.c

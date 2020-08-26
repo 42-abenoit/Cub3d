@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 12:34:13 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 18:50:31 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define MAL_ERR_FILENAME 		-42
 # define MAL_ERR_SCREEN	 		-43
 # define MAL_ERR_LIST	 		-44
-# define MAL_ERR_TX_FD	 		-45
+# define MAL_ERR_TX_PATH 		-45
 # define MAL_ERR_HCC	 		-46
 # define MAL_ERR_MAP	 		-47
 # define MAL_ERR_MAP_DUP		-48
@@ -56,10 +56,13 @@
 # define MAL_ERR_RENDER			-51
 
 # define MLX_INIT_FAIL			-61
+# define TX_IMPORT_FAIL			-62
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
 */
+# define LINUX					linux
+# define MACOS					Darwin
 # define BASE_10				"0123456789"
 # define SAVE_STR				"--save"
 # define CUB_EXT				".cub"
@@ -110,6 +113,7 @@
 # define HCC_C_SET				0x00000100
 # define MAP_SET				0x00000200
 # define START_SET				0x00000400
+# define TX_IMPORT				0x00000800
 
 # define START_RENDER			0x00000800
 

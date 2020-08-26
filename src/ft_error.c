@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 12:35:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 17:01:01 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ static int	malloc_error(int err_code)
 		ft_putstr("Error allocating screen structure\n");
 	if (err_code == MAL_ERR_LIST)
 		ft_putstr("Error allocating list element\n");
-	if (err_code == MAL_ERR_TX_FD)
-		ft_putstr("Error creating texture file fd\n");
+	if (err_code == MAL_ERR_TX_PATH)
+		ft_putstr("Error duplicating texture path string\n");
 	if (err_code == MAL_ERR_HCC)
 		ft_putstr("Error creating hex color code element\n");
 	if (err_code == MAL_ERR_MAP)

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 11:31:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/26 18:06:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,25 @@ int		clean_parse(t_param *prm)
 
 int		clean_render(t_param *prm)
 {
-	t_render	*tmp;
+	int			id;
+	t_list		*ptr;
+	t_render	*render;
 
+	id = ID_TX_NO;
 	if (prm->ptr != NULL)
 	{
-		tmp = ((t_render*)(prm->ptr));
-		free(tmp);
+		render = ((t_render*)(prm->ptr));
+		while (id <= ID_TX_S)
+		{
+			ptr = get_lst_elem(prm->dlist, id);
+			my_mlx_destroy_tx(render->mlx, ptr);
+			id++;
+		}
+		if (render->mlx != NULL)
+			free(render->mlx);
+		if (render->win != NULL)
+			free(render->win);
+		free(render);
 	}
 	return (0);
 }
