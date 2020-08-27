@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 13:00:26 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 14:25:25 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@
 **	MULTI OS SUPPORT
 */
 # ifdef Darwin
+#  define SYS 	1
 
-void			get_screen_size(void *mlx, int *w, int*h);
+void			mlx_get_screen_size(void *mlx, int *w, int*h);
+# endif
+
+# ifdef Linux
+#  define SYS	2
 # endif
 
 /*
@@ -73,6 +78,11 @@ int				game_struct_init(t_param *prm);
 **	player_init.c
 */
 int				player_init(t_param *prm);
+
+/*
+**	manage_key.c
+*/
+int				ft_key_press(int keycode, t_param *prm);
 
 /*
 **	ft_error.c

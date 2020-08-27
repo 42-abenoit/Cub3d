@@ -16,7 +16,7 @@
 #include "cub_macro.h"
 #include "ft_utils.h"
 
-static int	player_clean_exit(int ret, t_ent *player)
+static int	player_clean_exit(int ret, t_player *player)
 {
 	free(player);
 	return (ret);
@@ -28,14 +28,14 @@ static int	player_clean_exit(int ret, t_ent *player)
 **	plane.y = dir_x * ((player->view_angle * M_PI) / 180);
 */
 
-static void	player_set_dir(t_ent *player, int dir_x, int dir_y)
+static void	player_set_dir(t_player *player, int dir_x, int dir_y)
 {
 	player->view_angle = 33.0;
 	player->dir.x = dir_x;
 	player->dir.y = dir_y;
 }
 
-static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
+static int	player_set_start(t_param *prm, int x, int y, t_player *player)
 {
 	t_map	*map;
 	char	dir;
@@ -58,7 +58,7 @@ static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
 	return (0);
 }
 
-static int	create_player_dlist(t_param *prm, t_ent *player)
+static int	create_player_dlist(t_param *prm, t_player *player)
 {
 	if (!(prm->booleans & START_SET))
 		return (player_clean_exit(NO_START_POS, player));
@@ -70,13 +70,13 @@ static int	create_player_dlist(t_param *prm, t_ent *player)
 
 int			player_init(t_param *prm)
 {
-	t_ent	*player;
+	t_player	*player;
 	t_map	*map;
 	int		ret;
 	int		x;
 	int		y;
 
-	if (!(player = malloc(sizeof(t_ent))))
+	if (!(player = malloc(sizeof(t_player))))
 		return (MAL_ERR_PLAYER);
 	map = (t_map*)(get_lst_elem(prm->dlist, ID_MAP)->content);
 	y = 0;

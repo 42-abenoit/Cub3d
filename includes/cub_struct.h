@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 16:58:12 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 14:12:25 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ typedef struct	s_map
 	int				size_y;
 }				t_map;
 
-typedef struct	s_ent
+typedef struct	s_player
 {
 	t_coord			pos;
 	t_coord			dir;
 	double			view_angle;
-}				t_ent;
+	double			pitch;
+}				t_player;
 
 typedef struct	s_data
 {

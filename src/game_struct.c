@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 13:07:08 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 15:01:23 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static void	screen_resize(t_param *prm)
 
 	render = (t_render*)(prm->ptr);
 	screen = (t_screen*)get_lst_elem(prm->dlist, ID_RES)->content;
-	if (Darwin)
+	if (SYS ==1)
 	{
 		width = 2560;
 		height = 1440;
 	}
 	else
-		get_screen_size(render->mlx, &width, &height);
+		mlx_get_screen_size(render->mlx, &width, &height);
 	if (screen->width > width)
 		screen->width = width;
 	if (screen->height > height)
@@ -61,19 +61,10 @@ static void	screen_resize(t_param *prm)
 
 static int	launch_main_loop(t_param *prm)
 {
-	int			id;
-	t_tx		*tx;
 	t_render	*render;
 
 	render = (t_render*)(prm->ptr);
-	id = ID_TX_NO;
-	while (id <= ID_TX_S)
-	{
-		tx = (t_tx*)get_lst_elem(prm->dlist, id)->content;
-		mlx_put_image_to_window(render->mlx, render->win, tx->data.img, 0, 0);
-//		sleep(1);
-		id++;
-	}
+	mlx_hook(render->win, 2, 1L<<0, ft_key_press, prm);
 	mlx_loop(render->mlx);
 	return (ft_exit(0, prm));
 }
