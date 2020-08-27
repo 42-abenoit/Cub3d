@@ -6,11 +6,12 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 18:06:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 14:58:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "mlx.h"
 #include "cub3d.h"
 #include "cub_macro.h"
 #include "ft_utils.h"
@@ -57,10 +58,10 @@ int		clean_render(t_param *prm)
 			my_mlx_destroy_tx(render->mlx, ptr);
 			id++;
 		}
+		if (render->win != NULL)
+			mlx_destroy_window(render->mlx, render->win);
 		if (render->mlx != NULL)
 			free(render->mlx);
-		if (render->win != NULL)
-			free(render->win);
 		free(render);
 	}
 	return (0);
@@ -73,5 +74,8 @@ int		ft_exit(int err_code, t_param *prm)
 	else
 		clean_render(prm);
 	ft_dlist_clear(&prm->dlist);
-	return ((err_code >= 0) ? 0 : ft_error(err_code));
+	if (err_code >= 0)
+		exit(0);
+	else
+		return (ft_error(err_code));
 }

@@ -6,10 +6,11 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:33:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 11:31:46 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 14:55:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "cub_macro.h"
 #include "ft_utils.h"
 
@@ -22,12 +23,12 @@ static int	mlx_error(int err_code)
 		ft_putstr("Failed importing textures to mlx.\n");
 	if (err_code == OS_NOT_SUPPORTED)
 		ft_putstr("OS is not supported, behavior is undefined.\n");
-	return (0);
+	exit(0);
 }
 
 int			render_error(int err_code)
 {
 	if (err_code >= 80)
 		return (mlx_error(err_code));
-	return (0);
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 13:16:42 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 15:13:14 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #  define INPUT_RSTRAFE		2
 #  define INPUT_LEFT		123
 #  define INPUT_RIGHT		124
-#  define INPUT_EXIT		53
+#  define INPUT_ESC			53
 #  ifdef bonus
 #   define INPUT_MAP		46
 #   define INPUT_SPRINT		257
@@ -36,18 +36,18 @@
 **	MULTI OS SUPPORT LINUX
 */
 # ifdef Linux
-#  define INPUT_UP			13
-#  define INPUT_DOWN		1
-#  define INPUT_LSTRAFE		0
-#  define INPUT_RSTRAFE		2
-#  define INPUT_LEFT		123
-#  define INPUT_RIGHT		124
-#  define INPUT_EXIT		53
+#  define INPUT_UP			119
+#  define INPUT_DOWN		97
+#  define INPUT_LSTRAFE		115
+#  define INPUT_RSTRAFE		100
+#  define INPUT_LEFT		65361
+#  define INPUT_RIGHT		65363
+#  define INPUT_ESC			65307
 #  ifdef bonus
-#   define INPUT_MAP		46
-#   define INPUT_SPRINT		257
-#   define INPUT_AXE		15
-#   define INPUT_STRIKE		49
+#   define INPUT_MAP		109
+#   define INPUT_SPRINT		65505
+#   define INPUT_AXE		114
+#   define INPUT_STRIKE		32
 #  endif
 # endif
 
@@ -151,6 +151,15 @@
 # define MAP_SET				0x00000200
 # define START_SET				0x00000400
 # define TX_IMPORT				0x00000800
+
+# define FLAG_UP				0x00001000
+# define FLAG_DOWN				0x00002000
+# define FLAG_LSTRAFE			0x00004000
+# define FLAG_RSTRAFE			0x00008000
+# define FLAG_LEFT				0x00010000
+# define FLAG_RIGHT				0x00020000
+# define CHAR_MAP				0x00040000
+# define CHAR_AXE				0x00080000
 
 # define START_RENDER			0x00000800
 

@@ -6,10 +6,11 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 12:34:06 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 14:55:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "cub3d.h"
 #include "cub_macro.h"
 #include "ft_utils.h"
@@ -35,7 +36,7 @@ static int	arg_error(int err_code)
 		ft_putstr("Invalid line identifier\n");
 	if (err_code == NO_MAP_FOUND)
 		ft_putstr("No map description found in cub file\n");
-	return (0);
+	exit(0);
 }
 
 static int	description_error(int err_code)
@@ -61,7 +62,7 @@ static int	description_error(int err_code)
 		ft_putstr("Invalid character in hex color code line\n");
 	if (err_code == WRONG_HCC_VAL)
 		ft_putstr("Color value is lesser than 0 or greater than 255\n");
-	return (0);
+	exit(0);
 }
 
 static int	map_error(int err_code)
@@ -77,7 +78,7 @@ static int	map_error(int err_code)
 		ft_putstr("Multiple starting positions in map description\n");
 	if (err_code == NO_START_POS)
 		ft_putstr("No starting positions in map description\n");
-	return (0);
+	exit(0);
 }
 
 static int	malloc_error(int err_code)
@@ -105,7 +106,7 @@ static int	malloc_error(int err_code)
 		ft_putstr("Error creating player data structure\n");
 	if (err_code == MAL_ERR_RENDER)
 		ft_putstr("Error creating render engine structure\n");
-	return (0);
+	exit(0);
 }
 
 int			ft_error(int err_code)
