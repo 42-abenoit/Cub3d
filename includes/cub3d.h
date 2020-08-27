@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 14:25:25 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 17:34:35 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int				control_map(t_param *prm);
 **	game_struct.c
 */
 int				game_struct_init(t_param *prm);
+
+/*
+**	render_engine.c
+*/
+int				ray_caster(t_param *prm);
 
 /*
 **	player_init.c

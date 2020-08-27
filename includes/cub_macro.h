@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 15:13:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 18:15:22 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@
 
 # define MLX_INIT_FAIL			-61
 # define TX_IMPORT_FAIL			-62
-# define OS_NOT_SUPPORTED		-63
+# define MAL_ERR_CONF			-63
+# define MAL_ERR_BUFF			-64
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
@@ -125,6 +126,7 @@
 # define ID_HCC_C				7
 # define ID_MAP					8
 # define ID_PLAYER				9
+# define ID_CONF				10
 
 /*
 **	MAP IDENTIFIERS
@@ -160,6 +162,8 @@
 # define FLAG_RIGHT				0x00020000
 # define CHAR_MAP				0x00040000
 # define CHAR_AXE				0x00080000
+
+# define IMG_SET				0x00100000
 
 # define START_RENDER			0x00000800
 

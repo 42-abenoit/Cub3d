@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 15:01:23 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 18:28:00 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 #include "cub_macro.h"
 #include "ft_utils.h"
 #include "mlx.h"
-#include <unistd.h>
 
-static int	tx_mlx_import(t_param *prm)
+static int		tx_mlx_import(t_param *prm)
 {
 	int			id;
 	int			ret;
@@ -37,7 +36,7 @@ static int	tx_mlx_import(t_param *prm)
 	return (0);
 }
 
-static void	screen_resize(t_param *prm)
+static void		screen_resize(t_param *prm)
 {
 	int			width;
 	int			height;
@@ -59,11 +58,31 @@ static void	screen_resize(t_param *prm)
 		screen->height = height;
 }
 
-static int	launch_main_loop(t_param *prm)
+static int		conf_init(t_param *prm)
+{
+	t_conf		*conf;
+
+
+	if (!(conf = malloc(sizeof(t_conf))))
+		return (MAL_ERR_CONF);
+//	conf->pitch_sensi = 0.1;
+//	conf->jump_height = 0.5;
+	conf->front_speed = 0.5;
+	conf->back_speed = 0.3;
+	conf->strafe_speed = 0.5;
+	conf->rot_speed = 0.1;
+	ft_lstadd_back(&(prm->dlist), ft_lstnew(ID_CONF, conf));
+	if (get_lst_elem(prm->dlist, ID_CONF) == NULL)
+		return (MAL_ERR_LIST);
+	return (0);
+}
+
+static int		launch_main_loop(t_param *prm)
 {
 	t_render	*render;
 
 	render = (t_render*)(prm->ptr);
+	ray_caster(prm);
 	mlx_hook(render->win, 2, 1L<<0, ft_key_press, prm);
 	mlx_loop(render->mlx);
 	return (ft_exit(0, prm));
@@ -87,6 +106,8 @@ int			game_struct_init(t_param *prm)
 	screen_resize(prm);
 	if (prm->booleans & BMP_SAVE)
 		return (printf("PLACEHOLDER : SAVE\n"));
+	if ((ret = conf_init(prm)) < 0)
+		return (ft_exit(ret, prm));
 	screen = (t_screen*)get_lst_elem(prm->dlist, ID_RES)->content;
 	render->win = mlx_new_window(render->mlx, screen->width,
 									screen->height, "Cub3D");

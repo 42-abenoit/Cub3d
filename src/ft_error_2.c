@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:33:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 14:55:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 18:16:08 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ static int	mlx_error(int err_code)
 		ft_putstr("Parsing structure allocation failed\n");
 	if (err_code == TX_IMPORT_FAIL)
 		ft_putstr("Failed importing textures to mlx.\n");
-	if (err_code == OS_NOT_SUPPORTED)
-		ft_putstr("OS is not supported, behavior is undefined.\n");
+	if (err_code == MAL_ERR_CONF)
+		ft_putstr("Error creating configuration data structure\n");
+	if (err_code == MAL_ERR_BUFF)
+		ft_putstr("Error creating configuration vertical line buffer\n");
 	exit(0);
 }
 
