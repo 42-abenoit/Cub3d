@@ -1,0 +1,25 @@
+R  18000 6000000
+NO ./ressources/xpm/greystone.xpm
+SO ./ressources/xpm/mossy.xpm
+WE ./ressources/xpm/wood.xpm
+EA ./ressources/xpm/redbrick.xpm
+S ./ressources/xpm/barrel.xpm
+F 80 ,      65  , 174
+C 186,110,31
+
+
+
+11111111111111
+10000000000001
+12001000000021
+10001000100001
+10000000000001
+12020202020021
+10000000000001
+10000N00000001
+12000000000021
+10000000000001
+11111111111111
+
+
+

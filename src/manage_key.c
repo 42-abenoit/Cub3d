@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:04:58 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 15:05:22 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 15:48:36 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_key_press(int keycode, t_param *prm)
 	t_render	*render;
 
 	render = (t_render*)(prm->ptr);
-	printf("%d\n", keycode);
 	if (keycode == INPUT_ESC)
 	{
 		mlx_destroy_window(render->mlx, render->win);
