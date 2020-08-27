@@ -1,4 +1,4 @@
-R  800 600
+R  18000 6000000
 NO ./ressources/xpm/greystone.xpm
 SO ./ressources/xpm/mossy.xpm
 WE ./ressources/xpm/wood.xpm

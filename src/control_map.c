@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 14:06:45 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 17:24:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 12:38:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ static int	flood_fill(int x, int y, char **grid, char **vgrid)
 	{
 		vgrid[y][x] = '1';
 		if ((flood_fill(x + 1, y, grid, vgrid) == 1)
-				&& (flood_fill(x - 1, y -1, grid, vgrid) == 1)
+				&& (flood_fill(x - 1, y - 1, grid, vgrid) == 1)
 				&& (flood_fill(x - 1, y + 1, grid, vgrid) == 1)
-				&& (flood_fill(x + 1, y +1, grid, vgrid) == 1)
-				&& (flood_fill(x + 1, y -1, grid, vgrid) == 1)
+				&& (flood_fill(x + 1, y + 1, grid, vgrid) == 1)
+				&& (flood_fill(x + 1, y - 1, grid, vgrid) == 1)
 				&& (flood_fill(x - 1, y, grid, vgrid) == 1)
 				&& (flood_fill(x, y + 1, grid, vgrid) == 1)
 				&& (flood_fill(x, y - 1, grid, vgrid) == 1))
@@ -82,10 +82,7 @@ static int	flood_fill(int x, int y, char **grid, char **vgrid)
 			return (-1);
 	}
 	else if (grid[y][x] == '1')
-	{
-		vgrid[y][x] = '1';
 		return (1);
-	}
 	else
 		return (-1);
 }

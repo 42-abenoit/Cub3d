@@ -6,12 +6,50 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 18:50:31 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 13:16:42 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_MACRO_H
 # define CUB_MACRO_H
+
+/*
+**	MULTI OS SUPPORT MACOS
+*/
+# ifdef Darwin
+#  define INPUT_UP			13
+#  define INPUT_DOWN		1
+#  define INPUT_LSTRAFE		0
+#  define INPUT_RSTRAFE		2
+#  define INPUT_LEFT		123
+#  define INPUT_RIGHT		124
+#  define INPUT_EXIT		53
+#  ifdef bonus
+#   define INPUT_MAP		46
+#   define INPUT_SPRINT		257
+#   define INPUT_AXE		15
+#   define INPUT_STRIKE		49
+#  endif
+# endif
+
+/*
+**	MULTI OS SUPPORT LINUX
+*/
+# ifdef Linux
+#  define INPUT_UP			13
+#  define INPUT_DOWN		1
+#  define INPUT_LSTRAFE		0
+#  define INPUT_RSTRAFE		2
+#  define INPUT_LEFT		123
+#  define INPUT_RIGHT		124
+#  define INPUT_EXIT		53
+#  ifdef bonus
+#   define INPUT_MAP		46
+#   define INPUT_SPRINT		257
+#   define INPUT_AXE		15
+#   define INPUT_STRIKE		49
+#  endif
+# endif
 
 /*
 **	ERR_CODE DEFINITIONS
@@ -57,12 +95,11 @@
 
 # define MLX_INIT_FAIL			-61
 # define TX_IMPORT_FAIL			-62
+# define OS_NOT_SUPPORTED		-63
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
 */
-# define LINUX					linux
-# define MACOS					Darwin
 # define BASE_10				"0123456789"
 # define SAVE_STR				"--save"
 # define CUB_EXT				".cub"

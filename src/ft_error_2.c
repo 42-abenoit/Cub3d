@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:33:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 17:44:49 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 11:31:46 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	mlx_error(int err_code)
 		ft_putstr("Parsing structure allocation failed\n");
 	if (err_code == TX_IMPORT_FAIL)
 		ft_putstr("Failed importing textures to mlx.\n");
+	if (err_code == OS_NOT_SUPPORTED)
+		ft_putstr("OS is not supported, behavior is undefined.\n");
 	return (0);
 }
 

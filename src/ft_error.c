@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 17:01:01 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 12:34:06 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	description_error(int err_code)
 	if (err_code == WRONG_HCC_CHAR)
 		ft_putstr("Invalid character in hex color code line\n");
 	if (err_code == WRONG_HCC_VAL)
-		ft_putstr("Hex color code value is lesser than 0 or greater than 255\n");
+		ft_putstr("Color value is lesser than 0 or greater than 255\n");
 	return (0);
 }
 

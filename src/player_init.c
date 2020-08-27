@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 16:12:28 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 12:36:33 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@ static int	player_clean_exit(int ret, t_ent *player)
 	return (ret);
 }
 
-static void	player_set_dir(t_ent *player, int dir_x, int dir_y)
-{
-	player->view_angle = 33.0;
-	player->dir.x = dir_x;
-	player->dir.y = dir_y;
 /*
 **	equations for plane calculations :
 **	plane.x = -dir_y * ((player->view_angle * M_PI) / 180);
 **	plane.y = dir_x * ((player->view_angle * M_PI) / 180);
 */
+
+static void	player_set_dir(t_ent *player, int dir_x, int dir_y)
+{
+	player->view_angle = 33.0;
+	player->dir.x = dir_x;
+	player->dir.y = dir_y;
 }
 
 static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
@@ -60,7 +61,7 @@ static int	player_set_start(t_param *prm, int x, int y, t_ent *player)
 static int	create_player_dlist(t_param *prm, t_ent *player)
 {
 	if (!(prm->booleans & START_SET))
-			return(player_clean_exit(NO_START_POS, player));
+		return (player_clean_exit(NO_START_POS, player));
 	ft_lstadd_back(&(prm->dlist), ft_lstnew(ID_PLAYER, player));
 	if (get_lst_elem(prm->dlist, ID_PLAYER) == NULL)
 		return (player_clean_exit(MAL_ERR_LIST, player));

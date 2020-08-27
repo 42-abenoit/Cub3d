@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 18:51:08 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 13:07:08 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@
 #include "ft_utils.h"
 #include "mlx.h"
 #include <unistd.h>
-
-#if OS_NAME==LINUX
-#define OS 1
-#elif OS_NAME==MACOS
-#define OS 2
-#endif
 
 static int	tx_mlx_import(t_param *prm)
 {
@@ -43,11 +37,52 @@ static int	tx_mlx_import(t_param *prm)
 	return (0);
 }
 
+static void	screen_resize(t_param *prm)
+{
+	int			width;
+	int			height;
+	t_render	*render;
+	t_screen	*screen;
+
+	render = (t_render*)(prm->ptr);
+	screen = (t_screen*)get_lst_elem(prm->dlist, ID_RES)->content;
+	if (Darwin)
+	{
+		width = 2560;
+		height = 1440;
+	}
+	else
+		get_screen_size(render->mlx, &width, &height);
+	if (screen->width > width)
+		screen->width = width;
+	if (screen->height > height)
+		screen->height = height;
+}
+
+static int	launch_main_loop(t_param *prm)
+{
+	int			id;
+	t_tx		*tx;
+	t_render	*render;
+
+	render = (t_render*)(prm->ptr);
+	id = ID_TX_NO;
+	while (id <= ID_TX_S)
+	{
+		tx = (t_tx*)get_lst_elem(prm->dlist, id)->content;
+		mlx_put_image_to_window(render->mlx, render->win, tx->data.img, 0, 0);
+//		sleep(1);
+		id++;
+	}
+	mlx_loop(render->mlx);
+	return (ft_exit(0, prm));
+}
+
 int			game_struct_init(t_param *prm)
 {
 	int			ret;
-	t_screen	*screen;
 	t_render	*render;
+	t_screen	*screen;
 
 	if (!(render = malloc(sizeof(t_render))))
 		return (ft_exit(MAL_ERR_RENDER, prm));
@@ -58,26 +93,11 @@ int			game_struct_init(t_param *prm)
 	prm->booleans += START_RENDER;
 	if ((ret = tx_mlx_import(prm)) < 0)
 		return (ft_exit(ret, prm));
-	screen = (t_screen*)get_lst_elem(prm->dlist, ID_RES)->content;
-	if (OS == 1)
-		return (printf("PLACEHOLDER : LINUX\n"));
-	else if (OS == 2)
-		return (printf("PLACEHOLDER : MACOS\n"));
+	screen_resize(prm);
 	if (prm->booleans & BMP_SAVE)
 		return (printf("PLACEHOLDER : SAVE\n"));
+	screen = (t_screen*)get_lst_elem(prm->dlist, ID_RES)->content;
 	render->win = mlx_new_window(render->mlx, screen->width,
 									screen->height, "Cub3D");
-
-	int			id;
-	t_tx		*tx;
-
-	id = ID_TX_NO;
-	while (id <= ID_TX_S)
-	{
-		tx = (t_tx*)get_lst_elem(prm->dlist, id)->content;
-		mlx_put_image_to_window(render->mlx, render->win, tx->data.img, 0, 0);	
-		sleep(1);
-		id++;
-	}
-	return (ft_exit(0, prm));
+	return (launch_main_loop(prm));
 }

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/26 16:51:36 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/27 13:00:26 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 **	GENERAL INCLUDES
 */
 # include "cub_struct.h"
+
+/*
+**	MULTI OS SUPPORT
+*/
+# ifdef Darwin
+
+void			get_screen_size(void *mlx, int *w, int*h);
+# endif
 
 /*
 **	parse_trigger.c
