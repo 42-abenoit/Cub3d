@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:48:34 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 11:24:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "cub_macro.h"
 #include "cub_struct.h"
 
-static void	ray_init(int x, t_ray *ray, t_param *prm)
+static void		ray_init(int x, t_ray *ray, t_param *prm)
 {
 	t_screen	*screen;
 	t_player	*player;
@@ -35,7 +35,7 @@ static void	ray_init(int x, t_ray *ray, t_param *prm)
 	ray->hit = 0;
 }
 
-void	img_refresh(t_ray *ray, t_param *prm)
+static void		img_refresh(t_ray *ray, t_param *prm)
 {
 	t_render	*render;
 
@@ -53,7 +53,7 @@ void	img_refresh(t_ray *ray, t_param *prm)
 							render->current.img, 0, 0);
 }
 
-void		fill_line(int x, t_ray *ray, t_param *prm)
+void			fill_line(int x, t_ray *ray, t_param *prm)
 {
 	int			y;
 	t_screen	*screen;
@@ -64,10 +64,10 @@ void		fill_line(int x, t_ray *ray, t_param *prm)
 	{
 		my_mlx_pixel_put(&ray->img, x, y, 0x00FFFF00);
 		y++;
-	}	
+	}
 }
 
-int			ray_caster(t_param *prm)
+int				ray_caster(t_param *prm)
 {
 	t_ray		ray;
 	t_screen	*screen;

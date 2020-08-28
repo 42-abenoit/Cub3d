@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:28:00 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 12:21:55 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "cub_macro.h"
 #include "ft_utils.h"
 #include "mlx.h"
+#ifdef bonus
+# include <CoreGraphics/CGDisplayConfiguration.h>
+#endif
 
 static int		tx_mlx_import(t_param *prm)
 {
@@ -40,15 +43,22 @@ static void		screen_resize(t_param *prm)
 {
 	int			width;
 	int			height;
+	int			display_id;
 	t_render	*render;
 	t_screen	*screen;
 
 	render = (t_render*)(prm->ptr);
 	screen = (t_screen*)get_lst_elem(prm->dlist, ID_RES)->content;
-	if (SYS ==1)
+	if (SYS == 1)
 	{
 		width = 2560;
 		height = 1440;
+	}
+	else if (SYS == 2)
+	{
+		display_id = CGMainDisplayID();
+		width = CGDisplayPixelsWide(display_id);
+		height = CGDisplayPixelsHigh(display_id);
 	}
 	else
 		mlx_get_screen_size(render->mlx, &width, &height);

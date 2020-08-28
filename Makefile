@@ -6,13 +6,12 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/28 11:57:33 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/28 12:26:18 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 OS_NAME := $(shell uname -s)
-
 
 SRC_DIR = src
 
@@ -65,8 +64,6 @@ MLX_LIBS = -lmlx
 
 MLX_INC = -L$(MLX_DIR)
 
-KB_LAYOUT += $(shell setxkbmap -query | grep -oP "layout:\s+\K\w+")
-
 MLX_DIR =
 ifeq ($(OS_NAME),Darwin)
 	MLX_DIR += mlx_macos
@@ -74,6 +71,7 @@ ifeq ($(OS_NAME),Darwin)
 else
 	MLX_DIR += mlx_linux
 	MLX_LIBS += -lXext -lX11 -lm -lz
+	KB_LAYOUT += $(shell setxkbmap -query | grep -oP "layout:\s+\K\w+")
 endif
 
 ifeq ($(KB_LAYOUT),fr)
@@ -82,6 +80,11 @@ endif
 
 
 all: $(MLX) $(NAME)
+
+bonus: def_bonus clean all
+
+def_bonus:
+	$(eval MLX_DEF += -D bonus)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	    $(CC) $(INC) $(CFLAGS) $(MLX_DEF) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 17:34:35 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 12:20:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,25 @@
 **	MULTI OS SUPPORT
 */
 # ifdef Darwin
-#  define SYS 	1
 
 void			mlx_get_screen_size(void *mlx, int *w, int*h);
+#  ifdef bonus
+#   define SYS	2
+#  else
+#   define SYS 	1
+
+int				CGMainDisplayID(void);
+int				CGDisplayPixelsWide(int display_id);
+int				CGDisplayPixelsHigh(int display_id);
+#  endif
 # endif
 
 # ifdef Linux
-#  define SYS	2
+#  define SYS	3
+
+int				CGMainDisplayID(void);
+int				CGDisplayPixelsWide(int display_id);
+int				CGDisplayPixelsHigh(int display_id);
 # endif
 
 /*

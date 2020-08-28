@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 12:36:33 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 11:22:35 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ static int	create_player_dlist(t_param *prm, t_player *player)
 int			player_init(t_param *prm)
 {
 	t_player	*player;
-	t_map	*map;
-	int		ret;
-	int		x;
-	int		y;
+	t_map		*map;
+	int			ret;
+	int			x;
+	int			y;
 
 	if (!(player = malloc(sizeof(t_player))))
 		return (MAL_ERR_PLAYER);
