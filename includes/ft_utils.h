@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:06:16 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:47:46 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 18:03:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			ft_dlist_clear(t_list **lst);
 /*
 **	mlx_utils.c
 */
+int				get_pixel_color(int x, int y, t_data *img);
 void			my_mlx_pixel_put(t_data *img, int x, int y, int color);
 t_data			my_mlx_new_image(void *mlx, int width, int height);
 int				my_mlx_destroy_tx(void *mlx, t_list *elem);

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:04:37 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 17:55:20 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct	s_player
 {
 	t_coord			pos;
 	t_coord			dir;
+	t_coord			plane;
+	double			pos_z;
 	double			view_angle;
 	double			pitch;
 }				t_player;
@@ -93,9 +95,10 @@ typedef struct	s_render
 
 typedef struct	s_conf
 {
-//	double			pitch_sensi;
-//	double			jump_height;
-//	int				fog_color;
+	double			pitch_sensi;
+	double			jump_height;
+	int				fog_color;
+
 	double			front_speed;
 	double			back_speed;
 	double			strafe_speed;
@@ -110,11 +113,12 @@ typedef struct	s_ray
 	t_coord		delta_dist;
 	t_int_coord	map;
 	t_int_coord	pos;
+	t_int_coord	tex;
 	t_int_coord	step;
 	t_int_coord	side;
-	t_int_coord	tex;
+	t_tx		*tx_ptr;
 	double		camera_x;
-	double		per_wall_dist;
+	double		perp_wall_dist;
 	double		dist;
 	double		wall_x;
 	double		tex_step;

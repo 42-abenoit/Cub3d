@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 12:00:52 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 17:49:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,20 +168,20 @@
 # define HCC_C_SET				0x00000100
 # define MAP_SET				0x00000200
 # define START_SET				0x00000400
-# define TX_IMPORT				0x00000800
-
-# define FLAG_UP				0x00001000
-# define FLAG_DOWN				0x00002000
-# define FLAG_LSTRAFE			0x00004000
-# define FLAG_RSTRAFE			0x00008000
-# define FLAG_LEFT				0x00010000
-# define FLAG_RIGHT				0x00020000
-# define CHAR_MAP				0x00040000
-# define CHAR_AXE				0x00080000
-
-# define IMG_SET				0x00100000
-
 # define START_RENDER			0x00000800
+# define TX_IMPORT				0x00001000
+
+# define FLAG_UP				0x00002000
+# define FLAG_DOWN				0x00004000
+# define FLAG_LSTRAFE			0x00008000
+# define FLAG_RSTRAFE			0x00010000
+# define FLAG_LEFT				0x00020000
+# define FLAG_RIGHT				0x00040000
+# define FLAG_MAP				0x00080000
+# define FLAG_AXE				0x00100000
+# define FLAG_JUMP				0x00200000
+
+# define IMG_SET				0x10000000
 
 # define CONF_SET				0x000001FE
 # define PARSE_END				0x00000FFE

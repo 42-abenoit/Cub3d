@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 14:58:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 16:14:35 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int		clean_render(t_param *prm)
 			my_mlx_destroy_tx(render->mlx, ptr);
 			id++;
 		}
+		if (render->current.img != NULL)
+			mlx_destroy_image(render->mlx, render->current.img);
 		if (render->win != NULL)
 			mlx_destroy_window(render->mlx, render->win);
 		if (render->mlx != NULL)

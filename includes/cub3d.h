@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 12:20:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 16:20:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,15 @@ int				CGDisplayPixelsHigh(int display_id);
 # endif
 
 # ifdef Linux
-#  define SYS	3
 
 int				CGMainDisplayID(void);
 int				CGDisplayPixelsWide(int display_id);
 int				CGDisplayPixelsHigh(int display_id);
+#  ifdef bonus
+#   define SYS	4
+#  else
+#   define SYS	3
+#  endif
 # endif
 
 /*
@@ -100,6 +104,18 @@ int				player_init(t_param *prm);
 **	manage_key.c
 */
 int				ft_key_press(int keycode, t_param *prm);
+int				ft_key_release(int keycode, t_param *prm);
+int				ft_move(t_param *prm);
+
+/*
+**	move_set.c
+*/
+void			ft_forward(t_param *prm);
+void			ft_backward(t_param *prm);
+void			ft_strafe_left(t_param *prm);
+void			ft_strafe_right(t_param *prm);
+void			ft_rotate_right(t_param *prm);
+void			ft_rotate_left(t_param *prm);
 
 /*
 **	ft_error.c

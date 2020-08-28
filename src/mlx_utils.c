@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 17:24:29 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:43:18 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 18:02:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 #include "cub_struct.h"
 #include "cub_macro.h"
 #include "mlx.h"
+
+int		get_pixel_color(int x, int y, t_data *img)
+{
+	int		color;
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	color = *(unsigned int*)dst;
+	return (color);
+}
 
 void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
 {

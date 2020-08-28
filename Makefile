@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/28 12:26:18 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/28 16:34:05 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_NAME =	main.c \
 		game_struct.c \
 		player_init.c \
 		manage_key.c \
+		move_set.c \
 		render_engine.c \
 		rec_gnl.c
 
