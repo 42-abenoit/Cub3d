@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:15:22 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 12:00:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,34 @@
 **	MULTI OS SUPPORT LINUX
 */
 # ifdef Linux
-#  define INPUT_UP			119
-#  define INPUT_DOWN		97
-#  define INPUT_LSTRAFE		115
-#  define INPUT_RSTRAFE		100
-#  define INPUT_LEFT		65361
-#  define INPUT_RIGHT		65363
-#  define INPUT_ESC			65307
-#  ifdef bonus
-#   define INPUT_MAP		109
-#   define INPUT_SPRINT		65505
-#   define INPUT_AXE		114
-#   define INPUT_STRIKE		32
+#  ifdef keyboard_fr
+#   define INPUT_UP			122
+#   define INPUT_DOWN		115
+#   define INPUT_LSTRAFE		113
+#   define INPUT_RSTRAFE		100
+#   define INPUT_LEFT		65361
+#   define INPUT_RIGHT		65363
+#   define INPUT_ESC			65307
+#   ifdef bonus
+#    define INPUT_MAP		44
+#    define INPUT_SPRINT		65505
+#    define INPUT_AXE		114
+#    define INPUT_STRIKE		32
+#   endif
+#  else
+#   define INPUT_UP			119
+#   define INPUT_DOWN		97
+#   define INPUT_LSTRAFE		115
+#   define INPUT_RSTRAFE		100
+#   define INPUT_LEFT		65361
+#   define INPUT_RIGHT		65363
+#   define INPUT_ESC			65307
+#   ifdef bonus
+#    define INPUT_MAP		109
+#    define INPUT_SPRINT		65505
+#    define INPUT_AXE		114
+#    define INPUT_STRIKE		32
+#   endif
 #  endif
 # endif
 

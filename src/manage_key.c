@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:04:58 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 15:48:36 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/28 12:04:06 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_key_press(int keycode, t_param *prm)
 	t_tx		*tx;
 	t_render	*render;
 
+	printf("%d\n", keycode);
 	render = (t_render*)(prm->ptr);
 	if (keycode == INPUT_ESC)
 	{
