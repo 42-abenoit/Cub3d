@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:04:58 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 17:40:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/31 17:15:26 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 #include "cub_struct.h"
 #include "ft_utils.h"
 
-int	ft_key_press(int keycode, t_param *prm)
+int		ft_key_press(int keycode, t_param *prm)
 {
-	t_player	*player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	if (keycode == INPUT_ESC)
 		return (ft_exit(0, prm));
 	if (keycode == INPUT_UP && !(prm->booleans & FLAG_UP))
@@ -32,22 +31,11 @@ int	ft_key_press(int keycode, t_param *prm)
 		prm->booleans += FLAG_LEFT;
 	if (keycode == INPUT_RIGHT && !(prm->booleans & FLAG_RIGHT))
 		prm->booleans += FLAG_RIGHT;
-	if (keycode == INPUT_STRIKE && !(prm->booleans & FLAG_JUMP))
-	{
-		prm->booleans += FLAG_JUMP;
-		player->pos_z = 100.0;
-	}
-	if (keycode == INPUT_AXE && !(prm->booleans & FLAG_AXE))
-		prm->booleans += FLAG_AXE;
-	if (keycode == INPUT_MAP && !(prm->booleans & FLAG_MAP))
-		prm->booleans += FLAG_MAP;
 	return (0);
 }
 
 int		ft_key_release(int keycode, t_param *prm)
 {
-	t_player	*player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-
 	if (keycode == INPUT_UP && prm->booleans & FLAG_UP)
 		prm->booleans -= FLAG_UP;
 	if (keycode == INPUT_DOWN && prm->booleans & FLAG_DOWN)
@@ -60,31 +48,11 @@ int		ft_key_release(int keycode, t_param *prm)
 		prm->booleans -= FLAG_LEFT;
 	if (keycode == INPUT_RIGHT && prm->booleans & FLAG_RIGHT)
 		prm->booleans -= FLAG_RIGHT;
-	if (keycode == INPUT_STRIKE && (prm->booleans & FLAG_JUMP))
-	{
-		prm->booleans -= FLAG_JUMP;
-		player->pos_z = 0.0;
-	}
-	if (keycode == INPUT_AXE && (prm->booleans & FLAG_AXE))
-	{
-		prm->booleans -= FLAG_AXE;
-		player->pitch = 0.0;
-	}
-	if (keycode == INPUT_MAP && (prm->booleans & FLAG_MAP))
-	{
-		prm->booleans -= FLAG_MAP;
-		player->pitch = 0.0;
-	}
 	return (0);
 }
 
 int		ft_move(t_param *prm)
 {
-	t_player	*player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if (prm->booleans & FLAG_AXE)
-		player->pitch += 1.0;
-	if (prm->booleans & FLAG_MAP)
-		player->pitch -= 1.0;
 	if (prm->booleans & FLAG_UP)
 		ft_forward(prm);
 	if (prm->booleans & FLAG_DOWN)

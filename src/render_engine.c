@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 18:12:39 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/31 16:52:30 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include "ft_utils.h"
 #include "cub_macro.h"
 #include "cub_struct.h"
- 
-static void		ray_init(int x, t_ray *ray, t_param *prm)
+
+void		ray_init(int x, t_ray *ray, t_param *prm)
 {
 	t_screen	*screen;
 	t_player	*player;
@@ -33,6 +33,7 @@ static void		ray_init(int x, t_ray *ray, t_param *prm)
 	ray->delta_dist.x = fabs(1 / ray->dir.x);
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
 	ray->hit = 0;
+	ray->sprites = NULL;
 }
 
 static void		img_refresh(t_ray *ray, t_param *prm)
@@ -88,10 +89,11 @@ void	ray_hit_scan(t_ray *ray, t_param *prm)
 {
 	t_player	*player;
 	t_map		*map;
+	t_sprite	*new;
 
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	map = get_lst_elem(prm->dlist, ID_MAP)->content;
-	while (ray->hit == 0 && ray->dist < 200)
+	while (ray->hit == 0)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
@@ -107,7 +109,13 @@ void	ray_hit_scan(t_ray *ray, t_param *prm)
 		}
 		if (map->grid[ray->map.y][ray->map.x] == '1')
 			ray->hit = 1;
-		ray->dist = (player->pos.x - ray->map.x) * (player->pos.x - ray->map.x) + (player->pos.y - ray->map.y) * (player->pos.y - ray->map.y);
+		else if (map->grid[ray->map.y][ray->map.x] == '2')
+		{
+			new = ft_new_sprite(ray->map.x, ray->map.y);
+			new->dist = ((player->pos.x - new->pos.x) * (player->pos.x - new->pos.x)
+					+ (player->pos.y - new->pos.y) * (player->pos.y - new->pos.y));
+			ft_add_sprite_front(&ray->sprites, new);
+		}
 	}
 }
 
@@ -125,10 +133,10 @@ void	ray_perspective(t_ray *ray, t_param *prm)
 		ray->perp_wall_dist = (ray->map.y - player->pos.y + (1 - ray->step.y) / 2)
 							/ ray->dir.y;
 	ray->line_height = (int)(screen->height / ray->perp_wall_dist);
-	ray->draw_start = (-ray->line_height / 2) + (screen->height / 2) + player->pitch + (player->pos_z / ray->perp_wall_dist);
+	ray->draw_start = (-ray->line_height / 2) + (screen->height / 2);
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = (ray->line_height / 2) + (screen->height / 2) + player->pitch + (player->pos_z / ray->perp_wall_dist);
+	ray->draw_end = (ray->line_height / 2) + (screen->height / 2);
 	if (ray->draw_end >= screen->height)
 		ray->draw_end = screen->height - 1;
 }
@@ -159,15 +167,24 @@ void	ray_texture(t_ray *ray, t_param *prm)
 	if (ray->id_side % 2 == 1 && ray->dir.y < 0)
 		ray->tex.x = ray->tx_ptr->width - ray->tex.x - 1;
 	ray->tex_step = 1.0 * ray->tx_ptr->height / ray->line_height;
-	ray->tex_pos = (ray->draw_start - player->pitch - (player->pos_z / ray->perp_wall_dist)- screen->height / 2 + ray->line_height / 2)
+	ray->tex_pos = (ray->draw_start - screen->height / 2 + ray->line_height / 2)
 					* ray->tex_step;
 }
 
-void			fill_buffer(t_ray *ray)
+void			fill_buffer(t_ray *ray, t_param *prm)
 {
 	int			y;
+	t_hcc		*hcc;
+	t_screen	*screen;
 
-	y = ray->draw_start;
+	y = 0;	
+	screen = get_lst_elem(prm->dlist, ID_RES)->content;
+	hcc = get_lst_elem(prm->dlist, ID_HCC_C)->content;
+	while (y < ray->draw_start)
+	{
+		ray->line_buff[y] = hcc->hcc;
+		y++;
+	}
 	while (y < ray->draw_end)
 	{
 		ray->tex.y = (int)ray->tex_pos & (ray->tx_ptr->height - 1);
@@ -176,14 +193,22 @@ void			fill_buffer(t_ray *ray)
 		ray->line_buff[y] = ray->color;
 		y++;
 	}
+	hcc = get_lst_elem(prm->dlist, ID_HCC_F)->content;
+	while (y < screen->height - 1)
+	{
+		ray->line_buff[y] = hcc->hcc;
+		y++;
+	}
 }
 
-void			fill_line(int x, t_ray *ray)
+void			fill_line(int x, t_ray *ray, t_param *prm)
 {
 	int			y;
+	t_screen	*screen;
 
-	y = ray->draw_start;
-	while (y < ray->draw_end)
+	y = 0;
+	screen = get_lst_elem(prm->dlist, ID_RES)->content;
+	while (y < screen->height - 1)
 	{
 		my_mlx_pixel_put(&ray->img, x, y, ray->line_buff[y]);
 		y++;
@@ -210,8 +235,11 @@ int				ray_caster(t_param *prm)
 		ray_hit_scan(&ray, prm);
 		ray_perspective(&ray, prm);
 		ray_texture(&ray, prm);
-		fill_buffer(&ray);
-		fill_line(x, &ray);
+		fill_buffer(&ray, prm);
+		sprite_projection(&ray, prm);
+		ray_fill_line_sprite(x, &ray, prm);
+		fill_line(x, &ray, prm);
+		ft_clear_list(&ray.sprites);
 		x++;
 	}
 	img_refresh(&ray, prm);

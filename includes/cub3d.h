@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 16:20:11 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/31 17:09:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 /*
 **	DEBUG TOOLS
+**
+**	# define malloc($) 0
+**	# include <stdio.h>
 */
-# include <stdio.h>
-
-//# define malloc($) 0
 
 /*
 **	GENERAL INCLUDES
@@ -29,29 +29,13 @@
 **	MULTI OS SUPPORT
 */
 # ifdef Darwin
+#  define SYS 	1
 
 void			mlx_get_screen_size(void *mlx, int *w, int*h);
-#  ifdef bonus
-#   define SYS	2
-#  else
-#   define SYS 	1
-
-int				CGMainDisplayID(void);
-int				CGDisplayPixelsWide(int display_id);
-int				CGDisplayPixelsHigh(int display_id);
-#  endif
 # endif
 
 # ifdef Linux
-
-int				CGMainDisplayID(void);
-int				CGDisplayPixelsWide(int display_id);
-int				CGDisplayPixelsHigh(int display_id);
-#  ifdef bonus
-#   define SYS	4
-#  else
-#   define SYS	3
-#  endif
+#  define SYS	2
 # endif
 
 /*
@@ -93,12 +77,32 @@ int				game_struct_init(t_param *prm);
 /*
 **	render_engine.c
 */
+void			ray_init(int x, t_ray *ray, t_param *prm);
+void			ray_step(t_ray *ray, t_param *prm);
+void			ray_hit_scan(t_ray *ray, t_param *prm);
+void			ray_perspective(t_ray *ray, t_param *prm);
+void			ray_texture(t_ray *ray, t_param *prm);
+void			fill_buffer(t_ray *ray, t_param *prm);
+void			fill_line(int x, t_ray *ray, t_param *prm);
 int				ray_caster(t_param *prm);
+
+/*
+**	sprites.c
+*/
+void			sprite_calc_draw_val(t_sprite *ptr, t_param *prm);
+void			sprite_projection(t_ray *ray, t_param *prm);
+void			sprite_line_to_buff(t_sprite *ptr, t_ray *ray, t_param *prm);
+void			ray_fill_line_sprite(int x, t_ray *ray, t_param *prm);
 
 /*
 **	player_init.c
 */
 int				player_init(t_param *prm);
+
+/*
+**	bmp_save.c
+*/
+int				pic_calculate(t_param *prm);
 
 /*
 **	manage_key.c

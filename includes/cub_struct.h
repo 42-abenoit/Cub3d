@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 17:55:20 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/31 17:13:35 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ typedef struct	s_player
 	t_coord			pos;
 	t_coord			dir;
 	t_coord			plane;
-	double			pos_z;
 	double			view_angle;
-	double			pitch;
 }				t_player;
 
 typedef struct	s_data
@@ -79,6 +77,23 @@ typedef struct	s_tx
 	int				height;
 }				t_tx;
 
+typedef struct	s_sprite
+{
+	t_coord			pos;
+	t_coord			sprite;
+	t_coord			transform;
+	t_int_coord		draw_start;
+	t_int_coord		draw_end;
+	t_int_coord		tex;
+	int				sprite_screen_x;
+	int				sprite_width;
+	int				sprite_height;
+	double			dist;
+	double			inv_det;
+	struct s_sprite	*next;
+	struct s_sprite	*prev;
+}				t_sprite;
+
 typedef struct	s_list
 {
 	int				type;
@@ -95,10 +110,6 @@ typedef struct	s_render
 
 typedef struct	s_conf
 {
-	double			pitch_sensi;
-	double			jump_height;
-	int				fog_color;
-
 	double			front_speed;
 	double			back_speed;
 	double			strafe_speed;
@@ -116,6 +127,7 @@ typedef struct	s_ray
 	t_int_coord	tex;
 	t_int_coord	step;
 	t_int_coord	side;
+	t_sprite	*sprites;
 	t_tx		*tx_ptr;
 	double		camera_x;
 	double		perp_wall_dist;

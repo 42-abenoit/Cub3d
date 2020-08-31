@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 15:46:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 17:42:23 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/31 17:38:14 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,19 @@ void	ft_forward(t_param *prm)
 	if ((int)(player->pos.y) >= 0 && (int)(player->pos.y) <= map->size_y
 			&& (int)(player->pos.x + player->dir.x * conf->front_speed) >= 0
 			&& (int)(player->pos.x + player->dir.x * conf->front_speed)
-				<= map->size_x
-			&& (int)(player->pos.x) >= 0
+				<= map->size_x && (int)(player->pos.x) >= 0
 			&& (int)(player->pos.x) <= map->size_x
 			&& (int)(player->pos.y + player->dir.y * conf->front_speed) >= 0
 			&& (int)(player->pos.y + player->dir.y * conf->front_speed)
 				<= map->size_y)
 	{
-		if (map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x + player->dir.x * conf->front_speed)] != '1'
-			&& map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x + player->dir.x * conf->front_speed)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y)]
+				[(int)(player->pos.x + player->dir.x * conf->front_speed)],
+					MAP_OBSTACLE))
 			player->pos.x += player->dir.x * conf->front_speed;
-		if (map->grid[(int)(player->pos.y + player->dir.y * conf->front_speed)]
-				[(int)(player->pos.x)] != '1'
-			&& map->grid[(int)(player->pos.y + player->dir.y * conf->front_speed)]
-				[(int)(player->pos.x)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y
+			+ player->dir.y * conf->front_speed)]
+			[(int)(player->pos.x)], MAP_OBSTACLE))
 			player->pos.y += player->dir.y * conf->front_speed;
 	}
 }
@@ -66,15 +63,13 @@ void	ft_backward(t_param *prm)
 			&& (int)(player->pos.y - player->dir.y * conf->back_speed)
 				<= map->size_y)
 	{
-		if (map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x - player->dir.x * conf->back_speed)] != '1'
-			&& map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x - player->dir.x * conf->back_speed)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y)]
+				[(int)(player->pos.x - player->dir.x * conf->back_speed)],
+					MAP_OBSTACLE))
 			player->pos.x -= player->dir.x * conf->back_speed;
-		if (map->grid[(int)(player->pos.y - player->dir.y * conf->back_speed)]
-				[(int)(player->pos.x)] != '1'
-			&& map->grid[(int)(player->pos.y - player->dir.y * conf->back_speed)]
-				[(int)(player->pos.x)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y
+								- player->dir.y * conf->back_speed)]
+								[(int)(player->pos.x)], MAP_OBSTACLE))
 			player->pos.y -= player->dir.y * conf->back_speed;
 	}
 }
@@ -97,15 +92,13 @@ void	ft_strafe_left(t_param *prm)
 			&& (int)(player->pos.y - player->dir.x * conf->strafe_speed)
 				<= map->size_y)
 	{
-		if (map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x + player->dir.y * conf->strafe_speed)] != '1'
-			&& map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x + player->dir.y * conf->strafe_speed)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y)]
+				[(int)(player->pos.x + player->dir.y * conf->strafe_speed)],
+						MAP_OBSTACLE))
 			player->pos.x += player->dir.y * conf->strafe_speed;
-		if (map->grid[(int)(player->pos.y - player->dir.x * conf->strafe_speed)]
-				[(int)(player->pos.x)] != '1'
-			&& map->grid[(int)(player->pos.y - player->dir.x * conf->strafe_speed)]
-				[(int)(player->pos.x)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y
+								- player->dir.x * conf->strafe_speed)]
+								[(int)(player->pos.x)], MAP_OBSTACLE))
 			player->pos.y -= player->dir.x * conf->strafe_speed;
 	}
 }
@@ -128,15 +121,13 @@ void	ft_strafe_right(t_param *prm)
 			&& (int)(player->pos.y + player->dir.x * conf->strafe_speed)
 				<= map->size_y)
 	{
-		if (map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x - player->dir.y * conf->strafe_speed)] != '1'
-			&& map->grid[(int)(player->pos.y)]
-				[(int)(player->pos.x - player->dir.y * conf->strafe_speed)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y)]
+				[(int)(player->pos.x
+				- player->dir.y * conf->strafe_speed)], MAP_OBSTACLE))
 			player->pos.x -= player->dir.y * conf->strafe_speed;
-		if (map->grid[(int)(player->pos.y + player->dir.x * conf->strafe_speed)]
-				[(int)(player->pos.x)] != '1'
-			&& map->grid[(int)(player->pos.y + player->dir.x * conf->strafe_speed)]
-				[(int)(player->pos.x)] != '2')
+		if (!ft_isset(map->grid[(int)(player->pos.y +
+								player->dir.x * conf->strafe_speed)]
+								[(int)(player->pos.x)], MAP_OBSTACLE))
 			player->pos.y += player->dir.x * conf->strafe_speed;
 	}
 }
@@ -154,8 +145,8 @@ void	ft_rotate_right(t_param *prm)
 				- (player->dir.y * sin(conf->rot_speed));
 	player->dir.y = (old_dir_x * sin(conf->rot_speed))
 				+ (player->dir.y * cos(conf->rot_speed));
-	player->plane.x = -player->dir.y * ((player->view_angle * M_PI) / 180);
-	player->plane.y = player->dir.x * ((player->view_angle * M_PI) / 180);
+	player->plane.x = -player->dir.y * ((player->view_angle * M_PI) / 180.0);
+	player->plane.y = player->dir.x * ((player->view_angle * M_PI) / 180.0);
 }
 
 void	ft_rotate_left(t_param *prm)
@@ -171,6 +162,6 @@ void	ft_rotate_left(t_param *prm)
 				- (player->dir.y * sin(-conf->rot_speed));
 	player->dir.y = (old_dir_x * sin(-conf->rot_speed))
 				+ (player->dir.y * cos(-conf->rot_speed));
-	player->plane.x = -player->dir.y * ((player->view_angle * M_PI) / 180);
-	player->plane.y = player->dir.x * ((player->view_angle * M_PI) / 180);
+	player->plane.x = -player->dir.y * ((player->view_angle * M_PI) / 180.0);
+	player->plane.y = player->dir.x * ((player->view_angle * M_PI) / 180.0);
 }

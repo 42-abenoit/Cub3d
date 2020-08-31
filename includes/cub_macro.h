@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 17:49:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/08/31 17:14:33 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@
 #  define INPUT_LEFT		123
 #  define INPUT_RIGHT		124
 #  define INPUT_ESC			53
-#  ifdef bonus
-#   define INPUT_MAP		46
-#   define INPUT_SPRINT		257
-#   define INPUT_AXE		15
-#   define INPUT_STRIKE		49
-#  endif
 # endif
 
 /*
@@ -44,12 +38,6 @@
 #   define INPUT_LEFT		65361
 #   define INPUT_RIGHT		65363
 #   define INPUT_ESC			65307
-#   ifdef bonus
-#    define INPUT_MAP		44
-#    define INPUT_SPRINT		65505
-#    define INPUT_AXE		114
-#    define INPUT_STRIKE		32
-#   endif
 #  else
 #   define INPUT_UP			119
 #   define INPUT_DOWN		97
@@ -58,12 +46,6 @@
 #   define INPUT_LEFT		65361
 #   define INPUT_RIGHT		65363
 #   define INPUT_ESC			65307
-#   ifdef bonus
-#    define INPUT_MAP		109
-#    define INPUT_SPRINT		65505
-#    define INPUT_AXE		114
-#    define INPUT_STRIKE		32
-#   endif
 #  endif
 # endif
 

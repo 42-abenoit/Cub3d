@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/08/28 16:34:05 by abenoit          ###   ########.fr        #
+#    Updated: 2020/08/31 17:09:33 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_NAME =	main.c \
 		lst_utils.c \
 		lst_utils_2.c \
 		mlx_utils.c \
+		sprites_utils.c \
 		ft_strtrim.c \
 		ft_split.c \
 		parse_trigger.c \
@@ -34,9 +35,11 @@ SRC_NAME =	main.c \
 		control_map.c \
 		game_struct.c \
 		player_init.c \
+		sprites.c \
 		manage_key.c \
 		move_set.c \
 		render_engine.c \
+		bmp_save.c \
 		rec_gnl.c
 
 
@@ -47,6 +50,8 @@ OBJ_DIR = obj
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
+
+BONUS_DIR = bonus
 
 NAME = Cub3d
 
@@ -82,10 +87,10 @@ endif
 
 all: $(MLX) $(NAME)
 
-bonus: def_bonus clean all
+bonus:	bonus_make
 
-def_bonus:
-	$(eval MLX_DEF += -D bonus)
+bonus_make:
+		@make -C $(BONUS_DIR)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	    $(CC) $(INC) $(CFLAGS) $(MLX_DEF) -c $< -o $@
