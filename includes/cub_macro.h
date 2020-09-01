@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 17:14:33 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/01 14:32:23 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,6 @@
 # define IMG_SET				0x10000000
 
 # define CONF_SET				0x000001FE
-# define PARSE_END				0x00000FFE
+# define PARSE_END				0x00000FFF
 
 #endif

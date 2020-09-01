@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 16:57:30 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/01 14:49:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		clean_render(t_param *prm)
 
 int		ft_exit(int err_code, t_param *prm)
 {
-	if ((prm->booleans & PARSE_END) < PARSE_END)
+	if (prm->booleans < PARSE_END)
 		clean_parse(prm);
 	else
 		clean_render(prm);
@@ -80,4 +80,9 @@ int		ft_exit(int err_code, t_param *prm)
 		exit(0);
 	else
 		return (ft_error(err_code));
+}
+
+int		ui_cross_exit(t_param *prm)
+{
+	return (ft_exit(0, prm));
 }

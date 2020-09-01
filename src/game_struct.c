@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 17:12:41 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/01 14:49:31 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static int		launch_main_loop(t_param *prm)
 	render = (t_render*)(prm->ptr);
 	mlx_hook(render->win, 2, 1L << 0, ft_key_press, prm);
 	mlx_hook(render->win, 3, 1L << 1, ft_key_release, prm);
+	mlx_hook(render->win, 17, 1L << 17, ui_cross_exit, prm);
 	mlx_loop_hook(render->mlx, ray_caster, prm);
 	mlx_loop(render->mlx);
 	return (ft_exit(0, prm));

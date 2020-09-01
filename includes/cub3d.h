@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 11:58:57 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/01 14:50:00 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,6 @@ int				render_error(int err_code);
 int				clean_parse(t_param *prm);
 int				clean_render(t_param *prm);
 int				ft_exit(int err_code, t_param *prm);
+int				ui_cross_exit(t_param *prm);
 
 #endif

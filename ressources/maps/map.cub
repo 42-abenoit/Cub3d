@@ -1,9 +1,9 @@
 R  800 600
-NO ./ressources/xpm/greystone.xpm
-SO ./ressources/xpm/mossy.xpm
-WE ./ressources/xpm/wood.xpm
-EA ./ressources/xpm/redbrick.xpm
-S ./ressources/xpm/barrel.xpm
+NO ./ressources/std/textures/greystone.xpm
+SO ./ressources/std/textures/mossy.xpm
+WE ./ressources/std/textures/wood.xpm
+EA ./ressources/std/textures/redbrick.xpm
+S ./ressources/std/textures/barrel.xpm
 F 56,79,88
 C 153,76,0
 
