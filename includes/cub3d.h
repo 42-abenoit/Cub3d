@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 17:09:10 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/01 11:58:57 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,21 @@ int				game_struct_init(t_param *prm);
 **	render_engine.c
 */
 void			ray_init(int x, t_ray *ray, t_param *prm);
-void			ray_step(t_ray *ray, t_param *prm);
+int				ray_caster(t_param *prm);
+
+/*
+**	render_engine_ray.c
+*/
 void			ray_hit_scan(t_ray *ray, t_param *prm);
 void			ray_perspective(t_ray *ray, t_param *prm);
 void			ray_texture(t_ray *ray, t_param *prm);
+
+/*
+**	render_engine_ray.c
+*/
+void			img_refresh(t_ray *ray, t_param *prm);
 void			fill_buffer(t_ray *ray, t_param *prm);
 void			fill_line(int x, t_ray *ray, t_param *prm);
-int				ray_caster(t_param *prm);
 
 /*
 **	sprites.c
@@ -105,6 +113,11 @@ int				player_init(t_param *prm);
 int				pic_calculate(t_param *prm);
 
 /*
+**	bmp_export.c
+*/
+void			pic_export(t_ray *ray, t_param *prm, t_screen *screen);
+
+/*
 **	manage_key.c
 */
 int				ft_key_press(int keycode, t_param *prm);
@@ -118,6 +131,10 @@ void			ft_forward(t_param *prm);
 void			ft_backward(t_param *prm);
 void			ft_strafe_left(t_param *prm);
 void			ft_strafe_right(t_param *prm);
+
+/*
+**	move_set_2.c
+*/
 void			ft_rotate_right(t_param *prm);
 void			ft_rotate_left(t_param *prm);
 

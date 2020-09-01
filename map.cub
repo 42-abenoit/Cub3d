@@ -4,8 +4,8 @@ SO ./ressources/xpm/mossy.xpm
 WE ./ressources/xpm/wood.xpm
 EA ./ressources/xpm/redbrick.xpm
 S ./ressources/xpm/barrel.xpm
-F 80 ,      65  , 174
-C 186,110,31
+F 56,79,88
+C 153,76,0
 
 
 

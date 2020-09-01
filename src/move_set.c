@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 15:46:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 17:38:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/01 11:58:17 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,38 +130,4 @@ void	ft_strafe_right(t_param *prm)
 								[(int)(player->pos.x)], MAP_OBSTACLE))
 			player->pos.y += player->dir.x * conf->strafe_speed;
 	}
-}
-
-void	ft_rotate_right(t_param *prm)
-{
-	double		old_dir_x;
-	t_player	*player;
-	t_conf		*conf;
-
-	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	old_dir_x = player->dir.x;
-	player->dir.x = (player->dir.x * cos(conf->rot_speed))
-				- (player->dir.y * sin(conf->rot_speed));
-	player->dir.y = (old_dir_x * sin(conf->rot_speed))
-				+ (player->dir.y * cos(conf->rot_speed));
-	player->plane.x = -player->dir.y * ((player->view_angle * M_PI) / 180.0);
-	player->plane.y = player->dir.x * ((player->view_angle * M_PI) / 180.0);
-}
-
-void	ft_rotate_left(t_param *prm)
-{
-	double		old_dir_x;
-	t_player	*player;
-	t_conf		*conf;
-
-	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	old_dir_x = player->dir.x;
-	player->dir.x = (player->dir.x * cos(-conf->rot_speed))
-				- (player->dir.y * sin(-conf->rot_speed));
-	player->dir.y = (old_dir_x * sin(-conf->rot_speed))
-				+ (player->dir.y * cos(-conf->rot_speed));
-	player->plane.x = -player->dir.y * ((player->view_angle * M_PI) / 180.0);
-	player->plane.y = player->dir.x * ((player->view_angle * M_PI) / 180.0);
 }
