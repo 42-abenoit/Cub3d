@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:42:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 18:24:59 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/03 13:29:54 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 		ray_hit_scan(ray, prm);
 		ray_perspective(ray, prm);
 		ray_texture(ray, prm);
-		fill_buffer(ray, prm);
+		fill_buffer(ray);
 		sprite_projection(prm);
 		ray_fill_line_sprite(x, ray, prm);
 		fill_line(x, ray, prm);

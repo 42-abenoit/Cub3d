@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 18:38:03 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/05 16:53:04 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,18 @@ void			ray_init(int x, t_ray *ray, t_param *prm)
 
 static void		cast_x_rays(int x, int x_max, t_ray *ray, t_param *prm)
 {
+	t_floor	floor;
+
 	while (x < x_max)
 	{
 		ray_init(x, ray, prm);
 		ray_hit_scan(ray, prm);
 		ray_perspective(ray, prm);
 		ray_texture(ray, prm);
-		fill_buffer(ray, prm);
+		fill_sky_line(x, ray, prm);
+		floor_init(&floor, ray);
+		ray_fill_line_floor(&floor, ray, prm);
+		fill_buffer(ray);
 		sprite_projection(prm);
 		ray_fill_line_sprite(x, ray, prm);
 		fill_line(x, ray, prm);
@@ -110,7 +115,7 @@ int				ray_caster(t_param *prm)
 		return (MAL_ERR_BUFF);
 	sprite_calc_dist(prm);
 	ft_sprite_sort((t_sprite**)&sprite->content);
-	cast_x_rays(x, screen->width - 1, &ray, prm);
+	cast_x_rays(x, screen->width, &ray, prm);
 	img_refresh(&ray, prm);
 	ft_move(prm);
 	return (0);

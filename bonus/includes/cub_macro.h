@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 17:02:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/03 13:30:56 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@
 /*
 **	PARSING IDENTIFIERS
 */
-# define IS_ID					"RNSWEFC"
-# define ID_STRINGS				"R/NO/SO/WE/EA/S/F/C"
+# define IS_ID					"RNSWEF"
+# define ID_STRINGS				"R/NO/SO/WE/EA/S/F/SK"
 
 /*
 **	DLIST IDENTIFIERS
@@ -141,8 +141,8 @@
 # define ID_TX_WE				3
 # define ID_TX_EA				4
 # define ID_TX_S				5
-# define ID_HCC_F				6
-# define ID_HCC_C				7
+# define ID_TX_F				6
+# define ID_TX_SK				7
 # define ID_MAP					8
 # define ID_PLAYER				9
 # define ID_CONF				10
@@ -168,8 +168,8 @@
 # define TX_WE_SET				0x00000010
 # define TX_EA_SET				0x00000020
 # define TX_S_SET				0x00000040
-# define HCC_F_SET				0x00000080
-# define HCC_C_SET				0x00000100
+# define TX_F_SET				0x00000080
+# define TX_SK_SET				0x00000100
 # define MAP_SET				0x00000200
 # define START_SET				0x00000400
 # define START_RENDER			0x00000800

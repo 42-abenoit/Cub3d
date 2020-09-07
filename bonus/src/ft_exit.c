@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 14:49:15 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/03 13:37:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		clean_render(t_param *prm)
 	if (prm->ptr != NULL)
 	{
 		render = ((t_render*)(prm->ptr));
-		while (id <= ID_TX_S)
+		while (id <= ID_TX_SK)
 		{
 			ptr = get_lst_elem(prm->dlist, id);
 			my_mlx_destroy_tx(render->mlx, ptr);

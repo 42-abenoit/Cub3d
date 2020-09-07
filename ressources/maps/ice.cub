@@ -4,8 +4,8 @@ SO ./ressources/bonus/textures/tree_wall_snow.xpm
 WE ./ressources/bonus/textures/tree_wall_snow.xpm
 EA ./ressources/bonus/textures/tree_wall_snow.xpm
 S ./ressources/bonus/textures/tree_snow.xpm
-F 80 ,      65  , 174
-C 186,110,31
+F ./ressources/bonus/textures/snow_tile.xpm
+SK ./ressources/bonus/textures/skybox.xpm
 
 111111111111111111111111111111111111
 100000000000000000000000000000000001

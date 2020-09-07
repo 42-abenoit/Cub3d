@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/01 18:44:55 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/05 12:07:18 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ SRC_NAME =	main.c \
 		parse_trigger.c \
 		parse_line.c \
 		id_filler.c \
-		id_filler_2.c \
 		parse_map.c \
 		control_map.c \
 		game_struct.c \
@@ -43,6 +42,8 @@ SRC_NAME =	main.c \
 		render_engine.c \
 		render_engine_ray.c \
 		render_engine_img.c \
+		floor.c \
+		sky.c \
 		bmp_save.c \
 		bmp_export.c \
 		rec_gnl.c

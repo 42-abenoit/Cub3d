@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:17:33 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 18:22:36 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/05 16:59:00 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void			ray_perspective(t_ray *ray, t_param *prm)
 										/ ray->perp_wall_dist));
 	if (ray->draw_end >= screen->height)
 		ray->draw_end = screen->height - 1;
+	ray->wall_mid = (ray->draw_start + (ray->draw_end - ray->draw_start) / 2);
 }
 
 static void		side_texture(t_ray *ray, t_param *prm)

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:21:53 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 19:09:38 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/05 16:59:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,12 @@ void			img_refresh(t_ray *ray, t_param *prm)
 							render->current.img, 0, 0);
 }
 
-void			fill_buffer(t_ray *ray, t_param *prm)
+void			fill_buffer(t_ray *ray)
 {
 	int			y;
-	t_hcc		*hcc;
-	t_screen	*screen;
 
-	y = -1;
-	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	hcc = get_lst_elem(prm->dlist, ID_HCC_C)->content;
-	while (++y <= ray->draw_start)
-		ray->line_buff[y] = hcc->hcc;
-	y -= 1;
-	while (++y <= ray->draw_end)
+	y = ray->draw_start;
+	while (y <= ray->draw_end)
 	{
 		ray->tex.y = (int)ray->tex_pos & (ray->tx_ptr->height - 1);
 		ray->tex_pos += ray->tex_step;
@@ -56,11 +49,8 @@ void			fill_buffer(t_ray *ray, t_param *prm)
 									&ray->tx_ptr->data);
 		if ((ray->color & 0x00FFFFFF) != 0)
 			ray->line_buff[y] = ray->color;
+		y++;
 	}
-	hcc = get_lst_elem(prm->dlist, ID_HCC_F)->content;
-	y -= 1;
-	while (++y < screen->height - 1)
-		ray->line_buff[y] = hcc->hcc;
 }
 
 void			fill_line(int x, t_ray *ray, t_param *prm)

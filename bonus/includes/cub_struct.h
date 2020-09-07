@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 18:17:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/05 16:54:37 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,30 +124,44 @@ typedef struct	s_conf
 
 typedef struct	s_ray
 {
-	t_data		img;
-	t_coord		dir;
-	t_coord		side_dist;
-	t_coord		delta_dist;
-	t_int_coord	map;
-	t_int_coord	pos;
-	t_int_coord	tex;
-	t_int_coord	step;
-	t_int_coord	side;
-	t_tx		*tx_ptr;
-	double		camera_x;
-	double		perp_wall_dist;
-	double		dist;
-	double		wall_x;
-	double		tex_step;
-	double		tex_pos;
-	int			*line_buff;
-	int			hit;
-	int			color;
-	int			id_side;
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
+	t_data			img;
+	t_coord			dir;
+	t_coord			side_dist;
+	t_coord			delta_dist;
+	t_int_coord		map;
+	t_int_coord		pos;
+	t_int_coord		tex;
+	t_int_coord		step;
+	t_int_coord		side;
+	t_tx			*tx_ptr;
+	double			camera_x;
+	double			perp_wall_dist;
+	double			dist;
+	double			wall_x;
+	double			wall_mid;
+	double			tex_step;
+	double			tex_pos;
+	int				*line_buff;
+	int				hit;
+	int				color;
+	int				id_side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
 }				t_ray;
+
+typedef struct	s_floor
+{
+	t_tx			*tx_ptr;
+	t_coord			wall;
+	t_coord			current;
+	t_int_coord		tex;
+	double			dist_wall;
+	double			dist_player;
+	double			current_dist;
+	double			weight;
+	char			is_floor;
+}				t_floor;
 
 typedef struct	s_param
 {
