@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 18:06:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 16:01:44 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 16:10:32 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ void	fill_sky_line(int x, t_ray *ray, t_param *prm)
 	t_tx	*sky;
 	t_screen	*screen;
 	int			pos_y;
-	t_player	*player;
 
 	sky = get_lst_elem(prm->dlist, ID_TX_SK)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	y = 0;
 	Rx = ((double)sky->width / 8.0) / ((double)screen->width);
 	plop = (atan2(ray->dir.y, ray->dir.x) / CIRCLE) / 2;

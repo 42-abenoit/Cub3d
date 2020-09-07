@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 11:24:02 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 16:12:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@
 #   define INPUT_RSTRAFE	100
 #   define INPUT_LEFT		65361
 #   define INPUT_RIGHT		65363
-#   define INPUT_LOOK_UP	Placeholder
-#   define INPUT_LOOK_DOWN	Placeholder
+#   define INPUT_LOOK_UP	65362
+#   define INPUT_LOOK_DOWN	65364
 #   define INPUT_ESC		65307
 #   define INPUT_MAP		109
 #   define INPUT_SPRINT		65505
