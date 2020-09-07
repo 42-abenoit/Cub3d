@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:21:53 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/05 16:59:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 15:58:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			fill_buffer(t_ray *ray)
 	int			y;
 
 	y = ray->draw_start;
-	while (y <= ray->draw_end)
+	while (y < ray->draw_end)
 	{
 		ray->tex.y = (int)ray->tex_pos & (ray->tx_ptr->height - 1);
 		ray->tex_pos += ray->tex_step;
