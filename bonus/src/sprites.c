@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 17:27:09 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 18:57:54 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sprite_calc_dist(t_param *prm)
 	}
 }
 
-void	sprite_calc_draw_val(t_sprite *ptr, t_param *prm)
+static void	sprite_calc_draw_val(t_sprite *ptr, t_param *prm)
 {
 	t_screen	*screen;
 
@@ -56,7 +56,7 @@ void	sprite_calc_draw_val(t_sprite *ptr, t_param *prm)
 		ptr->draw_end.x = screen->width - 1;
 }
 
-void	sprite_projection(t_param *prm)
+void		sprite_projection(t_param *prm)
 {
 	t_sprite	*ptr;
 	t_screen	*screen;
@@ -85,15 +85,13 @@ void	sprite_projection(t_param *prm)
 	}
 }
 
-void	sprite_line_to_buff(t_sprite *ptr, t_ray *ray, t_param *prm)
+static void	sprite_line_to_buff(t_sprite *ptr, t_tx	*tx, t_ray *ray, t_param *prm)
 {
 	int			y;
 	int			d;
-	t_tx		*tx;
 	t_screen	*screen;
 
 	y = ptr->draw_start.y;
-	tx = get_lst_elem(prm->dlist, ID_TX_S)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (y < ptr->draw_end.y)
 	{
@@ -110,7 +108,7 @@ void	sprite_line_to_buff(t_sprite *ptr, t_ray *ray, t_param *prm)
 	}
 }
 
-void	ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
+void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 {
 	t_sprite	*ptr;
 	t_tx		*tx;
@@ -130,7 +128,7 @@ void	ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 								/ 256) & (tx->width - 1);
 			if (ptr->transform.y > 0 && x > 0 && x
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
-				sprite_line_to_buff(ptr, ray, prm);
+				sprite_line_to_buff(ptr, tx, ray, prm);
 		}
 		ptr = ptr->next;
 	}

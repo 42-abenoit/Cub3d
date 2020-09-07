@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/05 12:07:18 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/07 17:50:18 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,13 @@ BONUS_DIR = bonus
 
 NAME = ../Cub3d
 
-INC = -I includes -I$(MLX_DIR)
+INC = -I includes -I$(MLX_DIR) -lpthread
 
 CC = gcc
 RM = rm -f
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
+
 MLX_DEF = -D $(OS_NAME)
 
 MLX = libmlx.a

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/05 12:09:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 18:50:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void			ray_texture(t_ray *ray, t_param *prm);
 /*
 **	render_engine_ray.c
 */
-void			img_refresh(t_ray *ray, t_param *prm);
+void			img_refresh(t_param *prm);
 void			fill_buffer(t_ray *ray);
 void			fill_line(int x, t_ray *ray, t_param *prm);
 
@@ -100,9 +100,7 @@ void			fill_line(int x, t_ray *ray, t_param *prm);
 **	sprites.c
 */
 void			sprite_calc_dist(t_param *prm);
-void			sprite_calc_draw_val(t_sprite *ptr, t_param *prm);
 void			sprite_projection(t_param *prm);
-void			sprite_line_to_buff(t_sprite *ptr, t_ray *ray, t_param *prm);
 void			ray_fill_line_sprite(int x, t_ray *ray, t_param *prm);
 
 /*
@@ -134,7 +132,7 @@ int				pic_calculate(t_param *prm);
 /*
 **	bmp_export.c
 */
-void			pic_export(t_ray *ray, t_param *prm, t_screen *screen);
+void			pic_export(t_param *prm, t_screen *screen);
 
 /*
 **	manage_key.c

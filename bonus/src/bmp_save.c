@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:42:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/03 13:29:54 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 17:01:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,23 @@
 #include "cub_macro.h"
 #include "cub_struct.h"
 
-static void	bmp_prepare(t_ray *ray, t_param *prm)
+static void	bmp_prepare(t_param *prm)
 {
 	t_render	*render;
 	t_screen	*screen;
 
 	render = prm->ptr;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	pic_export(ray, prm, screen);
-	mlx_destroy_image(render->mlx, ray->img.img);
-	ray->img.img = NULL;
+	pic_export(prm, screen);
+	mlx_destroy_image(render->mlx, render->img.img);
+	render->img.img = NULL;
 }
 
 static void	bmp_render(t_ray *ray, t_param *prm)
 {
 	int			x;
 	t_screen	*screen;
+	t_floor	floor;
 
 	x = 0;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
@@ -46,6 +47,9 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 		ray_hit_scan(ray, prm);
 		ray_perspective(ray, prm);
 		ray_texture(ray, prm);
+		fill_sky_line(x, ray, prm);
+		floor_init(&floor, ray);
+		ray_fill_line_floor(&floor, ray, prm);
 		fill_buffer(ray);
 		sprite_projection(prm);
 		ray_fill_line_sprite(x, ray, prm);
@@ -64,13 +68,13 @@ int			pic_calculate(t_param *prm)
 	render = prm->ptr;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	sprite = get_lst_elem(prm->dlist, ID_SPRITES)->content;
-	ray.img = my_mlx_new_image(render->mlx, screen->width, screen->height);
+	render->img = my_mlx_new_image(render->mlx, screen->width, screen->height);
 	if (!(ray.line_buff = malloc(screen->height * sizeof(int))))
 		return (MAL_ERR_BUFF);
 	sprite_calc_dist(prm);
 	ft_sprite_sort(&sprite);
 	bmp_render(&ray, prm);
 	free(ray.line_buff);
-	bmp_prepare(&ray, prm);
+	bmp_prepare(prm);
 	return (ft_exit(0, prm));
 }

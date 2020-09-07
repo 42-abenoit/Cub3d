@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 14:58:41 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 18:38:53 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct	s_render
 {
 	void			*mlx;
 	void			*win;
+	t_data			img;
 	t_data			current;
 }				t_render;
 
@@ -124,7 +125,6 @@ typedef struct	s_conf
 
 typedef struct	s_ray
 {
-	t_data			img;
 	t_coord			dir;
 	t_coord			side_dist;
 	t_coord			delta_dist;
@@ -169,5 +169,11 @@ typedef struct	s_param
 	void			*ptr;
 	t_list			*dlist;
 }				t_param;
+
+typedef struct	s_thread
+{
+	int				id_thread;
+	t_param			*prm;
+}				t_thread;
 
 #endif

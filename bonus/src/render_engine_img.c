@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:21:53 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 15:58:11 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 17:05:03 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "cub_macro.h"
 #include "cub_struct.h"
 
-void			img_refresh(t_ray *ray, t_param *prm)
+void			img_refresh(t_param *prm)
 {
 	t_render	*render;
 
@@ -30,8 +30,7 @@ void			img_refresh(t_ray *ray, t_param *prm)
 	}
 	else
 		prm->booleans += IMG_SET;
-	free(ray->line_buff);
-	render->current = ray->img;
+	render->current = render->img;
 	mlx_put_image_to_window(render->mlx, render->win,
 							render->current.img, 0, 0);
 }
@@ -57,12 +56,14 @@ void			fill_line(int x, t_ray *ray, t_param *prm)
 {
 	int			y;
 	t_screen	*screen;
+	t_render	*render;
 
 	y = 0;
+	render = prm->ptr;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (y < screen->height - 1)
 	{
-		my_mlx_pixel_put(&ray->img, x, y, ray->line_buff[y]);
+		my_mlx_pixel_put(&render->img, x, y, ray->line_buff[y]);
 		y++;
 	}
 }

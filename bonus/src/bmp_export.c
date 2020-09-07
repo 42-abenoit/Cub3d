@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:34:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 11:56:31 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 16:58:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	fill_dib_header(int fd, t_param *prm)
 	write(fd, &tmp, 4);
 }
 
-void		pic_export(t_ray *ray, t_param *prm, t_screen *screen)
+void		pic_export(t_param *prm, t_screen *screen)
 {
 	int			fd;
 	mode_t		mode;
@@ -93,7 +93,7 @@ void		pic_export(t_ray *ray, t_param *prm, t_screen *screen)
 		x = 0;
 		while (x < screen->width)
 		{
-			tmp = get_pic_color(x, y, &ray->img);
+			tmp = get_pic_color(x, y, &((t_render*)prm->ptr)->img);
 			write(fd, &tmp, 4);
 			x++;
 		}

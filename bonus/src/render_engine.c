@@ -6,12 +6,13 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/05 16:53:04 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/07 18:59:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <math.h>
+#include <pthread.h>
 #include "mlx.h"
 #include "cub3d.h"
 #include "ft_utils.h"
@@ -77,46 +78,68 @@ void			ray_init(int x, t_ray *ray, t_param *prm)
 	set_step_y(ray, prm);
 }
 
-static void		cast_x_rays(int x, int x_max, t_ray *ray, t_param *prm)
+static void		*cast_x_rays(void *plop)
 {
-	t_floor	floor;
+	t_ray		ray;
+	t_floor		floor;
+	t_screen	*screen;
+	t_param		*prm;
+	int			x;
+	int			x_max;
 
+	prm = ((t_thread*)plop)->prm;
+	screen = get_lst_elem(prm->dlist, ID_RES)->content;
+	if (!(ray.line_buff = malloc((screen->height + 1) * sizeof(int))))
+		pthread_exit(NULL);
+	x = ((t_thread*)plop)->id_thread * (screen->width / 40);
+	x_max = x + (screen->width / 40);
 	while (x < x_max)
 	{
-		ray_init(x, ray, prm);
-		ray_hit_scan(ray, prm);
-		ray_perspective(ray, prm);
-		ray_texture(ray, prm);
-		fill_sky_line(x, ray, prm);
-		floor_init(&floor, ray);
-		ray_fill_line_floor(&floor, ray, prm);
-		fill_buffer(ray);
-		sprite_projection(prm);
-		ray_fill_line_sprite(x, ray, prm);
-		fill_line(x, ray, prm);
+		ray_init(x, &ray, prm);
+		ray_hit_scan(&ray, prm);
+		ray_perspective(&ray, prm);
+		ray_texture(&ray, prm);
+		fill_sky_line(x, &ray, prm);
+		floor_init(&floor, &ray);
+		ray_fill_line_floor(&floor, &ray, prm);
+		fill_buffer(&ray);
+		ray_fill_line_sprite(x, &ray, prm);
+		fill_line(x, &ray, prm);
 		x++;
 	}
+	free(ray.line_buff);
+	pthread_exit(NULL);
 }
 
 int				ray_caster(t_param *prm)
 {
-	t_ray		ray;
 	t_screen	*screen;
 	t_render	*render;
 	t_list		*sprite;
-	int			x;
+	pthread_t	thread[40];
+	t_thread	plop[40];
+	int			i;
 
-	x = 0;
 	render = prm->ptr;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	sprite = get_lst_elem(prm->dlist, ID_SPRITES);
-	ray.img = my_mlx_new_image(render->mlx, screen->width, screen->height);
-	if (!(ray.line_buff = malloc((screen->height + 1) * sizeof(int))))
-		return (MAL_ERR_BUFF);
+	render->img = my_mlx_new_image(render->mlx, screen->width, screen->height);
 	sprite_calc_dist(prm);
 	ft_sprite_sort((t_sprite**)&sprite->content);
-	cast_x_rays(x, screen->width, &ray, prm);
-	img_refresh(&ray, prm);
+	sprite_projection(prm);
+	i = 0;
+	while (i < 40)
+	{
+		plop[i].id_thread = i;
+		plop[i].prm = prm;
+		pthread_create(&thread[i], NULL, &cast_x_rays, &plop[i]);
+		i++;
+	}
+	while (--i > -1)
+	{
+		pthread_join(thread[i], NULL);
+	}
+	img_refresh(prm);
 	ft_move(prm);
 	return (0);
 }
