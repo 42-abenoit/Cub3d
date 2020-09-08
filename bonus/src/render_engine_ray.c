@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:17:33 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 16:47:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 17:07:17 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,17 @@ void			ray_perspective(t_ray *ray, t_param *prm)
 		ray->perp_wall_dist = (ray->map.y - player->pos.y
 								+ (1 - ray->step.y) / 2) / ray->dir.y;
 	ray->line_height = (int)(screen->height / ray->perp_wall_dist);
-	ray->draw_start = (int)((-ray->line_height / 2) + (screen->height / 2)
+	ray->draw_start = (-ray->line_height / 2) + (screen->height / 2)
 					+ player->pitch + (player->pos_z
-										/ ray->perp_wall_dist));
+										/ ray->perp_wall_dist);
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = (int)((ray->line_height / 2) + (screen->height / 2)
+	ray->draw_end = (ray->line_height / 2) + (screen->height / 2)
 					+ player->pitch + (player->pos_z
-										/ ray->perp_wall_dist));
+										/ ray->perp_wall_dist);
 	if (ray->draw_end >= screen->height)
 		ray->draw_end = screen->height - 1;
-	ray->horizon = (int)(((double)screen->height / 2) + player->pitch);
+	ray->horizon = (screen->height / 2) + player->pitch;
 }
 
 static void		side_texture(t_ray *ray, t_param *prm)
@@ -107,7 +107,7 @@ void			ray_texture(t_ray *ray, t_param *prm)
 	else
 		ray->wall_x = player->pos.x + ray->perp_wall_dist * ray->dir.x;
 	ray->wall_x -= floor(ray->wall_x);
-	ray->tex.x = (int)(ray->wall_x * (double)(ray->tx_ptr->width));
+	ray->tex.x = (int)(ray->wall_x * ray->tx_ptr->width);
 	if ((ray->id_side % 2 == 0) && ray->dir.x > 0)
 		ray->tex.x = ray->tx_ptr->width - ray->tex.x - 1;
 	if (ray->id_side % 2 == 1 && ray->dir.y < 0)

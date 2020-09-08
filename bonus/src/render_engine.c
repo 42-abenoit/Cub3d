@@ -6,12 +6,13 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 16:30:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 17:08:37 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #include <pthread.h>
 #include "mlx.h"
 #include "cub3d.h"
