@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/07 17:50:18 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/08 11:22:00 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ BONUS_DIR = bonus
 
 NAME = ../Cub3d
 
-INC = -I includes -I$(MLX_DIR) -lpthread
+INC = -I includes -I$(MLX_DIR)
 
 CC = gcc
 RM = rm -f
@@ -99,6 +99,9 @@ bonus_make:
 		@make -C $(BONUS_DIR)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
+ifeq (%.c, render_engine.c)
+	$(eval INC += -lpthread)
+endif
 	    $(CC) $(INC) $(CFLAGS) $(MLX_DEF) -c $< -o $@
 
 $(OBJ_DIR):
