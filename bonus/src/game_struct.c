@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 16:48:30 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 15:25:35 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static int		conf_init(t_param *prm)
 		return (MAL_ERR_CONF);
 	conf->pitch_sensi = 4.0;
 	conf->jump_height = 100.0;
-	conf->fog_color = 0x00FF00FF;
+	conf->fog_color = 0x00E0F3F3;
+	conf->view_depth = 100.00;
 	conf->front_speed = 0.05;
 	conf->back_speed = 0.02;
 	conf->strafe_speed = 0.03;

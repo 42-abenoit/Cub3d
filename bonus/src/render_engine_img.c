@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:21:53 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 17:05:03 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 15:13:46 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			img_refresh(t_param *prm)
 							render->current.img, 0, 0);
 }
 
-void			fill_buffer(t_ray *ray)
+void			fill_buffer(t_ray *ray, t_param *prm)
 {
 	int			y;
 
@@ -46,6 +46,7 @@ void			fill_buffer(t_ray *ray)
 		ray->tex_pos += ray->tex_step;
 		ray->color = get_pixel_color(ray->tex.x, ray->tex.y,
 									&ray->tx_ptr->data);
+		ray->color = apply_fog(ray->dist, ray->color, prm);
 		if ((ray->color & 0x00FFFFFF) != 0)
 			ray->line_buff[y] = ray->color;
 		y++;

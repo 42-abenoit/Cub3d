@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 13:01:10 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 13:28:01 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void			ray_texture(t_ray *ray, t_param *prm);
 **	render_engine_ray.c
 */
 void			img_refresh(t_param *prm);
-void			fill_buffer(t_ray *ray);
+void			fill_buffer(t_ray *ray, t_param *prm);
 void			fill_line(int x, t_ray *ray, t_param *prm);
 
 /*
@@ -110,9 +110,14 @@ void			floor_init(t_floor *floor, t_ray *ray);
 void			ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm);
 
 /*
-**	floor.c
+**	sky.c
 */
 void			fill_sky_line(int x, t_ray *ray, t_param *prm);
+
+/*
+**	sky.c
+*/
+int				apply_fog(double dist, int color_input, t_param *prm);
 
 /*
 **	player_init.c

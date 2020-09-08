@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:17:33 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 15:52:17 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 13:37:31 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ static void		ray_increment(t_ray *ray)
 void			ray_hit_scan(t_ray *ray, t_param *prm)
 {
 	t_map		*map;
+	t_player	*player;
 
 	map = get_lst_elem(prm->dlist, ID_MAP)->content;
+	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	while (ray->hit == 0)
 	{
 		ray_increment(ray);
 		if (map->grid[ray->map.y][ray->map.x] == '1')
 			ray->hit = 1;
+		ray->dist = (player->pos.x - ray->map.x)
+					* (player->pos.x - ray->map.x)
+					- (player->pos.y - ray->map.y)
+					* (player->pos.y - ray->map.y);
 	}
 }
 

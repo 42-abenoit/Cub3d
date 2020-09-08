@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 12:56:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 13:16:32 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct	s_conf
 	double			pitch_sensi;
 	double			jump_height;
 	int				fog_color;
+	double			view_depth;
 	double			front_speed;
 	double			back_speed;
 	double			strafe_speed;

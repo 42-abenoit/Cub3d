@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:42:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 17:01:52 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 15:06:37 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 		fill_sky_line(x, ray, prm);
 		floor_init(&floor, ray);
 		ray_fill_line_floor(&floor, ray, prm);
-		fill_buffer(ray);
+		fill_buffer(ray, prm);
 		sprite_projection(prm);
 		ray_fill_line_sprite(x, ray, prm);
 		fill_line(x, ray, prm);

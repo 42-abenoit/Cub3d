@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 11:56:53 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 13:08:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@
 /*
 **	MULTI-THREADING UTILITIES
 */
-# define NTHREAD				50
+# define NTHREAD				4
 
 /*
 **	PARSING IDENTIFIERS

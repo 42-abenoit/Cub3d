@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:36:12 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 15:46:08 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 15:22:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	floor_init(t_floor *floor, t_ray *ray)
 void	ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm)
 {
 	int			y;
+	double		floor_dist;
 	t_screen	*screen;
 	t_player	*player;
 
@@ -67,6 +68,11 @@ void	ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm)
 							* floor->tx_ptr->height) & (floor->tx_ptr->height - 1);
 		ray->color = get_pixel_color(floor->tex.x,
 									floor->tex.y, &floor->tx_ptr->data);
+		floor_dist = (player->pos.x - floor->current.x)
+						* (player->pos.x - floor->current.x)
+						+ (player->pos.y - floor->current.y)
+						* (player->pos.y - floor->current.y);
+		ray->color = apply_fog(floor_dist, ray->color, prm);
 		if ((ray->color & 0x00FFFFFF) != 0)
 			ray->line_buff[y] = ray->color;
 		y++;

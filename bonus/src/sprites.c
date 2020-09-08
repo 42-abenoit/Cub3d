@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 13:03:02 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 15:13:59 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ static void	sprite_line_to_buff(t_sprite *ptr, t_tx	*tx, t_ray *ray, t_param *pr
 			& (tx->height - 1);
 		ray->color = get_pixel_color(ptr->tex.x, ptr->tex.y,
 					&tx->data);
+		ray->color = apply_fog(ptr->dist, ray->color, prm);
 		if ((ray->color & 0x00FFFFFF) != 0)
 			ray->line_buff[y] = ray->color;
 		y++;

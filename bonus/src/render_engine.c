@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 13:01:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 13:27:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void		*cast_x_rays(void *plop)
 		fill_sky_line(x, &ray, prm);
 		floor_init(&floor, &ray);
 		ray_fill_line_floor(&floor, &ray, prm);
-		fill_buffer(&ray);
+		fill_buffer(&ray, prm);
 		ray_fill_line_sprite(x, &ray, prm);
 		fill_line(x, &ray, prm);
 		x++;
