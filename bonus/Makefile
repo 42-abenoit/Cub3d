@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/08 11:41:43 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/08 13:03:46 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,9 @@ bonus_make:
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 ifeq (%.c, render_engine.c)
+	$(eval INC += -lpthread)
+endif
+ifeq (%.c, sprites.c)
 	$(eval INC += -lpthread)
 endif
 	    $(CC) $(INC) $(CFLAGS) $(MLX_DEF) -c $< -o $@

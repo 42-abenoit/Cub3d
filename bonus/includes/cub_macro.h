@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 16:20:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 11:56:53 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,11 @@
 # define CUB_EXT				".cub"
 # define XPM_EXT				".xpm"
 # define WHITESPACES			"\t\n\v\f\r' '"
+
+/*
+**	MULTI-THREADING UTILITIES
+*/
+# define NTHREAD				50
 
 /*
 **	PARSING IDENTIFIERS

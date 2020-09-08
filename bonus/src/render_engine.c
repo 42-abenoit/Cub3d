@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 18:59:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 13:01:51 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,20 @@ static void		*cast_x_rays(void *plop)
 	t_floor		floor;
 	t_screen	*screen;
 	t_param		*prm;
+	t_thread	*thread;
 	int			x;
 	int			x_max;
 
-	prm = ((t_thread*)plop)->prm;
+	thread = plop;
+	prm = thread->prm;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	if (!(ray.line_buff = malloc((screen->height + 1) * sizeof(int))))
-		pthread_exit(NULL);
-	x = ((t_thread*)plop)->id_thread * (screen->width / 40);
-	x_max = x + (screen->width / 40);
+	{
+		x = -1;
+		pthread_exit(&x);
+	}
+	x = ((t_thread*)plop)->id_thread * (screen->width / NTHREAD);
+	x_max = x + (screen->width / NTHREAD);
 	while (x < x_max)
 	{
 		ray_init(x, &ray, prm);
@@ -116,8 +121,8 @@ int				ray_caster(t_param *prm)
 	t_screen	*screen;
 	t_render	*render;
 	t_list		*sprite;
-	pthread_t	thread[40];
-	t_thread	plop[40];
+	pthread_t	thread[NTHREAD];
+	t_thread	plop[NTHREAD];
 	int			i;
 
 	render = prm->ptr;
@@ -128,7 +133,7 @@ int				ray_caster(t_param *prm)
 	ft_sprite_sort((t_sprite**)&sprite->content);
 	sprite_projection(prm);
 	i = 0;
-	while (i < 40)
+	while (i < NTHREAD)
 	{
 		plop[i].id_thread = i;
 		plop[i].prm = prm;
@@ -137,7 +142,8 @@ int				ray_caster(t_param *prm)
 	}
 	while (--i > -1)
 	{
-		pthread_join(thread[i], NULL);
+		if (pthread_join(thread[i], NULL) < 0)
+			return (ft_exit(MAL_ERR_BUFF, prm));
 	}
 	img_refresh(prm);
 	ft_move(prm);

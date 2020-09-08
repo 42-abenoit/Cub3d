@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:33:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:16:08 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 11:53:44 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	mlx_error(int err_code)
 	if (err_code == MAL_ERR_CONF)
 		ft_putstr("Error creating configuration data structure\n");
 	if (err_code == MAL_ERR_BUFF)
-		ft_putstr("Error creating configuration vertical line buffer\n");
+		ft_putstr("Error creating vertical line buffer\n");
 	exit(0);
 }
 
