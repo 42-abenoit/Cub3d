@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 15:46:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 18:59:01 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 19:04:29 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ void	ft_jump(t_param *prm)
 	t_conf		*conf;
 	double		height;
 
+	height = 0;
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	if (!(prm->booleans & FLAG_FALL))
