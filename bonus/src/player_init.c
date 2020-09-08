@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 18:54:27 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 18:31:30 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	player_set_dir(t_player *player, int dir_x, int dir_y)
 	player->plane.y = player->dir.x * ((player->view_angle * M_PI) / 180);
 	player->pitch = 0;
 	player->pos_z = 0;
+	player->jump_phase = 0;
 }
 
 static int	player_set_start(t_param *prm, int x, int y, t_player *player)

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 17:08:37 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 17:48:59 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ int				ray_caster(t_param *prm)
 	t_list		*sprite;
 	pthread_t	thread[NTHREAD];
 	t_thread	plop[NTHREAD];
+	clock_t		start;
+	clock_t		end;
 	int			i;
 
 	render = prm->ptr;
@@ -135,6 +137,7 @@ int				ray_caster(t_param *prm)
 	ft_sprite_sort((t_sprite**)&sprite->content);
 	sprite_projection(prm);
 	i = 0;
+	start = clock();
 	while (i < NTHREAD)
 	{
 		plop[i].id_thread = i;
@@ -148,6 +151,8 @@ int				ray_caster(t_param *prm)
 			return (ft_exit(MAL_ERR_BUFF, prm));
 	}
 	img_refresh(prm);
+	end = clock();
+	render->frame_time = (double)(end - start) / CLOCKS_PER_SEC;
 	ft_move(prm);
 	return (0);
 }

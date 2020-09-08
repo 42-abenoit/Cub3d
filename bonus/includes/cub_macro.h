@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 13:08:52 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 19:00:14 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,8 @@
 # define FLAG_MAP				0x00400000
 # define FLAG_AXE				0x00800000
 # define FLAG_JUMP				0x01000000
-# define FLAG_STRIKE			0x02000000
+# define FLAG_FALL				0x02000000
+# define FLAG_STRIKE			0x04000000
 
 # define IMG_SET				0x10000000
 

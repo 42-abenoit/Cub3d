@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:04:58 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 15:32:20 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 18:50:50 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ int		ft_key_release(int keycode, t_param *prm)
 		prm->booleans -= FLAG_LOOK_DOWN;
 	if (keycode == INPUT_JUMP && (prm->booleans & FLAG_JUMP))
 	{
-		t_player	*player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-		player->pos_z = 0;
-		prm->booleans -= FLAG_JUMP;
+		if (!(prm->booleans & FLAG_FALL))
+			prm->booleans += FLAG_FALL;
 	}
 	return (0);
 }
@@ -85,7 +84,7 @@ int		ft_move(t_param *prm)
 		ft_look_up(prm);
 	if (prm->booleans & FLAG_LOOK_DOWN)
 		ft_look_down(prm);
-	if (prm->booleans & FLAG_JUMP)
+	if (prm->booleans & FLAG_JUMP || prm->booleans & FLAG_FALL)
 		ft_jump(prm);
 	return (0);
 }

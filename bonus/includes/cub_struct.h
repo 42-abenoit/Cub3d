@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 16:39:07 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 18:27:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_player
 	double			view_angle;
 	double			pos_z;
 	double			pitch;
+	char			jump_phase;
 }				t_player;
 
 typedef struct	s_data
@@ -108,6 +109,7 @@ typedef struct	s_render
 {
 	void			*mlx;
 	void			*win;
+	double			frame_time;
 	t_data			img;
 	t_data			current;
 }				t_render;

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/03 13:10:32 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 18:02:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 #   define INPUT_ESC			65307
 #  else
 #   define INPUT_UP			119
-#   define INPUT_DOWN		97
-#   define INPUT_LSTRAFE		115
+#   define INPUT_DOWN		115
+#   define INPUT_LSTRAFE		97
 #   define INPUT_RSTRAFE		100
 #   define INPUT_LEFT		65361
 #   define INPUT_RIGHT		65363

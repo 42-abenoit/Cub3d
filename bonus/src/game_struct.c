@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 16:59:58 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 18:21:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ static int		conf_init(t_param *prm)
 
 	if (!(conf = malloc(sizeof(t_conf))))
 		return (MAL_ERR_CONF);
-	conf->pitch_sensi = 4.0;
-	conf->jump_height = 300.0;
+	conf->pitch_sensi = 250.0;
+	conf->jump_height = 250.0;
 	conf->fog_color = 0x00E0F3F3;
-	conf->view_depth = 1000.00;
-	conf->front_speed = 0.05;
-	conf->back_speed = 0.02;
-	conf->strafe_speed = 0.03;
-	conf->rot_speed = 0.03;
+	conf->view_depth = 100.00;
+	conf->front_speed = 3.0;
+	conf->back_speed = 2.0;
+	conf->strafe_speed = 2.6;
+	conf->rot_speed = 2.0;
 	ft_lstadd_back(&(prm->dlist), ft_lstnew(ID_CONF, conf));
 	if (get_lst_elem(prm->dlist, ID_CONF) == NULL)
 		return (MAL_ERR_LIST);
