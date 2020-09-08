@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/08 11:22:00 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/08 11:41:43 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ ifeq ($(OS_NAME),Darwin)
 	MLX_DIR += ../mlx_macos
 	MLX_INC += -framework OpenGL -framework AppKit
 else
+	INC += -lpthread
 	MLX_DIR += ../mlx_linux
 	MLX_LIBS += -lXext -lX11 -lm -lz
 	KB_LAYOUT += $(shell setxkbmap -query | grep -oP "layout:\s+\K\w+")
