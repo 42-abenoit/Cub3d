@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 13:27:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 16:30:51 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void			ray_init(int x, t_ray *ray, t_param *prm)
 	ray->delta_dist.x = fabs(1 / ray->dir.x);
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
 	ray->hit = 0;
+	ray->dist = 0;
 	set_step_x(ray, prm);
 	set_step_y(ray, prm);
 }

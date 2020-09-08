@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:17:33 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 13:37:31 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 16:47:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@ void			ray_hit_scan(t_ray *ray, t_param *prm)
 {
 	t_map		*map;
 	t_player	*player;
+	t_conf		*conf;
 
 	map = get_lst_elem(prm->dlist, ID_MAP)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	while (ray->hit == 0)
+	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
+	while (ray->hit == 0 && ray->dist < conf->view_depth)
 	{
 		ray_increment(ray);
 		if (map->grid[ray->map.y][ray->map.x] == '1')
 			ray->hit = 1;
 		ray->dist = (player->pos.x - ray->map.x)
 					* (player->pos.x - ray->map.x)
-					- (player->pos.y - ray->map.y)
+					+ (player->pos.y - ray->map.y)
 					* (player->pos.y - ray->map.y);
 	}
 }
@@ -67,12 +69,12 @@ void			ray_perspective(t_ray *ray, t_param *prm)
 		ray->perp_wall_dist = (ray->map.y - player->pos.y
 								+ (1 - ray->step.y) / 2) / ray->dir.y;
 	ray->line_height = (int)(screen->height / ray->perp_wall_dist);
-	ray->draw_start = (int)(((double)-ray->line_height / 2) + ((double)screen->height / 2)
+	ray->draw_start = (int)((-ray->line_height / 2) + (screen->height / 2)
 					+ player->pitch + (player->pos_z
 										/ ray->perp_wall_dist));
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = (int)(((double)ray->line_height / 2) + ((double)screen->height / 2)
+	ray->draw_end = (int)((ray->line_height / 2) + (screen->height / 2)
 					+ player->pitch + (player->pos_z
 										/ ray->perp_wall_dist));
 	if (ray->draw_end >= screen->height)

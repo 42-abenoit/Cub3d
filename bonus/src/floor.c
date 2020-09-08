@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:36:12 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 15:22:19 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 16:36:42 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm)
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	floor->tx_ptr = get_lst_elem(prm->dlist, ID_TX_F)->content;
-	y = ray->horizon + 1;
+	y = ray->horizon;
 	while (y < screen->height)
 	{
 		floor->current_dist = (screen->height + (2.0 * player->pos_z)) / (2.0 * (y - player->pitch) - screen->height);

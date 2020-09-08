@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 13:16:32 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/08 16:39:07 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,10 +139,10 @@ typedef struct	s_ray
 	double			perp_wall_dist;
 	double			dist;
 	double			wall_x;
-	double			horizon;
 	double			tex_step;
 	double			tex_pos;
 	int				*line_buff;
+	int				horizon;
 	int				hit;
 	int				color;
 	int				id_side;
