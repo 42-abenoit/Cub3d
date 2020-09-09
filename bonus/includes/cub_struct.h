@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 18:27:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 13:09:28 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct	s_player
 	double			pos_z;
 	double			pitch;
 	char			jump_phase;
+	char			jump_max;
 }				t_player;
 
 typedef struct	s_data

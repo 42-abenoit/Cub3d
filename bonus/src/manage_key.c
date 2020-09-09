@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:04:58 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 18:50:50 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 16:23:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int		ft_key_press(int keycode, t_param *prm)
 		prm->booleans += FLAG_LOOK_DOWN;
 	if (keycode == INPUT_JUMP && !(prm->booleans & FLAG_JUMP))
 		prm->booleans += FLAG_JUMP;
+	if (keycode == INPUT_SNEAK && !(prm->booleans & FLAG_SNEAK))
+		prm->booleans += FLAG_SNEAK;
+	if (keycode == INPUT_SPRINT && !(prm->booleans & FLAG_SPRINT))
+		prm->booleans += FLAG_SPRINT;
 	return (0);
 }
 
@@ -63,11 +67,18 @@ int		ft_key_release(int keycode, t_param *prm)
 		if (!(prm->booleans & FLAG_FALL))
 			prm->booleans += FLAG_FALL;
 	}
+	if (keycode == INPUT_SNEAK && (prm->booleans & FLAG_SNEAK))
+		prm->booleans -= FLAG_SNEAK;
+	if (keycode == INPUT_SPRINT && (prm->booleans & FLAG_SPRINT))
+		prm->booleans -= FLAG_SPRINT;
 	return (0);
 }
 
 int		ft_move(t_param *prm)
 {
+	ft_sneak(prm);
+	ft_sprint(prm);
+	ft_reset_conf(prm);
 	if (prm->booleans & FLAG_UP)
 		ft_forward(prm);
 	if (prm->booleans & FLAG_DOWN)

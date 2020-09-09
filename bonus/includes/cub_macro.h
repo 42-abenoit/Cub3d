@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 19:00:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 16:15:59 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 #  define INPUT_SPRINT		257
 #  define INPUT_AXE			15
 #  define INPUT_JUMP		49
-#  define INPUT_STRIKE		Placeholder
+#  define INPUT_SNEAK		8
+#  define INPUT_STRIKE		65507
 # endif
 
 /*
@@ -51,7 +52,8 @@
 #   define INPUT_SPRINT		65505
 #   define INPUT_AXE		114
 #   define INPUT_JUMP		32
-#   define INPUT_STRIKE		Placeholder
+#   define INPUT_SNEAK		99
+#   define INPUT_STRIKE		65507
 #  else
 #   define INPUT_UP			119
 #   define INPUT_DOWN		115
@@ -66,7 +68,8 @@
 #   define INPUT_SPRINT		65505
 #   define INPUT_AXE		114
 #   define INPUT_JUMP		32
-#   define INPUT_STRIKE		Placeholder
+#   define INPUT_SNEAK		99
+#   define INPUT_STRIKE		65507
 #  endif
 # endif
 
@@ -192,9 +195,11 @@
 # define FLAG_AXE				0x00800000
 # define FLAG_JUMP				0x01000000
 # define FLAG_FALL				0x02000000
-# define FLAG_STRIKE			0x04000000
+# define FLAG_SNEAK				0x04000000
+# define FLAG_SPRINT			0x08000000
+# define FLAG_STRIKE			0x10000000
 
-# define IMG_SET				0x10000000
+# define IMG_SET				0x80000000
 
 # define CONF_SET				0x000001FE
 # define PARSE_END				0x00000FFF
