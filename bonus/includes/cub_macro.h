@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 16:15:59 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 18:41:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 #  define INPUT_AXE			15
 #  define INPUT_JUMP		49
 #  define INPUT_SNEAK		8
-#  define INPUT_STRIKE		65507
+#  define INPUT_STRIKE		256
 # endif
 
 /*
@@ -137,8 +137,8 @@
 /*
 **	PARSING IDENTIFIERS
 */
-# define IS_ID					"RNSWEF"
-# define ID_STRINGS				"R/NO/SO/WE/EA/S/F/SK"
+# define IS_ID					"RNSWEFC"
+# define ID_STRINGS				"R/NO/SO/WE/EA/S/F/SK/CA/CA1/CA2/CM"
 
 /*
 **	DLIST IDENTIFIERS
@@ -151,10 +151,14 @@
 # define ID_TX_S				5
 # define ID_TX_F				6
 # define ID_TX_SK				7
-# define ID_MAP					8
-# define ID_PLAYER				9
-# define ID_CONF				10
-# define ID_SPRITES				11
+# define ID_TX_CA				8
+# define ID_TX_CA1				9
+# define ID_TX_CA2				10
+# define ID_TX_CM				11
+# define ID_MAP					12
+# define ID_PLAYER				13
+# define ID_CONF				14
+# define ID_SPRITES				15
 
 /*
 **	MAP IDENTIFIERS
@@ -178,10 +182,18 @@
 # define TX_S_SET				0x00000040
 # define TX_F_SET				0x00000080
 # define TX_SK_SET				0x00000100
-# define MAP_SET				0x00000200
-# define START_SET				0x00000400
-# define START_RENDER			0x00000800
-# define TX_IMPORT				0x00001000
+# define TX_CA_SET				0x00000200
+# define TX_CA1_SET				0x00000400
+# define TX_CA2_SET				0x00000800
+# define TX_CM_SET				0x00001000
+# define MAP_SET				0x00002000
+# define START_SET				0x00004000
+# define START_RENDER			0x00008000
+# define TX_IMPORT				0x00010000
+
+# define IMG_SET				0x10000000
+# define CONF_SET				0x00001FFE
+# define PARSE_END				0x00000FFF
 
 # define FLAG_UP				0x00002000
 # define FLAG_DOWN				0x00004000
@@ -197,11 +209,7 @@
 # define FLAG_FALL				0x02000000
 # define FLAG_SNEAK				0x04000000
 # define FLAG_SPRINT			0x08000000
-# define FLAG_STRIKE			0x10000000
-
-# define IMG_SET				0x80000000
-
-# define CONF_SET				0x000001FE
-# define PARSE_END				0x00000FFF
+# define FLAG_ANIM				0x10000000
+# define FLAG_ANIM_END			0x20000000
 
 #endif

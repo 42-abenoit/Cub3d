@@ -6,6 +6,10 @@ EA ./ressources/bonus/textures/tree_wall_snow.xpm
 S ./ressources/bonus/textures/tree_snow.xpm
 F ./ressources/bonus/textures/snow_tile.xpm
 SK ./ressources/bonus/textures/skybox.xpm
+CA ./ressources/bonus/textures/character.xpm
+CA1 ./ressources/bonus/textures/character_anim1.xpm
+CA2 ./ressources/bonus/textures/character_anim2.xpm
+CM ./ressources/bonus/textures/character_minimap.xpm
 
 111111111111111111111111111111111111
 100000000000000000000000000000000001

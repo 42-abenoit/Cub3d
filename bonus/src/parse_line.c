@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 14:37:08 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/03 13:05:30 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 16:44:59 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			parse_line(t_param *prm)
 		return (clear_buffer(tmp, WRONG_ID_STR));
 	if (id == ID_RES)
 		return (clear_buffer(tmp, id_res_filler(prm, tmp)));
-	else if (id >= ID_TX_NO && id <= ID_TX_SK)
+	else if (id >= ID_TX_NO && id <= ID_TX_CM)
 		return (clear_buffer(tmp, id_path_filler(prm, tmp, id)));
 	return (clear_buffer(tmp, 0));
 }

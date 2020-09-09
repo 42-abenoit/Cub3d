@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 18:21:15 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 17:44:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		tx_mlx_import(t_param *prm)
 
 	id = ID_TX_NO;
 	render = (t_render*)prm->ptr;
-	while (id <= ID_TX_SK)
+	while (id <= ID_TX_CM)
 	{
 		ptr = get_lst_elem(prm->dlist, id);
 		if ((ret = my_mlx_tx_from_path(render->mlx, ptr)) < 0)

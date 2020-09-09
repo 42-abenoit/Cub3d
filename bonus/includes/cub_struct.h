@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 13:09:28 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 18:46:58 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct	s_player
 	double			pitch;
 	char			jump_phase;
 	char			jump_max;
+	char			anim_phase;
 }				t_player;
 
 typedef struct	s_data
@@ -170,6 +171,7 @@ typedef struct	s_floor
 typedef struct	s_param
 {
 	unsigned int	booleans;
+	unsigned int	flags;
 	void			*ptr;
 	t_list			*dlist;
 }				t_param;

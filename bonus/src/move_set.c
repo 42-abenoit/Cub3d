@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 15:46:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 16:24:37 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 17:29:55 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,18 +157,18 @@ void	ft_jump(t_param *prm)
 	height = 0;
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if (!(prm->booleans & FLAG_FALL))
+	if (!(prm->flags & FLAG_FALL))
 		player->jump_phase += 1;
 	else
 		player->jump_phase -= 1;
 	if (player->jump_phase == 0)
 	{
 		height = 0;
-		if (player->jump_max < 3 || prm->booleans & FLAG_SNEAK)
+		if (player->jump_max < 3 || prm->flags & FLAG_SNEAK)
 		{
-			if (prm->booleans & FLAG_FALL)
-				prm->booleans -= FLAG_FALL;
-			prm->booleans -= FLAG_JUMP;
+			if (prm->flags & FLAG_FALL)
+				prm->flags -= FLAG_FALL;
+			prm->flags -= FLAG_JUMP;
 			player->jump_phase = 0;
 			player->jump_max = 0;
 		}
@@ -181,9 +181,9 @@ void	ft_jump(t_param *prm)
 		height = -0.05;
 	else if (player->jump_phase == -4)
 	{
-		if (prm->booleans & FLAG_FALL)
-			prm->booleans -= FLAG_FALL;
-		prm->booleans -= FLAG_JUMP;
+		if (prm->flags & FLAG_FALL)
+			prm->flags -= FLAG_FALL;
+		prm->flags -= FLAG_JUMP;
 		player->jump_phase = 0;
 		player->jump_max = 0;
 	}
@@ -202,8 +202,8 @@ void	ft_jump(t_param *prm)
 	else if (player->jump_phase == 7)
 	{
 		height = 1.0 * conf->jump_height;
-		if (!(prm->booleans & FLAG_FALL))
-			prm->booleans += FLAG_FALL;
+		if (!(prm->flags & FLAG_FALL))
+			prm->flags += FLAG_FALL;
 	}
 	if (player->jump_phase > player->jump_max)
 		player->jump_max = player->jump_phase;
@@ -217,9 +217,9 @@ void	ft_sneak(t_param *prm)
 
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if (prm->booleans & FLAG_SNEAK)
+	if (prm->flags & FLAG_SNEAK)
 	{
-		if (!(prm->booleans & FLAG_JUMP))
+		if (!(prm->flags & FLAG_JUMP))
 		{
 			player->pos_z = -0.3 * conf->jump_height;
 			conf->front_speed = 1.7;
@@ -236,9 +236,9 @@ void	ft_sprint(t_param *prm)
 
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if (prm->booleans & FLAG_SPRINT)
+	if (prm->flags & FLAG_SPRINT)
 	{
-		if (!(prm->booleans & FLAG_JUMP))
+		if (!(prm->flags & FLAG_JUMP))
 		{
 			player->pos_z = -0.05 * conf->jump_height;
 			conf->front_speed = 4.5;
@@ -256,9 +256,9 @@ void	ft_reset_conf(t_param *prm)
 
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if (!(prm->booleans & FLAG_SPRINT)
-		&& !(prm->booleans & FLAG_SNEAK)
-		&& !(prm->booleans & FLAG_JUMP))
+	if (!(prm->flags & FLAG_SPRINT)
+		&& !(prm->flags & FLAG_SNEAK)
+		&& !(prm->flags & FLAG_JUMP))
 	{
 		player->pos_z = 0;
 		conf->front_speed = 3.0;

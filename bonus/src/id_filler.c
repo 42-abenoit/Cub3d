@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/03 13:04:09 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/09 16:44:28 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int			id_path_filler(t_param *prm, char **elem, int id)
 	char		*path;
 	char		tmp;
 	const int	bitmask[] = {0, TX_NO_SET, TX_SO_SET, TX_WE_SET,
-		TX_EA_SET, TX_S_SET, TX_F_SET, TX_SK_SET};
+							TX_EA_SET, TX_S_SET, TX_F_SET, TX_SK_SET,
+							TX_CA_SET, TX_CA1_SET, TX_CA2_SET, TX_CM_SET};
 
 	path = NULL;
 	if (prm->booleans & bitmask[id])
