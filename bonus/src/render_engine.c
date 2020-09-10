@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 18:41:58 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 11:54:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,35 +80,6 @@ void			ray_init(int x, t_ray *ray, t_param *prm)
 	set_step_y(ray, prm);
 }
 
-void	show_char_map(int x, t_ray *ray, t_param *prm, int id)
-{
-	int		char_x;
-	int		char_y;
-	double	Rx;
-	double	Ry;
-	int		y;
-	t_tx		*tx;
-	t_render	*render;
-	t_screen	*screen;
-	const char	tx_id[] = {ID_TX_CA, ID_TX_CA1, ID_TX_CA2, ID_TX_CM};
-
-	tx = get_lst_elem(prm->dlist, tx_id[id])->content;
-	render = prm->ptr;
-	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	Rx = ((double)tx->width) / ((double)screen->width);
-	Ry = ((double)tx->height) / ((double)screen->height);
-	char_x = (int)floor(x * Rx);
-	y = 0;
-	while (y < screen->height)
-	{
-		char_y = (int)floor((double)y * Ry);
-		ray->color = get_pixel_color(char_x, char_y, &tx->data);
-		if ((ray->color & 0x00FFFFFF) != 0)
-			ray->line_buff[y] = ray->color;
-		y++;
-	}
-}
-
 static void		*cast_x_rays(void *plop)
 {
 	t_ray		ray;
@@ -140,17 +111,7 @@ static void		*cast_x_rays(void *plop)
 		ray_fill_line_floor(&floor, &ray, prm);
 		fill_buffer(&ray, prm);
 		ray_fill_line_sprite(x, &ray, prm);
-		if (prm->flags & FLAG_AXE)
-		{
-			if (prm->flags & FLAG_ANIM)
-				show_char_map(x, &ray, prm, 1);
-			else
-				show_char_map(x, &ray, prm, 0);
-		}
-		else if (prm->flags & FLAG_ANIM_END)
-			show_char_map(x, &ray, prm, 2);
-		if (prm->flags & FLAG_MAP)
-			show_char_map(x, &ray, prm, 3);
+		player_to_screen(x, &ray, prm);
 		fill_line(x, &ray, prm);
 		x++;
 	}
@@ -191,11 +152,6 @@ int				ray_caster(t_param *prm)
 			return (ft_exit(MAL_ERR_BUFF, prm));
 	}
 	img_refresh(prm);
-	if (prm->flags & FLAG_ANIM_END)
-	{
-		prm->flags -= FLAG_ANIM_END;
-		prm->flags += FLAG_AXE;
-	}
 	end = clock();
 	render->frame_time = (double)(end - start) / CLOCKS_PER_SEC;
 	ft_move(prm);

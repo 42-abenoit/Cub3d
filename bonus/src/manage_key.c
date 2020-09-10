@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:04:58 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 18:33:06 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 12:51:26 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,10 @@ int		ft_key_press(int keycode, t_param *prm)
 		prm->flags += FLAG_SNEAK;
 	if (keycode == INPUT_SPRINT && !(prm->flags & FLAG_SPRINT))
 		prm->flags += FLAG_SPRINT;
-	if (keycode == INPUT_MAP)
-	{
-		if (prm->flags & FLAG_MAP)
-			prm->flags -= FLAG_MAP;
-		else if (prm->flags & FLAG_AXE)
-		{
-			prm->flags -= FLAG_AXE;
-			prm->flags += FLAG_MAP;
-		}
-		else
-			prm->flags += FLAG_MAP;
-	}
 	if (keycode == INPUT_STRIKE && (prm->flags & FLAG_AXE))
 	{
-		if (!(prm->flags & FLAG_MAP))
-			prm->flags += FLAG_ANIM;
-	}
-	if (keycode == INPUT_AXE)
-	{
-		if (prm->flags & FLAG_AXE)
-			prm->flags -= FLAG_AXE;
-		else if (prm->flags & FLAG_MAP)
-		{
-			prm->flags -= FLAG_MAP;
-			prm->flags += FLAG_AXE;
-		}
-		else if (prm->flags & FLAG_ANIM_END)
-		{
-			prm->flags += FLAG_AXE;
-			prm->flags -= FLAG_ANIM_END;
-		}
-		else
-			prm->flags += FLAG_AXE;
+		if (!(prm->flags & FLAG_STRIKE))
+			prm->flags += FLAG_STRIKE;
 	}
 	return (0);
 }
@@ -105,11 +76,40 @@ int		ft_key_release(int keycode, t_param *prm)
 		prm->flags -= FLAG_SNEAK;
 	if (keycode == INPUT_SPRINT && (prm->flags & FLAG_SPRINT))
 		prm->flags -= FLAG_SPRINT;
-	if (keycode == INPUT_STRIKE && (prm->flags & FLAG_AXE) && (prm->flags & FLAG_ANIM))
+	if (keycode == INPUT_MAP)
 	{
-			prm->flags -= FLAG_AXE;
-			prm->flags -= FLAG_ANIM;
-			prm->flags += FLAG_ANIM_END;
+		if (prm->flags & FLAG_MAP)
+			prm->flags -= FLAG_MAP;
+		else if (prm->flags & FLAG_AXE)
+		{
+			if (!(prm->flags & FLAG_STRIKE))
+			{
+				prm->flags -= FLAG_AXE;
+				prm->flags += FLAG_MAP;
+			}
+		}
+		else
+			prm->flags += FLAG_MAP;
+	}
+	if (keycode == INPUT_AXE)
+	{
+		if (prm->flags & FLAG_AXE)
+		{
+			if (!(prm->flags & FLAG_STRIKE))
+				prm->flags -= FLAG_AXE;
+		}
+		else if (prm->flags & FLAG_MAP)
+		{
+			prm->flags -= FLAG_MAP;
+			prm->flags += FLAG_AXE;
+		}
+		else
+			prm->flags += FLAG_AXE;
+	}
+	if (keycode == INPUT_STRIKE && (prm->flags & FLAG_AXE))
+	{
+		if ((prm->flags & FLAG_STRIKE))
+			prm->flags -= FLAG_STRIKE;
 	}
 	return (0);
 }
@@ -118,6 +118,7 @@ int		ft_move(t_param *prm)
 {
 	ft_sneak(prm);
 	ft_sprint(prm);
+	ft_player_state(prm);
 	ft_reset_conf(prm);
 	if (prm->flags & FLAG_UP)
 		ft_forward(prm);

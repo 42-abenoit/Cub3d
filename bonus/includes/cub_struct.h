@@ -6,12 +6,24 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 18:46:58 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 12:16:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_STRUCT_H
 # define CUB_STRUCT_H
+
+/*
+**	PLAYER STATE ENUM
+*/
+typedef enum	e_state
+{
+	IDLE,
+	AXE,
+	ANIM1,
+	ANIM2,
+	MAP
+}				t_state;
 
 /*
 **	STRUCTURES DEFINITIONS
@@ -64,6 +76,7 @@ typedef struct	s_player
 	char			jump_phase;
 	char			jump_max;
 	char			anim_phase;
+	t_state			state;
 }				t_player;
 
 typedef struct	s_data

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 16:22:56 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 11:53:34 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,12 @@ void			fill_sky_line(int x, t_ray *ray, t_param *prm);
 **	sky.c
 */
 int				apply_fog(double dist, int color_input, t_param *prm);
+
+/*
+**	sky.c
+*/
+void			player_to_screen(int x, t_ray *ray, t_param *prm);
+void			ft_player_state(t_param *prm);
 
 /*
 **	player_init.c

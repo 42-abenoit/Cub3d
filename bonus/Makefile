@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/09 17:44:44 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/10 11:55:11 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC_NAME =	main.c \
 		floor.c \
 		sky.c \
 		fog.c \
+		player_char.c \
 		bmp_save.c \
 		bmp_export.c \
 		rec_gnl.c
