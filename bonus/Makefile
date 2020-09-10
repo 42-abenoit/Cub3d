@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/10 11:55:11 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/10 14:41:35 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRC_NAME =	main.c \
 		manage_key.c \
 		move_set.c \
 		move_set_2.c \
+		move_set_3.c \
+		move_valid.c \
 		render_engine.c \
 		render_engine_ray.c \
 		render_engine_img.c \

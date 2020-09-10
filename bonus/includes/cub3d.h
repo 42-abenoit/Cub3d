@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 11:53:34 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 14:41:25 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,10 +159,6 @@ void			ft_forward(t_param *prm);
 void			ft_backward(t_param *prm);
 void			ft_strafe_left(t_param *prm);
 void			ft_strafe_right(t_param *prm);
-void			ft_jump(t_param *prm);
-void			ft_sneak(t_param *prm);
-void			ft_sprint(t_param *prm);
-void			ft_reset_conf(t_param *prm);
 
 /*
 **	move_set_2.c
@@ -171,6 +167,19 @@ void			ft_look_up(t_param *prm);
 void			ft_look_down(t_param *prm);
 void			ft_rotate_right(t_param *prm);
 void			ft_rotate_left(t_param *prm);
+
+/*
+**	move_set_3.c
+*/
+void			ft_jump(t_param *prm);
+void			ft_sneak(t_param *prm);
+void			ft_sprint(t_param *prm);
+void			ft_reset_conf(t_param *prm);
+
+/*
+**	move_valid.c
+*/
+void			move_valid(t_param *prm, t_coord new_pos);
 
 /*
 **	ft_error.c
