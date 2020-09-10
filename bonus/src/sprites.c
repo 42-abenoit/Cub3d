@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 15:13:59 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 15:32:28 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void		sprite_projection(t_param *prm)
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	while (ptr != NULL)
 	{
-		ptr->sprite.x = ptr->pos.x - player->pos.x + 0.5;
-		ptr->sprite.y = ptr->pos.y - player->pos.y + 0.5;
+		ptr->sprite.x = ptr->pos.x - player->pos.x;
+		ptr->sprite.y = ptr->pos.y - player->pos.y;
 		ptr->inv_det = 1.0 / (player->plane.x * player->dir.y
 							- player->dir.x * player->plane.y);
 		ptr->transform.x = ptr->inv_det * (player->dir.y * ptr->sprite.x
@@ -117,15 +117,16 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 	t_sprite	*ptr;
 	t_tx		*tx;
 	t_screen	*screen;
+	const int	types[] = {ID_TX_S, ID_TX_S2};
 
 	ptr = get_lst_elem(prm->dlist, ID_SPRITES)->content;
-	tx = get_lst_elem(prm->dlist, ID_TX_S)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (ptr != NULL)
 	{
    		pthread_mutex_lock(&mutex1);
 		if (x >= ptr->draw_start.x && x <= ptr->draw_end.x)
 		{
+			tx = get_lst_elem(prm->dlist, types[ptr->type])->content;
 			ptr->tex.x = (int)((256 * (x - (-(double)ptr->sprite_width / 2
 								+ (double)ptr->sprite_screen_x))
 								* (double)tx->width

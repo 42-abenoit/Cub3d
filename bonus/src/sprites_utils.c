@@ -6,21 +6,22 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/26 15:25:44 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 18:32:48 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 15:23:47 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "cub3d.h"
 
-t_sprite	*ft_new_sprite(int x, int y)
+t_sprite	*ft_new_sprite(char type, int x, int y)
 {
 	t_sprite *new;
 
 	if (!(new = malloc(sizeof(t_sprite))))
 		return (NULL);
-	new->pos.x = (double)x;
-	new->pos.y = (double)y;
+	new->type = type;
+	new->pos.x = (double)x + 0.5;
+	new->pos.y = (double)y + 0.5;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);

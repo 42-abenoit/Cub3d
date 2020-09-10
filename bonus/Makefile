@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/10 14:41:35 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/10 15:36:11 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ INC = -I includes -I$(MLX_DIR)
 CC = gcc
 RM = rm -f
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 MLX_DEF = -D $(OS_NAME)
 

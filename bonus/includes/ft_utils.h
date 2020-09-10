@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 15:06:16 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 17:23:39 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 15:26:04 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				my_mlx_tx_from_path(void *mlx, t_list *elem);
 /*
 **	sprite_utils.c
 */
-t_sprite		*ft_new_sprite(int x, int y);
+t_sprite		*ft_new_sprite(char type, int x, int y);
 void			ft_add_sprite_front(t_sprite **alst, t_sprite *new);
 void			ft_sprite_switch(t_sprite *ptr);
 void			ft_sprite_sort(t_sprite **lst);

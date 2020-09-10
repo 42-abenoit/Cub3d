@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 18:02:42 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 15:32:00 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ int			sprite_init(t_param *prm)
 		while (map->grid[y][x])
 		{
 			if (map->grid[y][x] == '2')
-				ft_add_sprite_front(&sprite, ft_new_sprite(x, y));
+				ft_add_sprite_front(&sprite, ft_new_sprite(0, x, y));
+			if (map->grid[y][x] == '3')
+				ft_add_sprite_front(&sprite, ft_new_sprite(1, x, y));
 			x++;
 		}
 		y++;

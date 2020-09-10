@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 12:12:44 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 15:35:42 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@
 **	PARSING IDENTIFIERS
 */
 # define IS_ID					"RNSWEFC"
-# define ID_STRINGS				"R/NO/SO/WE/EA/S/F/SK/CA/CA1/CA2/CM"
+# define ID_STRINGS				"R/NO/SO/WE/EA/S/S2/F/SK/CA/CA1/CA2/CM"
 
 /*
 **	DLIST IDENTIFIERS
@@ -149,25 +149,26 @@
 # define ID_TX_WE				3
 # define ID_TX_EA				4
 # define ID_TX_S				5
-# define ID_TX_F				6
-# define ID_TX_SK				7
-# define ID_TX_CA				8
-# define ID_TX_CA1				9
-# define ID_TX_CA2				10
-# define ID_TX_CM				11
-# define ID_MAP					12
-# define ID_PLAYER				13
-# define ID_CONF				14
-# define ID_SPRITES				15
+# define ID_TX_S2				6
+# define ID_TX_F				7
+# define ID_TX_SK				8
+# define ID_TX_CA				9
+# define ID_TX_CA1				10
+# define ID_TX_CA2				11
+# define ID_TX_CM				12
+# define ID_MAP					13
+# define ID_PLAYER				14
+# define ID_CONF				15
+# define ID_SPRITES				16
 
 /*
 **	MAP IDENTIFIERS
 */
-# define MAP_VALID_CHAR			"012NSWE' '"
+# define MAP_VALID_CHAR			"0123NSWE' '"
 # define MAP_EMPTY				" "
 # define MAP_OBSTACLE			"12"
-# define MAP_PLAY_AREA			"02NSWE"
-# define MAP_WALKABLE			"0NSWE"
+# define MAP_PLAY_AREA			"023NSWE"
+# define MAP_WALKABLE			"023NSWE"
 # define MAP_START				"NSWE"
 
 /*
@@ -180,19 +181,20 @@
 # define TX_WE_SET				0x00000010
 # define TX_EA_SET				0x00000020
 # define TX_S_SET				0x00000040
-# define TX_F_SET				0x00000080
-# define TX_SK_SET				0x00000100
-# define TX_CA_SET				0x00000200
-# define TX_CA1_SET				0x00000400
-# define TX_CA2_SET				0x00000800
-# define TX_CM_SET				0x00001000
-# define MAP_SET				0x00002000
-# define START_SET				0x00004000
-# define START_RENDER			0x00008000
-# define TX_IMPORT				0x00010000
+# define TX_S2_SET				0x00000080
+# define TX_F_SET				0x00000100
+# define TX_SK_SET				0x00000200
+# define TX_CA_SET				0x00000400
+# define TX_CA1_SET				0x00000800
+# define TX_CA2_SET				0x00001000
+# define TX_CM_SET				0x00002000
+# define MAP_SET				0x00004000
+# define START_SET				0x00008000
+# define START_RENDER			0x00010000
+# define TX_IMPORT				0x00020000
 
 # define IMG_SET				0x10000000
-# define CONF_SET				0x00001FFE
+# define CONF_SET				0x00003FFE
 # define PARSE_END				0x00000FFF
 
 /*

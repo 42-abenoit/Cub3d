@@ -6,14 +6,32 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:37:43 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 14:39:15 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 15:09:23 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "cub3d.h"
 #include "cub_macro.h"
 #include "cub_struct.h"
 #include "ft_utils.h"
+
+static int	move_valid_sprites(t_param *prm, double pos_x, double pos_y)
+{
+	t_sprite	*ptr;
+
+	ptr = get_lst_elem(prm->dlist, ID_SPRITES)->content;
+	while (ptr != NULL)
+	{
+		if (((ptr->pos.x + 0.5 >= pos_x)
+			&& (ptr->pos.x - 0.5 <= pos_x))
+			&& ((ptr->pos.y + 0.5 >= pos_y)
+			&& (ptr->pos.y - 0.5 <= pos_y)))
+			return (0);
+		ptr = ptr->next;
+	}
+	return (1);
+}
 
 static int	move_valid_x(t_param *prm, double new_pos_x)
 {
@@ -22,9 +40,9 @@ static int	move_valid_x(t_param *prm, double new_pos_x)
 
 	map = get_lst_elem(prm->dlist, ID_MAP)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if ((!ft_isset(map->grid[(int)(player->pos.y)]
-		[(int)new_pos_x], MAP_OBSTACLE)))
-		return (1);
+	if ((ft_isset(map->grid[(int)(player->pos.y)]
+		[(int)new_pos_x], MAP_WALKABLE)))
+		return (move_valid_sprites(prm, new_pos_x, player->pos.y));
 	else
 		return (0);
 }
@@ -36,9 +54,9 @@ static int	move_valid_y(t_param *prm, double new_pos_y)
 
 	map = get_lst_elem(prm->dlist, ID_MAP)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if ((!ft_isset(map->grid[(int)(new_pos_y)]
-			[(int)player->pos.x], MAP_OBSTACLE)))
-		return (1);
+	if ((ft_isset(map->grid[(int)(new_pos_y)]
+			[(int)player->pos.x], MAP_WALKABLE)))
+		return (move_valid_sprites(prm, player->pos.x, new_pos_y));
 	else
 		return (0);
 }

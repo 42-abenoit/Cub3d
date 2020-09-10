@@ -4,6 +4,7 @@ SO ./ressources/bonus/textures/tree_wall_snow.xpm
 WE ./ressources/bonus/textures/tree_wall_snow.xpm
 EA ./ressources/bonus/textures/tree_wall_snow.xpm
 S ./ressources/bonus/textures/tree_snow.xpm
+S2 ./ressources/std/textures/barrel.xpm
 F ./ressources/bonus/textures/snow_tile.xpm
 SK ./ressources/bonus/textures/skybox.xpm
 CA ./ressources/bonus/textures/character.xpm
@@ -14,7 +15,7 @@ CM ./ressources/bonus/textures/character_minimap.xpm
 111111111111111111111111111111111111
 100000000000000000000000000000000001
 120010000000200000000000000000000001
-100010001000000000000000000000000001
+100010001000000030000000000000000001
 100000000000000000000000000000000001
 120202020200200000000000000000000001
 100000000000000000000000000000000001
