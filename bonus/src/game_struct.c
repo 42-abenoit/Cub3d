@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 11:32:13 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 17:49:49 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int		tx_mlx_import(t_param *prm)
 			return (ret);
 		id++;
 	}
+	prm->booleans += TX_IMPORT;
 	return (0);
 }
 

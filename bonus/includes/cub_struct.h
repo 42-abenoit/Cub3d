@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 15:26:59 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 16:11:42 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,14 @@ typedef struct	s_tx
 
 typedef struct	s_sprite
 {
-	int			type;
 	t_coord			pos;
 	t_coord			sprite;
 	t_coord			transform;
 	t_int_coord		draw_start;
 	t_int_coord		draw_end;
 	t_int_coord		tex;
+	int				type;
+	int				hp;
 	int				sprite_screen_x;
 	int				sprite_width;
 	int				sprite_height;

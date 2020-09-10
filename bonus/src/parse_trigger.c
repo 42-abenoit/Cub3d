@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 20:43:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/09 17:43:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 17:43:12 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	open_path(t_parse *tmp)
 		return (ID_SPLIT_ERR);
 	tmp->fd = open(tmp->buff, O_RDONLY);
 	free(tmp->buff);
-	tmp->buff = 0;
+	tmp->buff = NULL;
 	if (read(tmp->fd, &tmp->buff, 0) < 0)
 		return (WRONG_FILE_PATH);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/26 15:25:44 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 15:23:47 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 16:14:51 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_sprite	*ft_new_sprite(char type, int x, int y)
 	if (!(new = malloc(sizeof(t_sprite))))
 		return (NULL);
 	new->type = type;
+	new->hp = rand() % 10 + rand() % 10 + rand() % 10;
 	new->pos.x = (double)x + 0.5;
 	new->pos.y = (double)y + 0.5;
 	new->next = NULL;

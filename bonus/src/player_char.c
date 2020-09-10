@@ -6,15 +6,17 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 12:58:36 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 18:28:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdlib.h>
 #include "cub3d.h"
 #include "ft_utils.h"
 #include "cub_macro.h"
 #include "cub_struct.h"
+#include <stdio.h>
 
 void	player_to_screen(int x, t_ray *ray, t_param *prm)
 {
@@ -47,6 +49,41 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 	}
 }
 
+void	check_hit(t_param *prm)
+{
+	t_sprite	*ptr;
+	t_coord		angle;
+	t_player	*player;
+	double		dot;
+
+	ptr = get_lst_elem(prm->dlist, ID_SPRITES)->content;
+	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
+	while (ptr != NULL)
+	{
+		if (ptr->type == 0)
+		{
+			if (ptr->dist < 1.0)
+			{
+				angle.x = ptr->pos.x - player->pos.x;
+				angle.y = ptr->pos.y - player->pos.y;
+				dot = (angle.x * player->dir.x) + (angle.y * player->dir.y);
+			printf("%f\n", angle.x);
+			printf("%f\n", angle.y);
+			printf("%f\n", dot);
+			printf("%f\n", cos(1.0));
+				if (cos(1.0) < dot)
+				{
+					printf("hit\n");
+					ptr->hp -= (rand() % 2) + 5;	
+				}
+				if (ptr->hp <= 0)
+					ptr->type = 1;
+			}
+		}
+		ptr = ptr->next;
+	}
+}
+
 void	ft_axe_phase(t_param *prm)
 {
 	t_player	*player;
@@ -54,14 +91,17 @@ void	ft_axe_phase(t_param *prm)
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	if (!(prm->flags & FLAG_STRIKE))
 	{
-		if (player->anim_phase < 7)
+		if (player->anim_phase < 5)
 			player->anim_phase += 1;
 	}
-	if (player->anim_phase < 5)
+	if (player->anim_phase < 3)
 		player->state = ANIM1;
-	else if (player->anim_phase == 5)
+	else if (player->anim_phase == 3)
+	{
 		player->state = ANIM2;
-	else if (player->anim_phase == 7)
+		check_hit(prm);
+	}
+	else if (player->anim_phase == 5)
 	{
 		player->anim_phase = 0;
 		if (prm->flags & FLAG_STRIKE)

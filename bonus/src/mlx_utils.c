@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 17:24:29 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/28 18:02:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 17:34:31 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		my_mlx_destroy_tx(void *mlx, t_list *elem)
 {
 	t_tx	*tx;
 
+	if (elem->content == NULL)
+		return (0);
 	tx = (t_tx*)elem->content;
 	mlx_destroy_image(mlx, tx->data.img);
 	free(elem->content);

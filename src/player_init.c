@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 20:21:17 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 17:23:08 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 17:03:30 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static int	player_set_start(t_param *prm, int x, int y, t_player *player)
 		player_set_dir(player, -1.0, 0.0);
 	if (dir == 'E')
 		player_set_dir(player, 1.0, 0.0);
-	player->pos.x = x;
-	player->pos.y = y;
+	player->pos.x = x + 0.5;
+	player->pos.y = y + 0.5;
 	prm->booleans += START_SET;
 	return (0);
 }

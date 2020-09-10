@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 15:35:42 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/10 17:46:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@
 
 # define IMG_SET				0x10000000
 # define CONF_SET				0x00003FFE
-# define PARSE_END				0x00000FFF
+# define PARSE_END				0x0000FFFF
 
 /*
 **	FLAGS BITS MASKS
