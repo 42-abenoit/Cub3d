@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 12:24:28 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 15:58:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct	s_sprite
 	int				sprite_width;
 	int				sprite_height;
 	int				v_move_screen;
+	char			hit;
 	double			dist;
 	double			inv_det;
 	struct s_sprite	*next;

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 14:56:50 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 16:20:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,10 @@ void			ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm);
 void			fill_sky_line(int x, t_ray *ray, t_param *prm);
 
 /*
-**	fog.c
+**	sfx.c
 */
 int				apply_fog(double dist, int color_input, t_param *prm);
+int				apply_hit_effect(int color_input);
 
 /*
 **	player_char.c

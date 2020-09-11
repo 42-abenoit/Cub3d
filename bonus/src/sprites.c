@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 15:32:28 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 16:16:46 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	sprite_calc_dist(t_param *prm)
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	while (ptr != NULL)
 	{
+		if (ptr->hit == 2)
+			ptr->hit = 0;
+		if (ptr->hit > 0)
+			ptr->hit += 1;
 		ptr->dist = ((player->pos.x - ptr->pos.x)
 					* (player->pos.x - ptr->pos.x)
 					+ (player->pos.y - ptr->pos.y)
@@ -105,7 +109,10 @@ static void	sprite_line_to_buff(t_sprite *ptr, t_tx	*tx, t_ray *ray, t_param *pr
 			& (tx->height - 1);
 		ray->color = get_pixel_color(ptr->tex.x, ptr->tex.y,
 					&tx->data);
-		ray->color = apply_fog(ptr->dist, ray->color, prm);
+		if (ptr->hit > 0 && ptr->hit < 3)
+			ray->color = apply_hit_effect(ray->color);
+		else
+			ray->color = apply_fog(ptr->dist, ray->color, prm);
 		if ((ray->color & 0x00FFFFFF) != 0)
 			ray->line_buff[y] = ray->color;
 		y++;

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 14:57:17 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 16:07:43 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,9 @@ void	check_hit(t_param *prm)
 				angle.x = ptr->pos.x - player->pos.x;
 				angle.y = ptr->pos.y - player->pos.y;
 				dot = (angle.x * player->dir.x) + (angle.y * player->dir.y);
-	//		printf("%f\n", angle.x);
-	//		printf("%f\n", angle.y);
-	//		printf("%f\n", dot);
-	//		printf("%f\n", cos(1.0));
 				if (cos(1.0) < dot)
 				{
-					printf("hit\n");
+					ptr->hit = 1;
 					ptr->hp -= (rand() % 2) + 5;	
 				}
 				if (ptr->hp <= 0)
