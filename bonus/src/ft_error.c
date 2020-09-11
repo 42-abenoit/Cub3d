@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 14:55:52 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 13:19:48 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,6 @@ static int	description_error(int err_code)
 		ft_putstr("Invalid number of arguments in texture line\n");
 	if (err_code == WRONG_TX_PATH)
 		ft_putstr("Texture path is invalid\n");
-	if (err_code == HCC_ALRD_SET)
-		ft_putstr("Redefinition of element color code\n");
-	if (err_code == WRONG_HCC_ELEM)
-		ft_putstr("Invalid number of arguments in hex color code line\n");
-	if (err_code == WRONG_HCC_CHAR)
-		ft_putstr("Invalid character in hex color code line\n");
-	if (err_code == WRONG_HCC_VAL)
-		ft_putstr("Color value is lesser than 0 or greater than 255\n");
 	exit(0);
 }
 
@@ -94,8 +86,6 @@ static int	malloc_error(int err_code)
 		ft_putstr("Error allocating list element\n");
 	if (err_code == MAL_ERR_TX_PATH)
 		ft_putstr("Error duplicating texture path string\n");
-	if (err_code == MAL_ERR_HCC)
-		ft_putstr("Error creating hex color code element\n");
 	if (err_code == MAL_ERR_MAP)
 		ft_putstr("Error creating map structure\n");
 	if (err_code == MAL_ERR_MAP_DUP)

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 12:25:00 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 13:22:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,6 @@
 # define WRONG_RES_CHAR			-14
 # define WRONG_TX_ELEM			-15
 # define WRONG_TX_PATH			-16
-# define HCC_ALRD_SET			-17
-# define WRONG_HCC_ELEM			-18
-# define WRONG_HCC_CHAR			-19
-# define WRONG_HCC_VAL			-20
 
 # define MAP_CHAR_INVALID		-31
 # define MAP_ALRD_SET			-32
@@ -108,12 +104,13 @@
 # define MAL_ERR_SCREEN	 		-43
 # define MAL_ERR_LIST	 		-44
 # define MAL_ERR_TX_PATH 		-45
-# define MAL_ERR_HCC	 		-46
 # define MAL_ERR_MAP	 		-47
 # define MAL_ERR_MAP_DUP		-48
 # define MAL_ERR_GRID			-49
 # define MAL_ERR_PLAYER			-50
 # define MAL_ERR_RENDER			-51
+# define MAL_ERR_MINIMAP		-52
+# define MAL_ERR_MINICONF		-53
 
 # define MLX_INIT_FAIL			-61
 # define TX_IMPORT_FAIL			-62

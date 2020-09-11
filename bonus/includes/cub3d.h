@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 14:41:25 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 14:56:50 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,15 +115,22 @@ void			ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm);
 void			fill_sky_line(int x, t_ray *ray, t_param *prm);
 
 /*
-**	sky.c
+**	fog.c
 */
 int				apply_fog(double dist, int color_input, t_param *prm);
 
 /*
-**	sky.c
+**	player_char.c
 */
 void			player_to_screen(int x, t_ray *ray, t_param *prm);
 void			ft_player_state(t_param *prm);
+
+/*
+**	minimap.c
+*/
+int				minimap_init(t_param *prm);
+void			create_minimap(t_param *prm);
+void			minimap_to_screen(int x, t_ray *ray, t_param *prm);
 
 /*
 **	player_init.c

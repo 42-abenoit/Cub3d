@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 18:28:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 14:57:17 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 			ray->line_buff[y] = ray->color;
 		y++;
 	}
+	if (player->state == MAP)
+		minimap_to_screen(x, ray, prm);
 }
 
 void	check_hit(t_param *prm)
@@ -67,10 +69,10 @@ void	check_hit(t_param *prm)
 				angle.x = ptr->pos.x - player->pos.x;
 				angle.y = ptr->pos.y - player->pos.y;
 				dot = (angle.x * player->dir.x) + (angle.y * player->dir.y);
-			printf("%f\n", angle.x);
-			printf("%f\n", angle.y);
-			printf("%f\n", dot);
-			printf("%f\n", cos(1.0));
+	//		printf("%f\n", angle.x);
+	//		printf("%f\n", angle.y);
+	//		printf("%f\n", dot);
+	//		printf("%f\n", cos(1.0));
 				if (cos(1.0) < dot)
 				{
 					printf("hit\n");
@@ -137,6 +139,7 @@ void	ft_map_phase(t_param *prm)
 	else if (player->anim_phase == 16)
 	{
 		player->state = MAP;
+		create_minimap(prm);
 		player->pitch = 0.9 * (-screen->height / 2);
 	}
 	if (player->anim_phase == 11)
