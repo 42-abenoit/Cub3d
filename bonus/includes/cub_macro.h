@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 17:46:10 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 12:25:00 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,12 @@
 # define ID_TX_CA1				10
 # define ID_TX_CA2				11
 # define ID_TX_CM				12
-# define ID_MAP					13
-# define ID_PLAYER				14
-# define ID_CONF				15
-# define ID_SPRITES				16
+# define ID_MINIMAP				13
+# define ID_MINICONF			14
+# define ID_MAP					15
+# define ID_PLAYER				16
+# define ID_CONF				17
+# define ID_SPRITES				18
 
 /*
 **	MAP IDENTIFIERS

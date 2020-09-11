@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 16:11:42 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/11 12:24:28 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,16 @@ typedef struct	s_conf
 	double			strafe_speed;
 	double			rot_speed;
 }				t_conf;
+
+typedef struct	s_miniconf
+{
+	t_coord		map;
+	t_coord		ratio;
+	t_coord		persp;
+	t_coord		step;
+	t_int_coord	mini;
+	int			offset_x;
+}				t_miniconf;
 
 typedef struct	s_ray
 {
