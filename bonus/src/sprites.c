@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 18:06:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 18:57:02 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		sprite_projection(t_param *prm)
 							* (1 + ptr->transform.x / ptr->transform.y));
 		ptr->v_move_screen = (int)(player->pitch
 									+ (player->pos_z / ptr->transform.y));
-		ptr->sprite_height = abs(((double)screen->height / (ptr->transform.y)));
+		ptr->sprite_height = fabs(screen->height / ptr->transform.y);
 		sprite_calc_draw_val(ptr, prm);
 		ptr = ptr->next;
 	}
