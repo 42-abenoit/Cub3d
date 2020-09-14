@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 16:16:46 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 15:24:13 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-pthread_mutex_t	mutex1 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t	g_mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 void	sprite_calc_dist(t_param *prm)
 {
@@ -130,7 +130,7 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (ptr != NULL)
 	{
-   		pthread_mutex_lock(&mutex1);
+   		pthread_mutex_lock(&g_mutex1);
 		if (x >= ptr->draw_start.x && x <= ptr->draw_end.x)
 		{
 			tx = get_lst_elem(prm->dlist, types[ptr->type])->content;
@@ -143,7 +143,7 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
 				sprite_line_to_buff(ptr, tx, ray, prm);
 		}
-   		pthread_mutex_unlock(&mutex1);
+   		pthread_mutex_unlock(&g_mutex1);
 		ptr = ptr->next;
 	}
 }

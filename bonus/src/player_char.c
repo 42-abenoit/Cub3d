@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 13:27:37 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 15:57:31 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ void	ft_map_phase(t_param *prm)
 	else if (player->anim_phase == 16)
 	{
 		player->state = MAP;
-		create_minimap(prm);
 		player->pitch = 0.9 * (-screen->height / 2);
 	}
 	if (player->anim_phase == 11)

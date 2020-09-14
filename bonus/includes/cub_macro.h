@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 13:22:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 16:13:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@
 # define MAL_ERR_PLAYER			-50
 # define MAL_ERR_RENDER			-51
 # define MAL_ERR_MINIMAP		-52
-# define MAL_ERR_MINICONF		-53
 
 # define MLX_INIT_FAIL			-61
 # define TX_IMPORT_FAIL			-62
@@ -153,12 +152,11 @@
 # define ID_TX_CA1				10
 # define ID_TX_CA2				11
 # define ID_TX_CM				12
-# define ID_MINIMAP				13
-# define ID_MINICONF			14
-# define ID_MAP					15
-# define ID_PLAYER				16
-# define ID_CONF				17
-# define ID_SPRITES				18
+# define ID_MINICONF			13
+# define ID_MAP					14
+# define ID_PLAYER				15
+# define ID_CONF				16
+# define ID_SPRITES				17
 
 /*
 **	MAP IDENTIFIERS

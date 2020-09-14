@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 12:20:36 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 16:17:09 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,16 +144,14 @@ typedef struct	s_conf
 	double			rot_speed;
 }				t_conf;
 
-typedef struct	s_miniconf
+typedef struct	s_minimap
 {
 	t_coord		map_ratio;
 	t_coord		ratio;
-	t_coord		persp;
-	t_coord		step;
-	t_coord		size;
-	t_int_coord	mini;
-	int			offset_x;
-}				t_miniconf;
+	double		step;
+	int			width;
+	int			height;
+}				t_minimap;
 
 typedef struct	s_ray
 {

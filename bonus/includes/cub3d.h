@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 16:20:10 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 15:57:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ void			ft_player_state(t_param *prm);
 **	minimap.c
 */
 int				minimap_init(t_param *prm);
-void			create_minimap(t_param *prm);
 void			minimap_to_screen(int x, t_ray *ray, t_param *prm);
 
 /*

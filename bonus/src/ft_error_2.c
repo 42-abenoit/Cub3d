@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:33:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 13:22:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 16:13:29 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static int	mlx_error(int err_code)
 	if (err_code == MAL_ERR_BUFF)
 		ft_putstr("Error creating vertical line buffer\n");
 	if (err_code == MAL_ERR_MINIMAP)
-		ft_putstr("Error creating minimap image buffer\n");
-	if (err_code == MAL_ERR_MINICONF)
 		ft_putstr("Error creating minimap configuration structure\n");
 	exit(0);
 }
