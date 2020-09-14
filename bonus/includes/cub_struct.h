@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 16:17:09 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 16:54:25 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ typedef struct	s_minimap
 {
 	t_coord		map_ratio;
 	t_coord		ratio;
+	t_coord		start;
 	double		step;
 	int			width;
 	int			height;
