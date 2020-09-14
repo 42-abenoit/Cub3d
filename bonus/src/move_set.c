@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 15:46:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 14:43:53 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 17:57:43 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_forward(t_param *prm)
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	render = (t_render*)prm->ptr;
-	speed = render->frame_time * conf->front_speed; 
+	speed = render->frame_time * conf->front_speed;
 	new_pos.x = player->pos.x + (player->dir.x * speed);
 	new_pos.y = player->pos.y + (player->dir.y * speed);
 	move_valid(prm, new_pos);
@@ -44,7 +44,7 @@ void	ft_backward(t_param *prm)
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	render = (t_render*)prm->ptr;
-	speed = render->frame_time * conf->back_speed; 
+	speed = render->frame_time * conf->back_speed;
 	new_pos.x = player->pos.x - (player->dir.x * speed);
 	new_pos.y = player->pos.y - (player->dir.y * speed);
 	move_valid(prm, new_pos);
@@ -61,7 +61,7 @@ void	ft_strafe_left(t_param *prm)
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	render = (t_render*)prm->ptr;
-	speed = render->frame_time * conf->strafe_speed; 
+	speed = render->frame_time * conf->strafe_speed;
 	new_pos.x = player->pos.x + (player->dir.y * speed);
 	new_pos.y = player->pos.y - (player->dir.x * speed);
 	move_valid(prm, new_pos);
@@ -78,7 +78,7 @@ void	ft_strafe_right(t_param *prm)
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	render = (t_render*)prm->ptr;
-	speed = render->frame_time * conf->strafe_speed; 
+	speed = render->frame_time * conf->strafe_speed;
 	new_pos.x = player->pos.x - (player->dir.y * speed);
 	new_pos.y = player->pos.y + (player->dir.x * speed);
 	move_valid(prm, new_pos);

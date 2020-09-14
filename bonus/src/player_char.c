@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 15:57:31 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 18:22:13 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@
 
 void	player_to_screen(int x, t_ray *ray, t_param *prm)
 {
-	int		char_x;
-	int		char_y;
-	double	Rx;
-	double	Ry;
-	int		y;
+	t_coord		ratio;
+	int			y;
 	t_tx		*tx;
 	t_player	*player;
 	t_screen	*screen;
@@ -35,14 +32,12 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 		return ;
 	tx = get_lst_elem(prm->dlist, tx_id[player->state])->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	Rx = ((double)tx->width) / ((double)screen->width);
-	Ry = ((double)tx->height) / ((double)screen->height);
-	char_x = (int)floor(x * Rx);
+	ratio.x = ((double)tx->width) / ((double)screen->width);
+	ratio.y = ((double)tx->height) / ((double)screen->height);
 	y = 0;
 	while (y < screen->height)
 	{
-		char_y = (int)floor((double)y * Ry);
-		ray->color = get_pixel_color(char_x, char_y, &tx->data);
+		ray->color = get_pixel_color(x * ratio.x, y * ratio.y, &tx->data);
 		if ((ray->color & 0x00FFFFFF) != 0)
 			ray->line_buff[y] = ray->color;
 		y++;
@@ -63,7 +58,6 @@ void	check_hit(t_param *prm)
 	while (ptr != NULL)
 	{
 		if (ptr->type == 0)
-		{
 			if (ptr->dist < 1.0)
 			{
 				angle.x = ptr->pos.x - player->pos.x;
@@ -72,12 +66,11 @@ void	check_hit(t_param *prm)
 				if (cos(1.0) < dot)
 				{
 					ptr->hit = 1;
-					ptr->hp -= (rand() % 2) + 5;	
+					ptr->hp -= (rand() % 2) + 5;
 				}
 				if (ptr->hp <= 0)
 					ptr->type = 1;
 			}
-		}
 		ptr = ptr->next;
 	}
 }
@@ -107,23 +100,13 @@ void	ft_axe_phase(t_param *prm)
 	}
 }
 
-void	ft_map_phase(t_param *prm)
+void	map_anim_phase(t_param *prm)
 {
 	t_player	*player;
 	t_screen	*screen;
 
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	if (prm->flags & FLAG_MAP)
-	{
-		if (player->anim_phase < 16)
-			player->anim_phase += 1;
-	}
-	else
-	{
-		if (player->anim_phase > 11)
-			player->anim_phase -= 1;
-	}
 	if (player->anim_phase == 12)
 		player->pitch = 0.1 * (-screen->height / 2);
 	else if (player->anim_phase == 13)
@@ -139,6 +122,24 @@ void	ft_map_phase(t_param *prm)
 	}
 	if (player->anim_phase == 11)
 		player->anim_phase = 0;
+}
+
+void	ft_map_phase(t_param *prm)
+{
+	t_player	*player;
+
+	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
+	if (prm->flags & FLAG_MAP)
+	{
+		if (player->anim_phase < 16)
+			player->anim_phase += 1;
+	}
+	else
+	{
+		if (player->anim_phase > 11)
+			player->anim_phase -= 1;
+	}
+	map_anim_phase(prm);
 }
 
 void	ft_player_state(t_param *prm)

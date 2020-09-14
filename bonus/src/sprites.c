@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 15:24:13 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 18:06:51 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 pthread_mutex_t	g_mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
-void	sprite_calc_dist(t_param *prm)
+void		sprite_calc_dist(t_param *prm)
 {
 	t_sprite	*ptr;
 	t_player	*player;
@@ -84,15 +84,16 @@ void		sprite_projection(t_param *prm)
 									+ player->plane.x * ptr->sprite.y);
 		ptr->sprite_screen_x = (int)(((double)screen->width / 2)
 							* (1 + ptr->transform.x / ptr->transform.y));
-		ptr->v_move_screen = (int)(player->pitch + (player->pos_z / ptr->transform.y));
-		ptr->sprite_height = abs((int)((double)screen->height
-									/ (ptr->transform.y)));
+		ptr->v_move_screen = (int)(player->pitch
+									+ (player->pos_z / ptr->transform.y));
+		ptr->sprite_height = abs(((double)screen->height / (ptr->transform.y)));
 		sprite_calc_draw_val(ptr, prm);
 		ptr = ptr->next;
 	}
 }
 
-static void	sprite_line_to_buff(t_sprite *ptr, t_tx	*tx, t_ray *ray, t_param *prm)
+static void	sprite_line_to_buff(t_sprite *ptr, t_tx *tx,
+								t_ray *ray, t_param *prm)
 {
 	int			y;
 	int			d;
@@ -130,7 +131,7 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (ptr != NULL)
 	{
-   		pthread_mutex_lock(&g_mutex1);
+		pthread_mutex_lock(&g_mutex1);
 		if (x >= ptr->draw_start.x && x <= ptr->draw_end.x)
 		{
 			tx = get_lst_elem(prm->dlist, types[ptr->type])->content;
@@ -143,7 +144,7 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
 				sprite_line_to_buff(ptr, tx, ray, prm);
 		}
-   		pthread_mutex_unlock(&g_mutex1);
+		pthread_mutex_unlock(&g_mutex1);
 		ptr = ptr->next;
 	}
 }

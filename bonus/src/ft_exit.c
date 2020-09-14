@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 20:13:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 16:01:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 17:58:57 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,12 @@ int		clean_render(t_param *prm)
 	{
 		render = ((t_render*)(prm->ptr));
 		if (prm->booleans & TX_IMPORT)
-		{
 			while (id <= ID_TX_CM)
 			{
 				ptr = get_lst_elem(prm->dlist, id);
 				my_mlx_destroy_tx(render->mlx, ptr);
 				id++;
 			}
-		}
 		if (render->current.img != NULL)
 			mlx_destroy_image(render->mlx, render->current.img);
 		if (render->win != NULL)

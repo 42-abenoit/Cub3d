@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:42:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 15:06:37 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 17:58:27 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 {
 	int			x;
 	t_screen	*screen;
-	t_floor	floor;
+	t_floor		floor;
 
 	x = 0;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;

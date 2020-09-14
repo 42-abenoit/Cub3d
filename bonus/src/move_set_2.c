@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:58:08 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 18:06:23 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 18:02:32 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_look_up(t_param *prm)
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	render = (t_render*)prm->ptr;
-	rot_speed = render->frame_time * conf->pitch_sensi; 
+	rot_speed = render->frame_time * conf->pitch_sensi;
 	player->pitch += rot_speed;
 	if (player->pitch > screen->height / 2)
 		player->pitch = screen->height / 2;
@@ -46,7 +46,7 @@ void	ft_look_down(t_param *prm)
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	render = (t_render*)prm->ptr;
-	rot_speed = render->frame_time * conf->pitch_sensi; 
+	rot_speed = render->frame_time * conf->pitch_sensi;
 	player->pitch -= rot_speed;
 	if (player->pitch < -screen->height / 2)
 		player->pitch = -screen->height / 2;
@@ -63,7 +63,7 @@ void	ft_rotate_right(t_param *prm)
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	render = (t_render*)prm->ptr;
-	rot_speed = render->frame_time * conf->rot_speed; 
+	rot_speed = render->frame_time * conf->rot_speed;
 	old_dir_x = player->dir.x;
 	player->dir.x = (player->dir.x * cos(rot_speed))
 				- (player->dir.y * sin(rot_speed));
@@ -84,7 +84,7 @@ void	ft_rotate_left(t_param *prm)
 	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	render = (t_render*)prm->ptr;
-	rot_speed = render->frame_time * conf->rot_speed; 
+	rot_speed = render->frame_time * conf->rot_speed;
 	old_dir_x = player->dir.x;
 	player->dir.x = (player->dir.x * cos(-rot_speed))
 				- (player->dir.y * sin(-rot_speed));

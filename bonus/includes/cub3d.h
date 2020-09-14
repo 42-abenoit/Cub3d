@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 15:57:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 18:52:21 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,14 @@ void			ft_rotate_left(t_param *prm);
 /*
 **	move_set_3.c
 */
-void			ft_jump(t_param *prm);
 void			ft_sneak(t_param *prm);
 void			ft_sprint(t_param *prm);
 void			ft_reset_conf(t_param *prm);
+
+/*
+**	move_set_4.c
+*/
+void			ft_jump(t_param *prm);
 
 /*
 **	move_valid.c

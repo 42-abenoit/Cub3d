@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 20:43:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 17:43:12 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/14 18:00:39 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static int	verify_conf(t_param *prm)
 	if ((ret = player_init(prm)) < 0)
 		return (ft_exit(ret, prm));
 	if ((ret = sprite_init(prm)) < 0)
+		return (ft_exit(ret, prm));
+	if ((ret = minimap_init(prm)) < 0)
 		return (ft_exit(ret, prm));
 	clean_parse(prm);
 	return (game_struct_init(prm));
