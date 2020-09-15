@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:42:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 17:58:27 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:59:23 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 		ray_texture(ray, prm);
 		fill_sky_line(x, ray, prm);
 		floor_init(&floor, ray);
-		ray_fill_line_floor(&floor, ray, prm);
-		fill_buffer(ray, prm);
+		ray_fill_line_floor(x, &floor, ray, prm);
+		fill_buffer(x, ray, prm);
 		sprite_projection(prm);
 		ray_fill_line_sprite(x, ray, prm);
-		fill_line(x, ray, prm);
 		x++;
 	}
 }
@@ -69,12 +68,9 @@ int			pic_calculate(t_param *prm)
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	sprite = get_lst_elem(prm->dlist, ID_SPRITES)->content;
 	render->img = my_mlx_new_image(render->mlx, screen->width, screen->height);
-	if (!(ray.line_buff = malloc(screen->height * sizeof(int))))
-		return (MAL_ERR_BUFF);
 	sprite_calc_dist(prm);
 	ft_sprite_sort(&sprite);
 	bmp_render(&ray, prm);
-	free(ray.line_buff);
 	bmp_prepare(prm);
 	return (ft_exit(0, prm));
 }

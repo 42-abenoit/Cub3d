@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:21:53 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/08 16:23:02 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:57:54 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ void			img_refresh(t_param *prm)
 							render->current.img, 0, 0);
 }
 
-void			fill_buffer(t_ray *ray, t_param *prm)
+void			fill_buffer(int x, t_ray *ray, t_param *prm)
 {
 	int			y;
+	t_render	*render;
 
 	y = ray->draw_start;
+	render = prm->ptr;
 	while (y < ray->draw_end)
 	{
 		ray->tex.y = (int)ray->tex_pos & (ray->tx_ptr->height - 1);
@@ -48,23 +50,7 @@ void			fill_buffer(t_ray *ray, t_param *prm)
 									&ray->tx_ptr->data);
 		ray->color = apply_fog(ray->dist, ray->color, prm);
 		if ((ray->color & 0x00FFFFFF) != 0)
-			ray->line_buff[y] = ray->color;
-		y++;
-	}
-}
-
-void			fill_line(int x, t_ray *ray, t_param *prm)
-{
-	int			y;
-	t_screen	*screen;
-	t_render	*render;
-
-	y = 0;
-	render = prm->ptr;
-	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	while (y < screen->height - 1)
-	{
-		my_mlx_pixel_put(&render->img, x, y, ray->line_buff[y]);
+			my_mlx_pixel_put(&render->img, x, y, ray->color);
 		y++;
 	}
 }

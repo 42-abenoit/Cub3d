@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 18:06:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/11 16:47:42 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:47:25 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	fill_sky_line(int x, t_ray *ray, t_param *prm)
 	double			plop;
 	t_tx			*sky;
 	t_screen		*screen;
+	t_render		*render;
 	int				offset_y;
 
+	render = prm->ptr;
 	sky = get_lst_elem(prm->dlist, ID_TX_SK)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	y = 0;
@@ -43,7 +45,7 @@ void	fill_sky_line(int x, t_ray *ray, t_param *prm)
 		{
 			ray->color = get_pixel_color(sky_coord.x, sky_coord.y, &sky->data);
 			if ((ray->color & 0x00FFFFFF) != 0)
-				ray->line_buff[y] = ray->color;
+				my_mlx_pixel_put(&render->img, x, y, ray->color);
 		}
 		y++;
 	}

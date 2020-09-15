@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 18:22:13 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:53:00 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 	t_coord		ratio;
 	int			y;
 	t_tx		*tx;
+	t_render	*render;
 	t_player	*player;
 	t_screen	*screen;
 	const char	tx_id[] = {0, ID_TX_CA, ID_TX_CA1, ID_TX_CA2, ID_TX_CM};
@@ -30,6 +31,7 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	if (player->state == IDLE)
 		return ;
+	render = prm->ptr;
 	tx = get_lst_elem(prm->dlist, tx_id[player->state])->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	ratio.x = ((double)tx->width) / ((double)screen->width);
@@ -39,7 +41,7 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 	{
 		ray->color = get_pixel_color(x * ratio.x, y * ratio.y, &tx->data);
 		if ((ray->color & 0x00FFFFFF) != 0)
-			ray->line_buff[y] = ray->color;
+			my_mlx_pixel_put(&render->img, x, y, ray->color);
 		y++;
 	}
 	if (player->state == MAP)

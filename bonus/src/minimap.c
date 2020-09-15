@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 23:35:36 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 17:55:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:47:49 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,10 @@ void		minimap_to_screen(int x, t_ray *ray, t_param *prm)
 	int			offset_x;
 	double		persp;
 	t_int_coord	mini;
+	t_render	*render;
 	t_minimap	*minimap;
 
+	render = prm->ptr;
 	minimap = get_lst_elem(prm->dlist, ID_MINIMAP)->content;
 	y = minimap->start.y;
 	if (x <= minimap->start.x || x >= minimap->start.x + minimap->width)
@@ -105,7 +107,7 @@ void		minimap_to_screen(int x, t_ray *ray, t_param *prm)
 		{
 			mini.x = resize_x_axis(x, offset_x, persp, minimap);
 			ray->color = get_minimap_color(mini.x, mini.y, prm);
-			ray->line_buff[y] = ray->color;
+			my_mlx_pixel_put(&render->img, x, y, ray->color);
 		}
 		y++;
 		persp += minimap->step;

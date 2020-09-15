@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 11:54:19 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:58:50 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,6 @@ static void		*cast_x_rays(void *plop)
 	thread = plop;
 	prm = thread->prm;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	if (!(ray.line_buff = malloc((screen->height + 1) * sizeof(int))))
-	{
-		x = -1;
-		pthread_exit(&x);
-	}
 	x = ((t_thread*)plop)->id_thread * (screen->width / NTHREAD);
 	x_max = x + (screen->width / NTHREAD);
 	while (x < x_max)
@@ -108,14 +103,12 @@ static void		*cast_x_rays(void *plop)
 		ray_texture(&ray, prm);
 		fill_sky_line(x, &ray, prm);
 		floor_init(&floor, &ray);
-		ray_fill_line_floor(&floor, &ray, prm);
-		fill_buffer(&ray, prm);
+		ray_fill_line_floor(x, &floor, &ray, prm);
+		fill_buffer(x, &ray, prm);
 		ray_fill_line_sprite(x, &ray, prm);
 		player_to_screen(x, &ray, prm);
-		fill_line(x, &ray, prm);
 		x++;
 	}
-	free(ray.line_buff);
 	pthread_exit(NULL);
 }
 

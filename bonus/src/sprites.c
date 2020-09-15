@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 18:57:02 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:45:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,16 @@ void		sprite_projection(t_param *prm)
 	}
 }
 
-static void	sprite_line_to_buff(t_sprite *ptr, t_tx *tx,
+static void	sprite_line_to_buff(int x, t_sprite *ptr, t_tx *tx,
 								t_ray *ray, t_param *prm)
 {
 	int			y;
 	int			d;
 	t_screen	*screen;
+	t_render	*render;
 
 	y = ptr->draw_start.y;
+	render = prm->ptr;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (y < ptr->draw_end.y)
 	{
@@ -115,7 +117,7 @@ static void	sprite_line_to_buff(t_sprite *ptr, t_tx *tx,
 		else
 			ray->color = apply_fog(ptr->dist, ray->color, prm);
 		if ((ray->color & 0x00FFFFFF) != 0)
-			ray->line_buff[y] = ray->color;
+			my_mlx_pixel_put(&render->img, x, y, ray->color);
 		y++;
 	}
 }
@@ -142,7 +144,7 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 								/ 256) & (tx->width - 1);
 			if (ptr->transform.y > 0 && x > 0 && x
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
-				sprite_line_to_buff(ptr, tx, ray, prm);
+				sprite_line_to_buff(x, ptr, tx, ray, prm);
 		}
 		pthread_mutex_unlock(&g_mutex1);
 		ptr = ptr->next;

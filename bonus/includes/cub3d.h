@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 18:52:21 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:58:14 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ void			ray_texture(t_ray *ray, t_param *prm);
 **	render_engine_ray.c
 */
 void			img_refresh(t_param *prm);
-void			fill_buffer(t_ray *ray, t_param *prm);
-void			fill_line(int x, t_ray *ray, t_param *prm);
+void			fill_buffer(int x, t_ray *ray, t_param *prm);
 
 /*
 **	sprites.c
@@ -107,7 +106,7 @@ void			ray_fill_line_sprite(int x, t_ray *ray, t_param *prm);
 **	floor.c
 */
 void			floor_init(t_floor *floor, t_ray *ray);
-void			ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm);
+void			ray_fill_line_floor(int x, t_floor *floor, t_ray *ray, t_param *prm);
 
 /*
 **	sky.c

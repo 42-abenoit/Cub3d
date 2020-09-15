@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:36:12 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 18:30:33 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 11:47:01 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,17 @@ static void	floor_set_vars(int y, t_floor *floor, t_param *prm)
 					* floor->tx_ptr->height) & (floor->tx_ptr->height - 1);
 }
 
-void		ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm)
+void		ray_fill_line_floor(int x, t_floor *floor, t_ray *ray, t_param *prm)
 {
 	int			y;
 	double		floor_dist;
 	t_screen	*screen;
 	t_player	*player;
+	t_render	*render;
 
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
+	render = prm->ptr;
 	floor->tx_ptr = get_lst_elem(prm->dlist, ID_TX_F)->content;
 	y = ray->horizon;
 	while (y < screen->height)
@@ -85,7 +87,7 @@ void		ray_fill_line_floor(t_floor *floor, t_ray *ray, t_param *prm)
 								floor->tex.y, &floor->tx_ptr->data);
 		ray->color = apply_fog(floor_dist, ray->color, prm);
 		if ((ray->color & 0x00FFFFFF) != 0)
-			ray->line_buff[y] = ray->color;
+			my_mlx_pixel_put(&render->img, x, y, ray->color);
 		y++;
 	}
 }
