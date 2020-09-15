@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 11:53:00 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 12:52:44 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 		y++;
 	}
 	if (player->state == MAP)
-		minimap_to_screen(x, ray, prm);
+		minimap_to_screen(x, prm);
 }
 
 void	check_hit(t_param *prm)

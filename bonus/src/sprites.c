@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 11:45:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 12:55:58 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,16 @@ void		sprite_projection(t_param *prm)
 }
 
 static void	sprite_line_to_buff(int x, t_sprite *ptr, t_tx *tx,
-								t_ray *ray, t_param *prm)
+								t_param *prm)
 {
 	int			y;
 	int			d;
+	int			color;
 	t_screen	*screen;
 	t_render	*render;
 
 	y = ptr->draw_start.y;
+	color = 0;
 	render = prm->ptr;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (y < ptr->draw_end.y)
@@ -108,16 +110,14 @@ static void	sprite_line_to_buff(int x, t_sprite *ptr, t_tx *tx,
 		d = (y - ptr->v_move_screen) * 256 - screen->height
 				* 128 + ptr->sprite_height * 128;
 		ptr->tex.y = (((d * tx->height)
-					/ ptr->sprite_height) / 256)
-			& (tx->height - 1);
-		ray->color = get_pixel_color(ptr->tex.x, ptr->tex.y,
-					&tx->data);
+					/ ptr->sprite_height) / 256) & (tx->height - 1);
+		color = get_pixel_color(ptr->tex.x, ptr->tex.y, &tx->data);
 		if (ptr->hit > 0 && ptr->hit < 3)
-			ray->color = apply_hit_effect(ray->color);
+			color = apply_hit_effect(color);
 		else
-			ray->color = apply_fog(ptr->dist, ray->color, prm);
-		if ((ray->color & 0x00FFFFFF) != 0)
-			my_mlx_pixel_put(&render->img, x, y, ray->color);
+			color = apply_fog(ptr->dist, color, prm);
+		if ((color & 0x00FFFFFF) != 0)
+			my_mlx_pixel_put(&render->img, x, y, color);
 		y++;
 	}
 }
@@ -144,7 +144,7 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 								/ 256) & (tx->width - 1);
 			if (ptr->transform.y > 0 && x > 0 && x
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
-				sprite_line_to_buff(x, ptr, tx, ray, prm);
+				sprite_line_to_buff(x, ptr, tx, prm);
 		}
 		pthread_mutex_unlock(&g_mutex1);
 		ptr = ptr->next;
