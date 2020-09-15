@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 18:06:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 15:40:18 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 17:08:32 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		draw_sky(int x, t_ray *ray, t_param *prm)
 	{
 		sky.offset_y = (((screen->height - 1) * 2.0) - (ray->horizon - y));
 		sky.coord.y = (double)sky.offset_y * sky.ratio.y;
-		if (sky.coord.y >= 0 && sky.coord.y <= tx->height - 1)
+		if (sky.coord.y >= 0 && sky.coord.y < tx->height - 1)
 		{
 			ray->color = get_pixel_color(sky.coord.x, sky.coord.y, &tx->data);
 			if ((ray->color & 0x00FFFFFF) != 0)
