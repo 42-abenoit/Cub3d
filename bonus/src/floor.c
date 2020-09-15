@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:36:12 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 13:35:26 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 15:27:20 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,6 @@
 #include "cub_macro.h"
 #include "cub_struct.h"
 #include "ft_utils.h"
-
-void		floor_init(t_floor *floor, t_ray *ray)
-{
-	if (ray->id_side % 2 == 0 && ray->dir.x >= 0)
-	{
-		floor->wall.x = ray->map.x;
-		floor->wall.y = ray->map.y + ray->wall_x;
-	}
-	else if (ray->id_side % 2 == 0 && ray->dir.x < 0)
-	{
-		floor->wall.x = ray->map.x + 1.0;
-		floor->wall.y = ray->map.y + ray->wall_x;
-	}
-	else if (ray->id_side % 2 == 1 && ray->dir.y >= 0)
-	{
-		floor->wall.x = ray->map.x + ray->wall_x;
-		floor->wall.y = ray->map.y;
-	}
-	else
-	{
-		floor->wall.x = ray->map.x + ray->wall_x;
-		floor->wall.y = ray->map.y + 1.0;
-	}
-	floor->dist_wall = ray->perp_wall_dist;
-	floor->dist_player = 0.0;
-}
 
 static void	floor_set_vars(int y, t_floor *floor, t_param *prm)
 {
@@ -63,7 +37,7 @@ static void	floor_set_vars(int y, t_floor *floor, t_param *prm)
 					* floor->tx_ptr->height) & (floor->tx_ptr->height - 1);
 }
 
-void		ray_fill_line_floor(int x, t_floor *floor, t_ray *ray, t_param *prm)
+static void	ray_fill_line_floor(int x, t_floor *floor, t_ray *ray, t_param *prm)
 {
 	int			y;
 	double		floor_dist;
@@ -90,4 +64,33 @@ void		ray_fill_line_floor(int x, t_floor *floor, t_ray *ray, t_param *prm)
 			my_mlx_pixel_put(&render->img, x, y, ray->color);
 		y++;
 	}
+}
+
+void		draw_floor(int x, t_ray *ray, t_param *prm)
+{
+	t_floor		floor;
+
+	if (ray->id_side % 2 == 0 && ray->dir.x >= 0)
+	{
+		floor.wall.x = ray->map.x;
+		floor.wall.y = ray->map.y + ray->wall_x;
+	}
+	else if (ray->id_side % 2 == 0 && ray->dir.x < 0)
+	{
+		floor.wall.x = ray->map.x + 1.0;
+		floor.wall.y = ray->map.y + ray->wall_x;
+	}
+	else if (ray->id_side % 2 == 1 && ray->dir.y >= 0)
+	{
+		floor.wall.x = ray->map.x + ray->wall_x;
+		floor.wall.y = ray->map.y;
+	}
+	else
+	{
+		floor.wall.x = ray->map.x + ray->wall_x;
+		floor.wall.y = ray->map.y + 1.0;
+	}
+	floor.dist_wall = ray->perp_wall_dist;
+	floor.dist_player = 0.0;
+	ray_fill_line_floor(x, &floor, ray, prm);
 }

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 13:45:11 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 15:37:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ typedef struct	s_screen
 	int				width;
 	int				height;
 }				t_screen;
-
-typedef struct	s_hcc
-{
-	unsigned int	hcc;
-}				t_hcc;
 
 typedef struct	s_int_coord
 {
@@ -161,6 +156,14 @@ typedef struct	s_sky
 	t_coord			ratio;
 	t_int_coord		coord;
 }				t_sky;
+
+typedef struct	s_cfp
+{
+	t_tx		*tx;
+	t_render	*render;
+	t_player	*player;
+	t_screen	*screen;
+}				t_cfp;
 
 typedef struct	s_ray
 {

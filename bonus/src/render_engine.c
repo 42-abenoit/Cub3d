@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 11:58:50 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 16:12:27 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,118 +20,41 @@
 #include "cub_macro.h"
 #include "cub_struct.h"
 
-static void		set_step_x(t_ray *ray, t_param *prm)
-{
-	t_player	*player;
-
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if (ray->dir.x < 0)
-	{
-		ray->step.x = -1;
-		ray->side_dist.x = (player->pos.x - ray->map.x) * ray->delta_dist.x;
-		ray->side.x = 0;
-	}
-	else
-	{
-		ray->step.x = 1;
-		ray->side_dist.x = (ray->map.x + 1.0
-							- player->pos.x) * ray->delta_dist.x;
-		ray->side.x = 2;
-	}
-}
-
-static void		set_step_y(t_ray *ray, t_param *prm)
-{
-	t_player	*player;
-
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	if (ray->dir.y < 0)
-	{
-		ray->step.y = -1;
-		ray->side_dist.y = (player->pos.y - ray->map.y) * ray->delta_dist.y;
-		ray->side.y = 1;
-	}
-	else
-	{
-		ray->step.y = 1;
-		ray->side_dist.y = (ray->map.y + 1.0 - player->pos.y)
-							* ray->delta_dist.y;
-		ray->side.y = 3;
-	}
-}
-
-void			ray_init(int x, t_ray *ray, t_param *prm)
-{
-	t_screen	*screen;
-	t_player	*player;
-
-	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	ray->camera_x = 2 * x / (double)screen->width - 1;
-	ray->dir.x = player->dir.x + player->plane.x * ray->camera_x;
-	ray->dir.y = player->dir.y + player->plane.y * ray->camera_x;
-	ray->map.x = (int)player->pos.x;
-	ray->map.y = (int)player->pos.y;
-	ray->delta_dist.x = fabs(1 / ray->dir.x);
-	ray->delta_dist.y = fabs(1 / ray->dir.y);
-	ray->hit = 0;
-	ray->dist = 0;
-	set_step_x(ray, prm);
-	set_step_y(ray, prm);
-}
-
-static void		*cast_x_rays(void *plop)
+static void		*cast_x_rays(void *thread_ptr)
 {
 	t_ray		ray;
-	t_floor		floor;
 	t_screen	*screen;
-	t_param		*prm;
 	t_thread	*thread;
 	int			x;
 	int			x_max;
 
-	thread = plop;
-	prm = thread->prm;
-	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	x = ((t_thread*)plop)->id_thread * (screen->width / NTHREAD);
+	thread = thread_ptr;
+	screen = get_lst_elem(thread->prm->dlist, ID_RES)->content;
+	x = thread->id_thread * (screen->width / NTHREAD);
 	x_max = x + (screen->width / NTHREAD);
 	while (x < x_max)
 	{
-		ray_init(x, &ray, prm);
-		ray_hit_scan(&ray, prm);
-		ray_perspective(&ray, prm);
-		ray_texture(&ray, prm);
-		fill_sky_line(x, &ray, prm);
-		floor_init(&floor, &ray);
-		ray_fill_line_floor(x, &floor, &ray, prm);
-		fill_buffer(x, &ray, prm);
-		ray_fill_line_sprite(x, &ray, prm);
-		player_to_screen(x, &ray, prm);
+		ray_init(x, &ray, thread->prm);
+		ray_hit_scan(&ray, thread->prm);
+		ray_perspective(&ray, thread->prm);
+		ray_texture(&ray, thread->prm);
+		draw_sky(x, &ray, thread->prm);
+		draw_floor(x, &ray, thread->prm);
+		fill_buffer(x, &ray, thread->prm);
+		ray_fill_line_sprite(x, &ray, thread->prm);
+		player_to_screen(x, &ray, thread->prm);
 		x++;
 	}
 	pthread_exit(NULL);
 }
 
-int				ray_caster(t_param *prm)
+static void		thread_manager(t_param *prm)
 {
-	t_screen	*screen;
-	t_render	*render;
-	t_list		*sprite;
+	int			i;
 	pthread_t	thread[NTHREAD];
 	t_thread	plop[NTHREAD];
-	clock_t		start;
-	clock_t		end;
-	int			i;
 
-	render = prm->ptr;
-	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	sprite = get_lst_elem(prm->dlist, ID_SPRITES);
-	render->img = my_mlx_new_image(render->mlx, screen->width, screen->height);
-	sprite_calc_dist(prm);
-	ft_sprite_sort((t_sprite**)&sprite->content);
-	sprite_projection(prm);
 	i = 0;
-	start = clock();
 	while (i < NTHREAD)
 	{
 		plop[i].id_thread = i;
@@ -140,10 +63,26 @@ int				ray_caster(t_param *prm)
 		i++;
 	}
 	while (--i > -1)
-	{
-		if (pthread_join(thread[i], NULL) < 0)
-			return (ft_exit(MAL_ERR_BUFF, prm));
-	}
+		pthread_join(thread[i], NULL);
+}
+
+int				ray_caster(t_param *prm)
+{
+	t_screen	*screen;
+	t_render	*render;
+	t_list		*sprite;
+	clock_t		start;
+	clock_t		end;
+
+	render = prm->ptr;
+	screen = get_lst_elem(prm->dlist, ID_RES)->content;
+	sprite = get_lst_elem(prm->dlist, ID_SPRITES);
+	render->img = my_mlx_new_image(render->mlx, screen->width, screen->height);
+	sprite_calc_dist(prm);
+	ft_sprite_sort((t_sprite**)&sprite->content);
+	sprite_projection(prm);
+	start = clock();
+	thread_manager(prm);
 	img_refresh(prm);
 	end = clock();
 	render->frame_time = (double)(end - start) / CLOCKS_PER_SEC;

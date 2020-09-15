@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/15 11:48:49 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/15 16:10:54 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_NAME =	main.c \
 		sprites_init.c \
 		sprites.c \
 		manage_key.c \
+		manage_key_2.c \
 		move_set.c \
 		move_set_2.c \
 		move_set_3.c \
@@ -44,11 +45,13 @@ SRC_NAME =	main.c \
 		move_valid.c \
 		render_engine.c \
 		render_engine_ray.c \
+		render_engine_ray_2.c \
 		render_engine_img.c \
 		floor.c \
 		sky.c \
 		sfx.c \
 		player_char.c \
+		player_anim.c \
 		minimap.c \
 		bmp_save.c \
 		bmp_export.c \
@@ -57,7 +60,7 @@ SRC_NAME =	main.c \
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
 
-OBJ_DIR = ../obj
+OBJ_DIR = ../obj_bonus
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -65,7 +68,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
 BONUS_DIR = bonus
 
-NAME = ../Cub3d
+NAME = ../IceCub3d
 
 INC = -I includes -I$(MLX_DIR)
 

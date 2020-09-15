@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 13:47:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 16:22:12 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ void			mlx_get_screen_size(void *mlx, int *w, int*h);
 
 # ifdef Linux
 #  define SYS	2
-
-int				CGMainDisplayID(void);
-int				CGDisplayPixelsWide(int display_id);
-int				CGDisplayPixelsHigh(int display_id);
 # endif
 
 /*
@@ -76,11 +72,15 @@ int				game_struct_init(t_param *prm);
 /*
 **	render_engine.c
 */
-void			ray_init(int x, t_ray *ray, t_param *prm);
 int				ray_caster(t_param *prm);
 
 /*
 **	render_engine_ray.c
+*/
+void			ray_init(int x, t_ray *ray, t_param *prm);
+
+/*
+**	render_engine_ray_2.c
 */
 void			ray_hit_scan(t_ray *ray, t_param *prm);
 void			ray_perspective(t_ray *ray, t_param *prm);
@@ -102,14 +102,12 @@ void			ray_fill_line_sprite(int x, t_ray *ray, t_param *prm);
 /*
 **	floor.c
 */
-void			floor_init(t_floor *floor, t_ray *ray);
-void			ray_fill_line_floor(int x, t_floor *floor,
-										t_ray *ray, t_param *prm);
+void			draw_floor(int x, t_ray *ray, t_param *prm);
 
 /*
 **	sky.c
 */
-void			fill_sky_line(int x, t_ray *ray, t_param *prm);
+void			draw_sky(int x, t_ray *ray, t_param *prm);
 
 /*
 **	sfx.c
@@ -122,6 +120,12 @@ int				apply_hit_effect(int color_input);
 */
 void			player_to_screen(int x, t_ray *ray, t_param *prm);
 void			ft_player_state(t_param *prm);
+
+/*
+**	player_anim.c
+*/
+void			ft_axe_phase(t_param *prm);
+void			ft_map_phase(t_param *prm);
 
 /*
 **	minimap.c
@@ -153,8 +157,12 @@ void			pic_export(t_param *prm, t_screen *screen);
 **	manage_key.c
 */
 int				ft_key_press(int keycode, t_param *prm);
-int				ft_key_release(int keycode, t_param *prm);
 int				ft_move(t_param *prm);
+
+/*
+**	manage_key_2.c
+*/
+int				ft_key_release(int keycode, t_param *prm);
 
 /*
 **	move_set.c

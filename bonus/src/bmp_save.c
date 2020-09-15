@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:42:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 11:59:23 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 15:35:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 {
 	int			x;
 	t_screen	*screen;
-	t_floor		floor;
 
 	x = 0;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
@@ -47,9 +46,8 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 		ray_hit_scan(ray, prm);
 		ray_perspective(ray, prm);
 		ray_texture(ray, prm);
-		fill_sky_line(x, ray, prm);
-		floor_init(&floor, ray);
-		ray_fill_line_floor(x, &floor, ray, prm);
+		draw_sky(x, ray, prm);
+		draw_floor(x, ray, prm);
 		fill_buffer(x, ray, prm);
 		sprite_projection(prm);
 		ray_fill_line_sprite(x, ray, prm);

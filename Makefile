@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/07 17:37:44 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/15 16:50:07 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,8 +88,9 @@ ifeq ($(KB_LAYOUT),fr)
 	MLX_DEF += -D keyboard_fr
 endif
 
+all: std bonus
 
-all: $(MLX) $(NAME)
+std: $(MLX) $(NAME)
 
 bonus:	bonus_make
 
@@ -110,10 +111,12 @@ $(MLX):
 
 clean:
 		$(RM) -r $(OBJ_DIR)
+		@make -C $(BONUS_DIR) clean
 
 fclean:		clean
 		$(RM) $(NAME)
 		@make -C $(MLX_DIR) clean
+		@make -C $(BONUS_DIR) fclean
 
 re:		fclean all
 

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 14:04:58 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/10 12:51:26 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 15:56:25 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,17 @@
 #include "cub_struct.h"
 #include "ft_utils.h"
 
-int		ft_key_press(int keycode, t_param *prm)
+static void	ft_press_specials(int keycode, t_param *prm)
+{
+	if (keycode == INPUT_JUMP && !(prm->flags & FLAG_JUMP))
+		prm->flags += FLAG_JUMP;
+	if (keycode == INPUT_SNEAK && !(prm->flags & FLAG_SNEAK))
+		prm->flags += FLAG_SNEAK;
+	if (keycode == INPUT_SPRINT && !(prm->flags & FLAG_SPRINT))
+		prm->flags += FLAG_SPRINT;
+}
+
+int			ft_key_press(int keycode, t_param *prm)
 {
 	if (keycode == INPUT_ESC)
 		return (ft_exit(0, prm));
@@ -35,86 +45,16 @@ int		ft_key_press(int keycode, t_param *prm)
 		prm->flags += FLAG_LOOK_UP;
 	if (keycode == INPUT_LOOK_DOWN && !(prm->flags & FLAG_LOOK_DOWN))
 		prm->flags += FLAG_LOOK_DOWN;
-	if (keycode == INPUT_JUMP && !(prm->flags & FLAG_JUMP))
-		prm->flags += FLAG_JUMP;
-	if (keycode == INPUT_SNEAK && !(prm->flags & FLAG_SNEAK))
-		prm->flags += FLAG_SNEAK;
-	if (keycode == INPUT_SPRINT && !(prm->flags & FLAG_SPRINT))
-		prm->flags += FLAG_SPRINT;
 	if (keycode == INPUT_STRIKE && (prm->flags & FLAG_AXE))
 	{
 		if (!(prm->flags & FLAG_STRIKE))
 			prm->flags += FLAG_STRIKE;
 	}
+	ft_press_specials(keycode, prm);
 	return (0);
 }
 
-int		ft_key_release(int keycode, t_param *prm)
-{
-	if (keycode == INPUT_UP && prm->flags & FLAG_UP)
-		prm->flags -= FLAG_UP;
-	if (keycode == INPUT_DOWN && prm->flags & FLAG_DOWN)
-		prm->flags -= FLAG_DOWN;
-	if (keycode == INPUT_LSTRAFE && prm->flags & FLAG_LSTRAFE)
-		prm->flags -= FLAG_LSTRAFE;
-	if (keycode == INPUT_RSTRAFE && prm->flags & FLAG_RSTRAFE)
-		prm->flags -= FLAG_RSTRAFE;
-	if (keycode == INPUT_LEFT && prm->flags & FLAG_LEFT)
-		prm->flags -= FLAG_LEFT;
-	if (keycode == INPUT_RIGHT && prm->flags & FLAG_RIGHT)
-		prm->flags -= FLAG_RIGHT;
-	if (keycode == INPUT_LOOK_UP && (prm->flags & FLAG_LOOK_UP))
-		prm->flags -= FLAG_LOOK_UP;
-	if (keycode == INPUT_LOOK_DOWN && (prm->flags & FLAG_LOOK_DOWN))
-		prm->flags -= FLAG_LOOK_DOWN;
-	if (keycode == INPUT_JUMP && (prm->flags & FLAG_JUMP))
-	{
-		if (!(prm->flags & FLAG_FALL))
-			prm->flags += FLAG_FALL;
-	}
-	if (keycode == INPUT_SNEAK && (prm->flags & FLAG_SNEAK))
-		prm->flags -= FLAG_SNEAK;
-	if (keycode == INPUT_SPRINT && (prm->flags & FLAG_SPRINT))
-		prm->flags -= FLAG_SPRINT;
-	if (keycode == INPUT_MAP)
-	{
-		if (prm->flags & FLAG_MAP)
-			prm->flags -= FLAG_MAP;
-		else if (prm->flags & FLAG_AXE)
-		{
-			if (!(prm->flags & FLAG_STRIKE))
-			{
-				prm->flags -= FLAG_AXE;
-				prm->flags += FLAG_MAP;
-			}
-		}
-		else
-			prm->flags += FLAG_MAP;
-	}
-	if (keycode == INPUT_AXE)
-	{
-		if (prm->flags & FLAG_AXE)
-		{
-			if (!(prm->flags & FLAG_STRIKE))
-				prm->flags -= FLAG_AXE;
-		}
-		else if (prm->flags & FLAG_MAP)
-		{
-			prm->flags -= FLAG_MAP;
-			prm->flags += FLAG_AXE;
-		}
-		else
-			prm->flags += FLAG_AXE;
-	}
-	if (keycode == INPUT_STRIKE && (prm->flags & FLAG_AXE))
-	{
-		if ((prm->flags & FLAG_STRIKE))
-			prm->flags -= FLAG_STRIKE;
-	}
-	return (0);
-}
-
-int		ft_move(t_param *prm)
+int			ft_move(t_param *prm)
 {
 	ft_sneak(prm);
 	ft_sprint(prm);

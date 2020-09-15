@@ -5,116 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 11:17:33 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 13:42:44 by abenoit          ###   ########.fr       */
+/*   Created: 2020/09/15 16:10:04 by abenoit           #+#    #+#             */
+/*   Updated: 2020/09/15 16:12:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #include "mlx.h"
 #include "cub3d.h"
 #include "ft_utils.h"
 #include "cub_macro.h"
 #include "cub_struct.h"
 
-static void		ray_increment(t_ray *ray)
+static void		set_step_x(t_ray *ray, t_param *prm)
 {
-	if (ray->side_dist.x < ray->side_dist.y)
+	t_player	*player;
+
+	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
+	if (ray->dir.x < 0)
 	{
-		ray->side_dist.x += ray->delta_dist.x;
-		ray->map.x += ray->step.x;
-		ray->id_side = ray->side.x;
+		ray->step.x = -1;
+		ray->side_dist.x = (player->pos.x - ray->map.x) * ray->delta_dist.x;
+		ray->side.x = 0;
 	}
 	else
 	{
-		ray->side_dist.y += ray->delta_dist.y;
-		ray->map.y += ray->step.y;
-		ray->id_side = ray->side.y;
+		ray->step.x = 1;
+		ray->side_dist.x = (ray->map.x + 1.0
+							- player->pos.x) * ray->delta_dist.x;
+		ray->side.x = 2;
 	}
 }
 
-void			ray_hit_scan(t_ray *ray, t_param *prm)
+static void		set_step_y(t_ray *ray, t_param *prm)
 {
-	t_map		*map;
 	t_player	*player;
-	t_conf		*conf;
 
-	map = get_lst_elem(prm->dlist, ID_MAP)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	conf = get_lst_elem(prm->dlist, ID_CONF)->content;
-	while (ray->hit == 0 && ray->dist < conf->view_depth)
+	if (ray->dir.y < 0)
 	{
-		ray_increment(ray);
-		if (map->grid[ray->map.y][ray->map.x] == '1')
-			ray->hit = 1;
-		ray->dist = (player->pos.x - ray->map.x)
-					* (player->pos.x - ray->map.x)
-					+ (player->pos.y - ray->map.y)
-					* (player->pos.y - ray->map.y);
+		ray->step.y = -1;
+		ray->side_dist.y = (player->pos.y - ray->map.y) * ray->delta_dist.y;
+		ray->side.y = 1;
+	}
+	else
+	{
+		ray->step.y = 1;
+		ray->side_dist.y = (ray->map.y + 1.0 - player->pos.y)
+							* ray->delta_dist.y;
+		ray->side.y = 3;
 	}
 }
 
-void			ray_perspective(t_ray *ray, t_param *prm)
+void			ray_init(int x, t_ray *ray, t_param *prm)
 {
-	t_player	*player;
 	t_screen	*screen;
-
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	if (ray->id_side % 2 == 0)
-		ray->perp_wall_dist = (ray->map.x - player->pos.x
-								+ (1 - ray->step.x) / 2) / ray->dir.x;
-	else
-		ray->perp_wall_dist = (ray->map.y - player->pos.y
-								+ (1 - ray->step.y) / 2) / ray->dir.y;
-	ray->line_height = (int)(screen->height / ray->perp_wall_dist);
-	ray->draw_start = (-ray->line_height / 2) + (screen->height / 2)
-					+ player->pitch + (player->pos_z
-										/ ray->perp_wall_dist);
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end = (ray->line_height / 2) + (screen->height / 2)
-					+ player->pitch + (player->pos_z
-										/ ray->perp_wall_dist);
-	if (ray->draw_end >= screen->height)
-		ray->draw_end = screen->height - 1;
-	ray->horizon = (screen->height / 2.0) + player->pitch;
-}
-
-static void		side_texture(t_ray *ray, t_param *prm)
-{
-	if (ray->id_side == 0)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_WE)->content;
-	else if (ray->id_side == 1)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_NO)->content;
-	else if (ray->id_side == 2)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_EA)->content;
-	else if (ray->id_side == 3)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_SO)->content;
-}
-
-void			ray_texture(t_ray *ray, t_param *prm)
-{
 	t_player	*player;
-	t_screen	*screen;
 
-	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	side_texture(ray, prm);
-	if (ray->id_side % 2 == 0)
-		ray->wall_x = player->pos.y + ray->perp_wall_dist * ray->dir.y;
-	else
-		ray->wall_x = player->pos.x + ray->perp_wall_dist * ray->dir.x;
-	ray->wall_x -= floor(ray->wall_x);
-	ray->tex.x = (int)(ray->wall_x * ray->tx_ptr->width);
-	if ((ray->id_side % 2 == 0) && ray->dir.x > 0)
-		ray->tex.x = ray->tx_ptr->width - ray->tex.x - 1;
-	if (ray->id_side % 2 == 1 && ray->dir.y < 0)
-		ray->tex.x = ray->tx_ptr->width - ray->tex.x - 1;
-	ray->tex_step = 1.0 * ray->tx_ptr->height / ray->line_height;
-	ray->tex_pos = (ray->draw_start - player->pitch
-					- (player->pos_z / ray->perp_wall_dist)
-					- screen->height / 2 + ray->line_height / 2)
-					* ray->tex_step;
+	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
+	ray->camera_x = 2 * x / (double)screen->width - 1;
+	ray->dir.x = player->dir.x + player->plane.x * ray->camera_x;
+	ray->dir.y = player->dir.y + player->plane.y * ray->camera_x;
+	ray->map.x = (int)player->pos.x;
+	ray->map.y = (int)player->pos.y;
+	ray->delta_dist.x = fabs(1 / ray->dir.x);
+	ray->delta_dist.y = fabs(1 / ray->dir.y);
+	ray->hit = 0;
+	ray->dist = 0;
+	set_step_x(ray, prm);
+	set_step_y(ray, prm);
 }
