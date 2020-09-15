@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 12:53:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 13:47:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@
 # ifdef Darwin
 #  define SYS 	1
 
-int				CGMainDisplayID(void);
-int				CGDisplayPixelsWide(int display_id);
-int				CGDisplayPixelsHigh(int display_id);
 void			mlx_get_screen_size(void *mlx, int *w, int*h);
 # endif
 
@@ -106,7 +103,8 @@ void			ray_fill_line_sprite(int x, t_ray *ray, t_param *prm);
 **	floor.c
 */
 void			floor_init(t_floor *floor, t_ray *ray);
-void			ray_fill_line_floor(int x, t_floor *floor, t_ray *ray, t_param *prm);
+void			ray_fill_line_floor(int x, t_floor *floor,
+										t_ray *ray, t_param *prm);
 
 /*
 **	sky.c

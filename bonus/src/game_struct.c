@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/14 18:01:15 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 13:40:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int		conf_init(t_param *prm)
 	if (!(conf = malloc(sizeof(t_conf))))
 		return (MAL_ERR_CONF);
 	conf->pitch_sensi = 250.0;
-	conf->jump_height = 250.0;
+	conf->jump_height = 450.0;
 	conf->fog_color = 0x00E0F3F3;
 	conf->view_depth = 100.00;
 	conf->front_speed = 3.0;

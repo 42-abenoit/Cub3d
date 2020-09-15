@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 13:07:21 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 11:55:32 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 13:45:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,14 @@ typedef struct	s_minimap
 	int			width;
 	int			height;
 }				t_minimap;
+
+typedef struct	s_sky
+{
+	int				offset_y;
+	double			orientation;
+	t_coord			ratio;
+	t_int_coord		coord;
+}				t_sky;
 
 typedef struct	s_ray
 {
