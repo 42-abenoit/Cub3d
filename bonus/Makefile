@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/15 16:10:54 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/15 16:59:46 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ ifeq ($(KB_LAYOUT),fr)
 endif
 
 
-all: $(MLX) $(NAME)
+all: $(NAME)
 
 bonus:	bonus_make
 

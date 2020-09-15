@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 16:49:15 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/15 17:02:05 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "cub_macro.h"
 #include "ft_utils.h"
 #include "mlx.h"
-#ifdef Linux
-# include "linux_trick.h"
+#ifdef Darwin
+# include "mlx_trick.h"
 #endif
 
 static int		tx_mlx_import(t_param *prm)

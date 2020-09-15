@@ -1,4 +1,4 @@
-# ifdef Linux
+# ifdef Darwin
 
 int				CGMainDisplayID(void);
 int				CGDisplayPixelsWide(int display_id);
