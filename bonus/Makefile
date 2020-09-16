@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/16 14:54:12 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/16 15:18:30 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
-NAME = ../IceCub3d
+NAME = ../IceCub3D
 
 INC = -I includes -I$(MLX_DIR)
 
