@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 17:57:13 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 19:05:07 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,14 @@
 # define WRONG_HCC_ELEM			-18
 # define WRONG_HCC_CHAR			-19
 # define WRONG_HCC_VAL			-20
-# define CONF_AFTER_MAP			-21
+# define RES_OVERFLOW			-21
 
 # define MAP_CHAR_INVALID		-31
 # define MAP_ALRD_SET			-32
 # define MAP_LEAKS				-33
 # define START_ALRD_SET			-34
 # define NO_START_POS			-35
+# define CONF_AFTER_MAP			-36
 
 # define MAL_ERR_PARSE_STRUCT 	-41
 # define MAL_ERR_FILENAME 		-42

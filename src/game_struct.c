@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 15:25:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 19:02:36 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ static void		screen_resize(t_param *prm)
 	}
 	else
 		mlx_get_screen_size(render->mlx, &width, &height);
-	if (screen->width > width)
+	if (screen->width >= width)
 		screen->width = width;
-	if (screen->height > height)
+	if (screen->height >= height)
 		screen->height = height;
+	printf("%d\n", screen->height);
+	printf("%d\n", screen->width);
 }
 
 static int		conf_init(t_param *prm)

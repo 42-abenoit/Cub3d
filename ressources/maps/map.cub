@@ -1,4 +1,4 @@
-R  800 600
+R  2147483647 2147483647
 NO ./ressources/std/textures/greystone.xpm
 SO ./ressources/std/textures/mossy.xpm
 WE ./ressources/std/textures/wood.xpm

@@ -6,12 +6,14 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 19:18:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 17:52:53 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 19:06:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <limits.h>
 #include "ft_utils.h"
+#include "cub_macro.h"
 
 char		*ft_strdup(const char *s1)
 {
@@ -59,11 +61,19 @@ int			ft_atoi_base(char *str, char *base)
 	base_size = ft_strlen(base);
 	while (str[i] && (tmp = ft_isbase(str[i], base)) >= 0)
 	{
-		nbr *= base_size;
-		nbr += tmp;
+		if (nbr < INT_MAX / base_size)
+		{
+			nbr *= base_size;
+			nbr += tmp;
+		}
+		else
+			return (-1);
 		i++;
 	}
-	return (nbr);
+	if (nbr <= INT_MAX)
+		return (nbr);
+	else
+		return (-1);
 }
 
 int			verify_extension(char *file_name, char *ext)

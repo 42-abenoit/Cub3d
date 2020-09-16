@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 17:48:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 15:40:48 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 18:49:55 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	id_clean_exit(int ret, void *elem)
 
 int			id_res_filler(t_param *prm, char **elem)
 {
-	int			tmp;
 	t_screen	*screen;
 
 	if (prm->booleans & RES_SET)
@@ -47,10 +46,10 @@ int			id_res_filler(t_param *prm, char **elem)
 		return (WRONG_RES_CHAR);
 	if (!(screen = malloc(sizeof(t_screen))))
 		return (MAL_ERR_SCREEN);
-	tmp = ft_atoi_base(elem[1], BASE_10);
-	screen->width = tmp;
-	tmp = ft_atoi_base(elem[2], BASE_10);
-	screen->height = tmp;
+	if ((screen->width = ft_atoi_base(elem[1], BASE_10) < 0))
+		return (RES_OVERFLOW);
+	if ((screen->height = ft_atoi_base(elem[2], BASE_10) < 0))
+		return (RES_OVERFLOW);
 	ft_lstadd_back(&(prm->dlist), ft_lstnew(ID_RES, screen));
 	if (get_lst_elem(prm->dlist, ID_RES) == NULL)
 		return (id_clean_exit(MAL_ERR_LIST, screen));
