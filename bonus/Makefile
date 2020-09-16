@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/16 12:04:58 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/16 13:17:16 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,47 +15,47 @@ OS_NAME := $(shell uname -s)
 
 SRC_DIR = src
 
-SRC_NAME =	main.c \
-		ft_error.c \
-		ft_error_2.c \
-		ft_exit.c \
-		str_utils.c \
-		str_utils_2.c \
-		lst_utils.c \
-		lst_utils_2.c \
-		mlx_utils.c \
-		sprites_utils.c \
-		ft_strtrim.c \
-		ft_split.c \
-		parse_trigger.c \
-		parse_line.c \
-		id_filler.c \
-		parse_map.c \
-		control_map.c \
-		game_struct.c \
-		player_init.c \
-		sprites_init.c \
-		sprites.c \
-		manage_key.c \
-		manage_key_2.c \
-		move_set.c \
-		move_set_2.c \
-		move_set_3.c \
-		move_set_4.c \
-		move_valid.c \
-		render_engine.c \
-		render_engine_ray.c \
-		render_engine_ray_2.c \
-		render_engine_img.c \
-		floor.c \
-		sky.c \
-		sfx.c \
-		player_char.c \
-		player_anim.c \
-		minimap.c \
-		bmp_save.c \
-		bmp_export.c \
-		rec_gnl.c
+SRC_NAME =	main_bonus.c \
+		ft_error_bonus.c \
+		ft_error_2_bonus.c \
+		ft_exit_bonus.c \
+		str_utils_bonus.c \
+		str_utils_2_bonus.c \
+		lst_utils_bonus.c \
+		lst_utils_2_bonus.c \
+		mlx_utils_bonus.c \
+		sprites_utils_bonus.c \
+		ft_strtrim_bonus.c \
+		ft_split_bonus.c \
+		parse_trigger_bonus.c \
+		parse_line_bonus.c \
+		id_filler_bonus.c \
+		parse_map_bonus.c \
+		control_map_bonus.c \
+		game_struct_bonus.c \
+		player_init_bonus.c \
+		sprites_init_bonus.c \
+		sprites_bonus.c \
+		manage_key_bonus.c \
+		manage_key_2_bonus.c \
+		move_set_bonus.c \
+		move_set_2_bonus.c \
+		move_set_3_bonus.c \
+		move_set_4_bonus.c \
+		move_valid_bonus.c \
+		render_engine_bonus.c \
+		render_engine_ray_bonus.c \
+		render_engine_ray_2_bonus.c \
+		render_engine_img_bonus.c \
+		floor_bonus.c \
+		sky_bonus.c \
+		sfx_bonus.c \
+		player_char_bonus.c \
+		player_anim_bonus.c \
+		minimap_bonus.c \
+		bmp_save_bonus.c \
+		bmp_export_bonus.c \
+		rec_gnl_bonus.c
 
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
@@ -65,8 +65,6 @@ OBJ_DIR = ../obj_bonus
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
-
-BONUS_DIR = bonus
 
 NAME = ../IceCub3d
 
@@ -109,10 +107,10 @@ bonus_make:
 		@make -C $(BONUS_DIR)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
-ifeq (%.c, render_engine.c)
+ifeq (%.c, render_engine_bonus.c)
 	$(eval INC += -lpthread)
 endif
-ifeq (%.c, sprites.c)
+ifeq (%.c, sprites_bonus.c)
 	$(eval INC += -lpthread)
 endif
 	    $(CC) $(INC) $(CFLAGS) $(MLX_DEF) -c $< -o $@
@@ -126,10 +124,10 @@ $(NAME): $(OBJ)
 clean:
 		$(RM) -r $(OBJ_DIR)
 
-fclean:		clean
+fclean:	clean
 		$(RM) $(NAME)
 
 re:		fclean all
 
-.PHONY:	clean re fclean
+.PHONY: clean re fclean
 
