@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/07 16:23:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 17:55:19 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int				ray_caster(t_param *prm)
 	ray.img = my_mlx_new_image(render->mlx, screen->width, screen->height);
 	if (!(ray.line_buff = malloc(screen->height * sizeof(int))))
 		return (MAL_ERR_BUFF);
-	cast_x_rays(x, screen->width - 1, &ray, prm);
+	cast_x_rays(x, screen->width, &ray, prm);
 	img_refresh(&ray, prm);
 	ft_move(prm);
 	return (0);

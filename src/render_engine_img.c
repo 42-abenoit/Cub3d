@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:21:53 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 11:53:52 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 17:55:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			fill_buffer(t_ray *ray, t_param *prm)
 	y = -1;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	hcc = get_lst_elem(prm->dlist, ID_HCC_C)->content;
-	while (++y <= ray->draw_start)
+	while (++y < ray->draw_start)
 		ray->line_buff[y] = hcc->hcc;
 	y -= 1;
 	while (++y <= ray->draw_end)
@@ -58,7 +58,7 @@ void			fill_buffer(t_ray *ray, t_param *prm)
 	}
 	hcc = get_lst_elem(prm->dlist, ID_HCC_F)->content;
 	y -= 1;
-	while (++y < screen->height - 1)
+	while (++y < screen->height)
 		ray->line_buff[y] = hcc->hcc;
 }
 
@@ -69,7 +69,7 @@ void			fill_line(int x, t_ray *ray, t_param *prm)
 
 	y = 0;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	while (y < screen->height - 1)
+	while (y < screen->height)
 	{
 		my_mlx_pixel_put(&ray->img, x, y, ray->line_buff[y]);
 		y++;

@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/16 16:44:46 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/16 17:58:51 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
-NAME = ../IceCub3D
+NAME = ../Cub3D
 
 INC = -I includes -I$(MLX_DIR)
 
@@ -98,13 +98,7 @@ ifeq ($(KB_LAYOUT),fr)
 	MLX_DEF += -D keyboard_fr
 endif
 
-
 all: $(NAME)
-
-bonus:	bonus_make
-
-bonus_make:
-		@make -C $(BONUS_DIR)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 ifeq (%.c, render_engine_bonus.c)

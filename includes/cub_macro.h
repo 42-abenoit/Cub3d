@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 16:01:16 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 17:57:13 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,9 @@
 */
 # define MAP_VALID_CHAR			"012NSWE' '"
 # define MAP_EMPTY				" "
-# define MAP_OBSTACLE			"12"
+# define MAP_OBSTACLE			"1"
 # define MAP_PLAY_AREA			"02NSWE"
-# define MAP_WALKABLE			"0NSWE"
+# define MAP_WALKABLE			"02NSWE"
 # define MAP_START				"NSWE"
 
 /*

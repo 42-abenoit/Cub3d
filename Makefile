@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/16 15:18:19 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/16 17:53:17 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,9 +88,7 @@ ifeq ($(KB_LAYOUT),fr)
 	MLX_DEF += -D keyboard_fr
 endif
 
-all: std bonus_make
-
-std: $(MLX) $(NAME)
+all: $(MLX) $(NAME)
 
 bonus:	$(MLX) bonus_make
 
