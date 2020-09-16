@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/01 14:49:31 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 15:25:51 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int				game_struct_init(t_param *prm)
 	prm->booleans += START_RENDER;
 	if ((ret = tx_mlx_import(prm)) < 0)
 		return (ft_exit(ret, prm));
-	screen_resize(prm);
+	if (!(prm->booleans & BMP_SAVE))
+		screen_resize(prm);
 	if ((ret = conf_init(prm)) < 0)
 		return (ft_exit(ret, prm));
 	if (prm->booleans & BMP_SAVE)
