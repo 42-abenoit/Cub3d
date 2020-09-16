@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 15:42:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:22:56 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:36:28 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	bmp_render(t_ray *ray, t_param *prm)
 		draw_sky(x, ray, prm);
 		draw_floor(x, ray, prm);
 		fill_buffer(x, ray, prm);
-		sprite_projection(prm);
 		ray_fill_line_sprite(x, ray, prm);
 		x++;
 	}
@@ -60,14 +59,15 @@ int			pic_calculate(t_param *prm)
 	t_ray		ray;
 	t_render	*render;
 	t_screen	*screen;
-	t_sprite	*sprite;
+	t_list		*sprite;
 
 	render = prm->ptr;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
-	sprite = get_lst_elem(prm->dlist, ID_SPRITES)->content;
+	sprite = get_lst_elem(prm->dlist, ID_SPRITES);
 	render->img = my_mlx_new_image(render->mlx, screen->width, screen->height);
 	sprite_calc_dist(prm);
-	ft_sprite_sort(&sprite);
+	ft_sprite_sort((t_sprite**)&sprite->content);
+	sprite_projection(prm);
 	bmp_render(&ray, prm);
 	bmp_prepare(prm);
 	return (ft_exit(0, prm));

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 20:43:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 17:33:47 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 15:57:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	verify_conf(t_param *prm)
 {
 	int			ret;
 
-	if ((prm->booleans & CONF_SET) != 0x1FE)
+	if ((prm->booleans & CONF_SET) != CONF_SET)
 		return (ft_exit(MISS_CONF_INFO, prm));
 	if (!(prm->booleans & MAP_SET))
 		return (ft_exit(NO_MAP_FOUND, prm));

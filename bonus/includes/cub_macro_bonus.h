@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:38:57 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:05:48 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@
 # define WRONG_RES_CHAR			-14
 # define WRONG_TX_ELEM			-15
 # define WRONG_TX_PATH			-16
+# define CONF_AFTER_MAP			-17
 
 # define MAP_CHAR_INVALID		-31
 # define MAP_ALRD_SET			-32

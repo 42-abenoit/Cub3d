@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:25:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:04:26 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	description_error(int err_code)
 		ft_putstr("Invalid number of arguments in texture line\n");
 	if (err_code == WRONG_TX_PATH)
 		ft_putstr("Texture path is invalid\n");
+	if (err_code == CONF_AFTER_MAP)
+		ft_putstr("Map info should be the last element in file\n");
 	exit(0);
 }
 

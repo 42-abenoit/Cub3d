@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 14:37:08 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/03 13:08:35 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:00:47 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int			parse_line(t_param *prm)
 
 	ptr = ((t_parse*)(prm->ptr));
 	tmp = ft_split(ptr->buff, WHITESPACES);
+	if (prm->booleans & MAP_SET)
+		return (clear_buffer(tmp, CONF_AFTER_MAP));
 	if ((id = check_identifier(tmp[0], ptr->id_strings)) < 0)
 		return (clear_buffer(tmp, WRONG_ID_STR));
 	if (id == ID_RES)

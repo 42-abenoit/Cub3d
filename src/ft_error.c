@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 15:40:58 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:02:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static int	description_error(int err_code)
 		ft_putstr("Invalid character in hex color code line\n");
 	if (err_code == WRONG_HCC_VAL)
 		ft_putstr("Color value is lesser than 0 or greater than 255\n");
+	if (err_code == CONF_AFTER_MAP)
+		ft_putstr("Map info should be the last element in file\n");
 	exit(0);
 }
 

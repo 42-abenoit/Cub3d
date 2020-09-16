@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/26 15:25:44 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 12:34:28 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:26:15 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ void		ft_add_sprite_front(t_sprite **alst, t_sprite *new)
 	if (new == NULL || alst == NULL)
 		return ;
 	if (*alst == NULL)
+	{
 		*alst = new;
+		(*alst)->next = NULL;
+		(*alst)->prev = NULL;
+	}
 	else
 	{
 		new->next = *alst;

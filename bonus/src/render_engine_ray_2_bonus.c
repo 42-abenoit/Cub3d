@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:17:33 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:35:46 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 16:42:38 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void			ray_hit_scan(t_ray *ray, t_param *prm)
 	while (ray->hit == 0 && ray->dist < conf->view_depth)
 	{
 		ray_increment(ray);
+		if (!((ray->map.y >= 0 && ray->map.y <= map->size_y) && (ray->map.x >= 0
+			&& ray->map.x <= ft_strlen(map->grid[(int)ray->map.y]))))
+			return ;
 		if (map->grid[ray->map.y][ray->map.x] == '1')
 			ray->hit = 1;
 		ray->dist = (player->pos.x - ray->map.x)
