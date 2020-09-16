@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/15 16:59:46 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/16 12:04:58 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,15 +123,11 @@ $(OBJ_DIR):
 $(NAME): $(OBJ)
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(INC) $(MLX_INC) $(MLX_LIBS)
 
-$(MLX):
-		@make -C $(MLX_DIR) $(MLX_LIBS)
-
 clean:
 		$(RM) -r $(OBJ_DIR)
 
 fclean:		clean
 		$(RM) $(NAME)
-		@make -C $(MLX_DIR) clean
 
 re:		fclean all
 

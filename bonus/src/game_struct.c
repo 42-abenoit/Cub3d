@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/15 17:05:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 12:51:41 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 #include "ft_utils.h"
 #include "mlx.h"
 #ifdef Darwin
-#include <CoreGraphics/CoreGraphics.h>
-#endif
-#ifdef Linux
-# include "mlx_trick.h"
+# include <CoreGraphics/CoreGraphics.h>
 #endif
 
 static int		tx_mlx_import(t_param *prm)
