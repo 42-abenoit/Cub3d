@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:55:02 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/19 18:16:01 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 14:56:21 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	if (write(1, &c, 1) < 0)
+		return ;
 }
 
 void	ft_putstr(char *str)

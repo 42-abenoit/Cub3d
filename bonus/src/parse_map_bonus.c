@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 14:58:54 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:29:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 14:46:49 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static int	gnl_map_alloc(t_map *map, char *tmp, int y)
 		if (!(map->grid = malloc((map->size_y + 1) * sizeof(char*))))
 			return (MAL_ERR_GRID);
 		map->grid[y] = NULL;
-		free(tmp);
+		if (!(tmp == NULL))
+			free(tmp);
 		tmp = NULL;
 		return (2);
 	}
@@ -75,6 +76,7 @@ static int	gnl_map_extract(t_map *map, int fd, char *buff, int y)
 	int		ret;
 	char	*tmp;
 
+	tmp = NULL;
 	if (y == 0)
 	{
 		if ((ret = map_check_line(map, buff)) == 1)

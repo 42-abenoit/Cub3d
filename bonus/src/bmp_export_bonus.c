@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:34:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:21:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 14:51:29 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,45 +34,51 @@ static int	get_pic_color(int x, int y, t_data *img)
 static void	fill_bmp_header(int fd, t_param *prm)
 {
 	int			tmp;
+	int			ret;
 	t_screen	*screen;
 
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	tmp = 0x42;
-	write(fd, &tmp, 1);
+	ret = write(fd, &tmp, 1);
 	tmp = 0x4D;
-	write(fd, &tmp, 1);
+	ret = write(fd, &tmp, 1);
 	tmp = (screen->height * screen->width) * 4 + 14 + 40;
-	write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
 	tmp = 0;
-	write(fd, &tmp, 2);
-	write(fd, &tmp, 2);
+	ret = write(fd, &tmp, 2);
+	ret = write(fd, &tmp, 2);
 	tmp = 54;
-	write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
+	if (ret < 0)
+		return ;
 }
 
 static void	fill_dib_header(int fd, t_param *prm)
 {
 	int			tmp;
+	int			ret;
 	t_screen	*screen;
 
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	tmp = 40;
-	write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
 	tmp = screen->width;
-	write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
 	tmp = screen->height;
-	write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
 	tmp = 1;
-	write(fd, &tmp, 2);
+	ret = write(fd, &tmp, 2);
 	tmp = 32;
-	write(fd, &tmp, 2);
+	ret = write(fd, &tmp, 2);
 	tmp = 0;
-	write(fd, &tmp, 4);
-	write(fd, &tmp, 4);
-	write(fd, &tmp, 4);
-	write(fd, &tmp, 4);
-	write(fd, &tmp, 4);
-	write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
+	ret = write(fd, &tmp, 4);
+	if (ret < 0)
+		return ;
 }
 
 void		pic_export(t_param *prm, t_screen *screen)
@@ -94,7 +100,8 @@ void		pic_export(t_param *prm, t_screen *screen)
 		while (x < screen->width)
 		{
 			tmp = get_pic_color(x, y, &((t_render*)prm->ptr)->img);
-			write(fd, &tmp, 4);
+			if (write(fd, &tmp, 4) < 0)
+				return ;
 			x++;
 		}
 		y--;

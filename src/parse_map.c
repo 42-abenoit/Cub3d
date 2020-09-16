@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 14:58:54 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 17:35:34 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/16 14:56:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static int	gnl_map_extract(t_map *map, int fd, char *buff, int y)
 	int		ret;
 	char	*tmp;
 
+	tmp = NULL;
 	if (y == 0)
 	{
 		if ((ret = map_check_line(map, buff)) == 1)
