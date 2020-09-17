@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 15:22:54 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 17:27:40 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 #include "cub_macro_bonus.h"
 #include "ft_utils_bonus.h"
 #include "mlx.h"
-#ifdef Darwin
-# include <CoreGraphics/CoreGraphics.h>
-#endif
+#include "compatibility.h"
 
 static int		tx_mlx_import(t_param *prm)
 {

@@ -6,7 +6,7 @@
 #    By: abenoit <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/17 20:39:13 by abenoit           #+#    #+#              #
-#    Updated: 2020/09/17 16:26:44 by abenoit          ###   ########.fr        #
+#    Updated: 2020/09/17 18:04:13 by abenoit          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
 NAME = ../Cub3D
 
-INC = -I includes -I$(MLX_DIR)
+INC = -I includes -I$(MLX_DIR) -I compatibility
 
 CC = gcc
 RM = rm -f
