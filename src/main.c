@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:11:40 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/25 15:46:42 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 16:42:10 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@ static int		prm_init(t_param *prm)
 	t_parse		*parse_struct;
 
 	prm->booleans = 0;
+	prm->dlist = NULL;
 	if (!(parse_struct = malloc(sizeof(t_parse))))
+	{
+		prm->ptr = NULL;
 		return (0);
+	}
 	parse_struct->buff = NULL;
 	parse_struct->id_strings = NULL;
 	prm->ptr = parse_struct;
-	prm->dlist = NULL;
 	return (1);
 }
 

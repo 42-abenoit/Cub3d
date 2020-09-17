@@ -6,18 +6,16 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 14:15:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 16:35:26 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
+#include <stdlib.h>
 #include "cub3d.h"
 #include "cub_struct.h"
 #include "cub_macro.h"
 #include "ft_utils.h"
-#include <math.h>
-#include <stdlib.h>
-
-#include <stdio.h>
 
 void	sprite_calc_draw_val(t_sprite *ptr, t_param *prm)
 {
@@ -79,7 +77,8 @@ void	sprite_line_to_buff(t_sprite *ptr, t_ray *ray, t_param *prm)
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (y < ptr->draw_end.y)
 	{
-		d = (y) * 256 - (screen->height - 1) * 128 + (ptr->sprite_height - 1) * 128;
+		d = (y) * 256 - (screen->height - 1) * 128
+					+ (ptr->sprite_height - 1) * 128;
 		ptr->tex.y = (((d * (tx->height - 1))
 					/ (ptr->sprite_height - 1)) / 256);
 		ray->color = get_pixel_color(ptr->tex.x, ptr->tex.y,

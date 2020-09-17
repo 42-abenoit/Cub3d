@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:21:53 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 17:55:45 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 16:25:18 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void			fill_buffer(t_ray *ray, t_param *prm)
 	y -= 1;
 	while (++y <= ray->draw_end)
 	{
-		ray->tex.y = (int)ray->tex_pos & (ray->tx_ptr->height - 1);
+		ray->tex.y = (ray->tex_pos < 0) ? 0 : (int)ray->tex_pos;
+		if (ray->tex.y >= ray->tx_ptr->height)
+			ray->tex.y = ray->tx_ptr->height - 1;
 		ray->tex_pos += ray->tex_step;
 		ray->color = get_pixel_color(ray->tex.x, ray->tex.y,
 									&ray->tx_ptr->data);
