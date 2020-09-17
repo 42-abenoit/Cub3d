@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 15:00:14 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 18:33:02 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,6 @@
 # define FLAG_SNEAK				0x00001000
 # define FLAG_SPRINT			0x00002000
 # define FLAG_STRIKE			0x00004000
+# define FLAG_FPS				0x00008000
 
 #endif
