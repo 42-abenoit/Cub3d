@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 16:35:26 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 16:58:41 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	sprite_line_to_buff(t_sprite *ptr, t_ray *ray, t_param *prm)
 					+ (ptr->sprite_height - 1) * 128;
 		ptr->tex.y = (((d * (tx->height - 1))
 					/ (ptr->sprite_height - 1)) / 256);
+		if (ptr->tex.y < 0)
+			ptr->tex.y = 0;
+		if (ptr->tex.y >= tx->height)
+			ptr->tex.y = tx->height - 1;
 		ray->color = get_pixel_color(ptr->tex.x, ptr->tex.y,
 					&tx->data);
 		if ((ray->color & 0x00FFFFFF) != 0)
@@ -107,6 +111,9 @@ void	ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 								* (double)(tx->width - 1)
 								/ (double)(ptr->sprite_width - 1))
 								/ 256);
+			ptr->tex.x = (ptr->tex.x < 0) ? 0 : ptr->tex.x;
+			if (ptr->tex.x >= tx->height)
+				ptr->tex.x = tx->height - 1;
 			if (ptr->transform.y > 0 && x > 0 && x
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
 				sprite_line_to_buff(ptr, ray, prm);
