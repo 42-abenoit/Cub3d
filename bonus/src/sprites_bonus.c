@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:31:55 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 15:15:12 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ static void	sprite_line_to_buff(int x, t_sprite *ptr, t_tx *tx,
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (y < ptr->draw_end.y)
 	{
-		d = (y - ptr->v_move_screen) * 256 - screen->height
-				* 128 + ptr->sprite_height * 128;
-		ptr->tex.y = (((d * tx->height)
-					/ ptr->sprite_height) / 256) & (tx->height - 1);
+		d = (y - ptr->v_move_screen) * 256 - (screen->height - 1)
+				* 128 + (ptr->sprite_height - 1) * 128;
+		ptr->tex.y = (((d * (tx->height - 1))
+					/ (ptr->sprite_height - 1)) / 256);
 		color = get_pixel_color(ptr->tex.x, ptr->tex.y, &tx->data);
 		if (ptr->hit > 0 && ptr->hit < 3)
 			color = apply_hit_effect(color);
@@ -139,9 +139,9 @@ void		ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 			tx = get_lst_elem(prm->dlist, types[ptr->type])->content;
 			ptr->tex.x = (int)((256 * (x - (-(double)ptr->sprite_width / 2
 								+ (double)ptr->sprite_screen_x))
-								* (double)tx->width
-								/ (double)ptr->sprite_width)
-								/ 256) & (tx->width - 1);
+								* (double)(tx->width - 1)
+								/ (double)(ptr->sprite_width - 1))
+								/ 256);
 			if (ptr->transform.y > 0 && x > 0 && x
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
 				sprite_line_to_buff(x, ptr, tx, prm);

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/27 16:16:35 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:35:31 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 15:43:24 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,30 @@
 #include "cub_macro_bonus.h"
 #include "cub_struct_bonus.h"
 
-static void		*cast_x_rays(void *thread_ptr)
+static void		*cast_x_rays(void *thread)
 {
 	t_ray		ray;
 	t_screen	*screen;
-	t_thread	*thread;
 	int			x;
 	int			x_max;
+	double		tmp;
 
-	thread = thread_ptr;
-	screen = get_lst_elem(thread->prm->dlist, ID_RES)->content;
-	x = thread->id_thread * (screen->width / NTHREAD);
-	x_max = x + (screen->width / NTHREAD);
+	screen = get_lst_elem(((t_thread*)thread)->prm->dlist, ID_RES)->content;
+	tmp = (double)((t_thread*)thread)->id_thread
+				* ((double)(screen->width + 1) / (double)NTHREAD);
+	x_max = (double)tmp + ((double)(screen->width + 1) / (double)NTHREAD);
+	x = (int)tmp;
 	while (x < x_max)
 	{
-		ray_init(x, &ray, thread->prm);
-		ray_hit_scan(&ray, thread->prm);
-		ray_perspective(&ray, thread->prm);
-		ray_texture(&ray, thread->prm);
-		draw_sky(x, &ray, thread->prm);
-		draw_floor(x, &ray, thread->prm);
-		fill_buffer(x, &ray, thread->prm);
-		ray_fill_line_sprite(x, &ray, thread->prm);
-		player_to_screen(x, &ray, thread->prm);
+		ray_init(x, &ray, ((t_thread*)thread)->prm);
+		ray_hit_scan(&ray, ((t_thread*)thread)->prm);
+		ray_perspective(&ray, ((t_thread*)thread)->prm);
+		ray_texture(&ray, ((t_thread*)thread)->prm);
+		draw_sky(x, &ray, ((t_thread*)thread)->prm);
+		draw_floor(x, &ray, ((t_thread*)thread)->prm);
+		fill_buffer(x, &ray, ((t_thread*)thread)->prm);
+		ray_fill_line_sprite(x, &ray, ((t_thread*)thread)->prm);
+		player_to_screen(x, &ray, ((t_thread*)thread)->prm);
 		x++;
 	}
 	pthread_exit(NULL);

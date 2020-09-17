@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 15:27:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/31 17:12:05 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 14:15:51 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include <unistd.h>
+#include <stdio.h>
 
 void	sprite_calc_draw_val(t_sprite *ptr, t_param *prm)
 {
@@ -79,10 +79,9 @@ void	sprite_line_to_buff(t_sprite *ptr, t_ray *ray, t_param *prm)
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	while (y < ptr->draw_end.y)
 	{
-		d = (y) * 256 - screen->height * 128 + ptr->sprite_height * 128;
-		ptr->tex.y = (((d * tx->height)
-					/ ptr->sprite_height) / 256)
-			& (tx->height - 1);
+		d = (y) * 256 - (screen->height - 1) * 128 + (ptr->sprite_height - 1) * 128;
+		ptr->tex.y = (((d * (tx->height - 1))
+					/ (ptr->sprite_height - 1)) / 256);
 		ray->color = get_pixel_color(ptr->tex.x, ptr->tex.y,
 					&tx->data);
 		if ((ray->color & 0x00FFFFFF) != 0)
@@ -106,9 +105,9 @@ void	ray_fill_line_sprite(int x, t_ray *ray, t_param *prm)
 		{
 			ptr->tex.x = (int)((256 * (x - (-(double)ptr->sprite_width / 2
 								+ (double)ptr->sprite_screen_x))
-								* (double)tx->width
-								/ (double)ptr->sprite_width)
-								/ 256) & (tx->width - 1);
+								* (double)(tx->width - 1)
+								/ (double)(ptr->sprite_width - 1))
+								/ 256);
 			if (ptr->transform.y > 0 && x > 0 && x
 					< screen->width && ptr->transform.y < ray->perp_wall_dist)
 				sprite_line_to_buff(ptr, ray, prm);

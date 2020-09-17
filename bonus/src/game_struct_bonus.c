@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 16:39:58 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 15:22:54 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,13 @@ static void		screen_resize(t_param *prm)
 static int		conf_init(t_param *prm)
 {
 	t_conf		*conf;
+	t_screen	*screen;
 
+	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	if (!(conf = malloc(sizeof(t_conf))))
 		return (MAL_ERR_CONF);
 	conf->pitch_sensi = 250.0;
-	conf->jump_height = 250.0;
+	conf->jump_height = 0.4 * screen->height;
 	conf->fog_color = 0x00E0F3F3;
 	conf->view_depth = 100.00;
 	conf->front_speed = 3.0;

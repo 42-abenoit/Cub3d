@@ -6,12 +6,11 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 19:18:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 12:32:32 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 15:01:37 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <limits.h>
 #include "ft_utils.h"
 #include "cub_macro.h"
 
