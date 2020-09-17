@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 18:50:26 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 18:42:20 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 13:41:11 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	description_error(int err_code)
 	if (err_code == WRONG_HCC_VAL)
 		ft_putstr("Color value is lesser than 0 or greater than 255\n");
 	if (err_code == RES_OVERFLOW)
-		ft_putstr("Resolution is higher than max integer\n");
+		ft_putstr("Resolution is zero or higher than max integer\n");
 	exit(0);
 }
 

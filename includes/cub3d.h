@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 19:01:51 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/17 13:43:00 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 /*
 **	DEBUG TOOLS
 **
+**	# include <stdio.h>
 **	# define malloc($) 0
 */
-	# include <stdio.h>
 
 /*
 **	GENERAL INCLUDES
