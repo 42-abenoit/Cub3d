@@ -1,0 +1,2 @@
+screen_resize is after minimap initialisation leading to errors if given resolution is bigger than screen resolution.
+floor and sky x coordinates are not protected as do sprites'.
