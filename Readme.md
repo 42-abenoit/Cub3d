@@ -17,17 +17,17 @@ Instructions:
 
 Execution:
 Cub3D requires path to a valid map file with .cub extension as argument.
-"ressources/maps" folder contains sample maps for both versions of the program:
-	-"map.cub" is compatible with the standard "make" executable.
-	-"ice.cub" showcases the bonus version with custom textures.
+"ressources/maps" folder contains sample maps for both versions of the program: <br>
+	-"map.cub" is compatible with the standard "make" executable. <br>
+	-"ice.cub" showcases the bonus version with custom textures. <br>
 
-Controls (bonus version):
--Strafing can be done with 'Z', 'Q', 'S', 'D' (or 'W', 'A', 'S', 'D' on QWERTY keyboards).
--Camera rotation is bound to the arrow keys.
--',' (or 'M' on QWERTY keyboards) toggles minimap on and off.
--'R' sheathes and unsheathes woodaxe.
--'Left Control' triggers a strike when axe is unsheathed.
--'Left Shift' while strafing activates sprinting.
--'C' activates crouching.
--'Spacebar' triggers a jump.
--'Esc' exits the program.
+Controls (bonus version): <br>
+-Strafing can be done with 'Z', 'Q', 'S', 'D' (or 'W', 'A', 'S', 'D' on QWERTY keyboards). <br>
+-Camera rotation is bound to the arrow keys. <br>
+-',' (or 'M' on QWERTY keyboards) toggles minimap on and off. <br>
+-'R' sheathes and unsheathes woodaxe. <br>
+-'Left Control' triggers a strike when axe is unsheathed. <br>
+-'Left Shift' while strafing activates sprinting. <br>
+-'C' activates crouching. <br>
+-'Spacebar' triggers a jump. <br>
+-'Esc' exits the program. <br>
