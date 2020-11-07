@@ -16,7 +16,7 @@ Instructions: <br>
 "make bonus" creates an alternate version of the program that includes extended functionnalities like vertical camera rotation, character animations or distance fog.
 
 Execution: <br>
-Cub3D requires path to a valid map file with .cub extension as argument.
+Cub3D requires path to a valid map file with .cub extension as argument. <br>
 "ressources/maps" folder contains sample maps for both versions of the program: <br>
 	-"map.cub" is compatible with the standard "make" executable. <br>
 	-"ice.cub" showcases the bonus version with custom textures. <br>
