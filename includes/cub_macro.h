@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 19:05:07 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/11/07 13:22:14 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@
 # define TX_IMPORT_FAIL			-62
 # define MAL_ERR_CONF			-63
 # define MAL_ERR_BUFF			-64
+# define IMPORT_FAILURE			-65
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 12:33:41 by abenoit           #+#    #+#             */
-/*   Updated: 2020/08/27 18:16:08 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/11/07 13:24:52 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ static int	mlx_error(int err_code)
 		ft_putstr("Error creating configuration data structure\n");
 	if (err_code == MAL_ERR_BUFF)
 		ft_putstr("Error creating configuration vertical line buffer\n");
+	if (err_code == IMPORT_FAILURE)
+		ft_putstr("Texture file is corrupted or invalid\n");
 	exit(0);
 }
 
 int			render_error(int err_code)
 {
-	if (err_code >= 80)
+	if (err_code >= -80)
 		return (mlx_error(err_code));
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/26 17:24:29 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:27:58 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/11/07 13:19:17 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ t_data	my_mlx_new_image(void *mlx, int width, int height)
 	t_data	img;
 
 	img.img = mlx_new_image(mlx, width, height);
+	if (img.img == NULL)
+	{
+		img.addr = NULL;
+		return (img);
+	}
 	img.addr = mlx_get_data_addr(img.img,
 						&(img.bits_per_pixel), &(img.line_length),
 						&(img.endian));
@@ -65,10 +70,22 @@ int		my_mlx_tx_from_path(void *mlx, t_list *elem)
 		return (TX_IMPORT_FAIL);
 	tx->data.img = mlx_xpm_file_to_image(mlx, (char*)elem->content,
 					&tx->height, &tx->width);
+	if (tx->data.img == NULL)
+	{
+		tx->data.addr = NULL;
+		free(elem->content);
+		elem->content = NULL;
+		return (IMPORT_FAILURE);
+	}
 	tx->data.addr = mlx_get_data_addr(tx->data.img,
 			&(tx->data.bits_per_pixel), &(tx->data.line_length),
 			&(tx->data.endian));
 	free(elem->content);
 	elem->content = tx;
+	if (tx->data.addr == NULL)
+	{
+		mlx_destroy_image(mlx, tx->data.img);
+		return (IMPORT_FAILURE);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/23 11:18:53 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/11/07 13:21:16 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@
 # define MAL_ERR_CONF			-83
 # define MAL_ERR_BUFF			-84
 # define MAL_ERR_MINIMAP		-85
+# define IMPORT_FAILURE			-86
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS
