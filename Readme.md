@@ -1,21 +1,21 @@
-Final version of Cub3d project for 42.
+Final version of Cub3d project for 42. <br>
 This project aims at creating a clone of Wolfenstein3D by implementing a simple raycaster with a custom graphic library.
 
-Linux version of minilibx (42 custom graphic library) can be found on github:
+Linux version of minilibx (42 custom graphic library) can be found on github: <br>
 https://github.com/42Paris/minilibx-linux
 
-Although a manual is provided, Harm Smits at Codam made a wonderfull work of documentation on this library:
+Although a manual is provided, Harm Smits at Codam made a wonderfull work of documentation on this library: <br>
 https://harm-smits.github.io/42docs/libs/minilibx
 
-The engine itself is a C adaptation of lodev's C++ raycaster:
+The engine itself is a C adaptation of lodev's C++ raycaster: <br>
 https://lodev.org/cgtutor/raycasting.html
 
-Instructions:
+Instructions: <br>
 "make" creates a simple executable to showcase basic functionnality required for Cub3D project.
 
 "make bonus" creates an alternate version of the program that includes extended functionnalities like vertical camera rotation, character animations or distance fog.
 
-Execution:
+Execution: <br>
 Cub3D requires path to a valid map file with .cub extension as argument.
 "ressources/maps" folder contains sample maps for both versions of the program: <br>
 	-"map.cub" is compatible with the standard "make" executable. <br>
