@@ -6,19 +6,12 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 16:44:41 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/23 11:35:01 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
-
-/*
-**	DEBUG TOOLS
-**
-**	# define malloc($) 0
-**	# include <stdio.h>
-*/
 
 /*
 **	GENERAL INCLUDES
@@ -87,10 +80,11 @@ void			ray_perspective(t_ray *ray, t_param *prm);
 void			ray_texture(t_ray *ray, t_param *prm);
 
 /*
-**	render_engine_ray.c
+**	render_engine_img.c
 */
 void			img_refresh(t_param *prm);
-void			fill_buffer(int x, t_ray *ray, t_param *prm);
+void			fill_buffer(t_ray *ray, t_param *prm);
+void			fill_line(int x, t_ray *ray, t_param *prm);
 
 /*
 **	sprites.c
@@ -102,7 +96,7 @@ void			ray_fill_line_sprite(int x, t_ray *ray, t_param *prm);
 /*
 **	floor.c
 */
-void			draw_floor(int x, t_ray *ray, t_param *prm);
+void			draw_floor(t_ray *ray, t_param *prm);
 
 /*
 **	sky.c
@@ -131,7 +125,7 @@ void			ft_map_phase(t_param *prm);
 **	minimap.c
 */
 int				minimap_init(t_param *prm);
-void			minimap_to_screen(int x, t_param *prm);
+void			minimap_to_screen(int x, t_ray *ray, t_param *prm);
 
 /*
 **	player_init.c

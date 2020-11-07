@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 11:49:23 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:31:06 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/22 18:36:39 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	player_to_screen(int x, t_ray *ray, t_param *prm)
 	{
 		ray->color = get_pixel_color(x * ratio.x, y * ratio.y, &cfp.tx->data);
 		if ((ray->color & 0x00FFFFFF) != 0)
-			my_mlx_pixel_put(&cfp.render->img, x, y, ray->color);
+			ray->line_buff[y] = ray->color;
 		y++;
 	}
 	if (cfp.player->state == MAP)
-		minimap_to_screen(x, prm);
+		minimap_to_screen(x, ray, prm);
 }
 
 void	ft_player_state(t_param *prm)

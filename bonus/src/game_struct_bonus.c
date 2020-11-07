@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/24 16:51:32 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 17:27:40 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/22 17:51:35 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void		screen_resize(t_param *prm)
 
 static int		conf_init(t_param *prm)
 {
+	int			ret;
 	t_conf		*conf;
 	t_screen	*screen;
 
@@ -84,6 +85,8 @@ static int		conf_init(t_param *prm)
 		free(conf);
 		return (MAL_ERR_LIST);
 	}
+	if ((ret = minimap_init(prm)) < 0)
+		return (ret);
 	return (0);
 }
 
@@ -116,13 +119,13 @@ int				game_struct_init(t_param *prm)
 	prm->ptr = render;
 	prm->booleans += START_RENDER;
 	prm->flags = 0;
-	if ((ret = tx_mlx_import(prm)) < 0)
-		return (ft_exit(ret, prm));
-	if ((ret = conf_init(prm)) < 0)
+	if (!(prm->booleans & BMP_SAVE))
+		screen_resize(prm);
+	if (((ret = tx_mlx_import(prm)) < 0)
+		|| ((ret = conf_init(prm)) < 0))
 		return (ft_exit(ret, prm));
 	if (prm->booleans & BMP_SAVE)
 		return (pic_calculate(prm));
-	screen_resize(prm);
 	screen = (t_screen*)get_lst_elem(prm->dlist, ID_RES)->content;
 	render->win = mlx_new_window(render->mlx, screen->width,
 									screen->height, "Cub3D");

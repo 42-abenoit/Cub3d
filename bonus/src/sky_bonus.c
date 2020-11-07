@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 18:06:48 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:36:32 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/22 19:19:27 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ static void	sky_init(int x, t_sky *sky, t_ray *ray, t_param *prm)
 	sky->ratio.y = ((double)tx->height / 2.0) / ((double)screen->height);
 	sky->coord.x = (x * sky->ratio.x)
 					+ (sky->orientation * (tx->width - 1));
+	if (sky->coord.x < 0)
+		sky->coord.x = 0;
+	if (sky->coord.x >= tx->width)
+		sky->coord.x -= tx->width - 1;
 }
 
 void		draw_sky(int x, t_ray *ray, t_param *prm)
@@ -38,9 +42,7 @@ void		draw_sky(int x, t_ray *ray, t_param *prm)
 	t_sky			sky;
 	t_tx			*tx;
 	t_screen		*screen;
-	t_render		*render;
 
-	render = prm->ptr;
 	tx = get_lst_elem(prm->dlist, ID_TX_SK)->content;
 	screen = get_lst_elem(prm->dlist, ID_RES)->content;
 	sky_init(x, &sky, ray, prm);
@@ -53,7 +55,7 @@ void		draw_sky(int x, t_ray *ray, t_param *prm)
 		{
 			ray->color = get_pixel_color(sky.coord.x, sky.coord.y, &tx->data);
 			if ((ray->color & 0x00FFFFFF) != 0)
-				my_mlx_pixel_put(&render->img, x, y, ray->color);
+				ray->line_buff[y] = ray->color;
 		}
 		y++;
 	}

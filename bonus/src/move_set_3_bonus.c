@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:40:25 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:34:09 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/22 20:26:54 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ft_sneak(t_param *prm)
 	{
 		if (!(prm->flags & FLAG_JUMP))
 		{
-			player->pos_z = -0.3 * conf->jump_height;
+			player->pos_z = -0.6 * conf->jump_height;
 			conf->front_speed = 1.7;
 			conf->back_speed = 1.2;
 			conf->strafe_speed = 1.5;

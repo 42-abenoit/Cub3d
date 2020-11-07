@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 11:17:33 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 16:02:37 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/23 11:37:45 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void			ray_hit_scan(t_ray *ray, t_param *prm)
 	while (ray->hit == 0 && ray->dist < conf->view_depth)
 	{
 		ray_increment(ray);
-		if (!((ray->map.y >= 0 && ray->map.y <= map->size_y) && (ray->map.x >= 0
-			&& ray->map.x <= ft_strlen(map->grid[(int)ray->map.y]))))
+		if (!((ray->map.y >= 0 && ray->map.y < map->size_y) && (ray->map.x >= 0
+			&& ray->map.x < ft_strlen(map->grid[(int)ray->map.y]))))
 			return ;
 		if (map->grid[ray->map.y][ray->map.x] == '1')
 			ray->hit = 1;
@@ -83,18 +83,20 @@ void			ray_perspective(t_ray *ray, t_param *prm)
 	if (ray->draw_end >= screen->height)
 		ray->draw_end = screen->height - 1;
 	ray->horizon = (screen->height / 2.0) + player->pitch;
+	if (ray->horizon < 0 || ray->horizon >= screen->height)
+		ray->horizon = (ray->horizon < 0) ? 0 : screen->height - 1;
 }
 
 static void		side_texture(t_ray *ray, t_param *prm)
 {
 	if (ray->id_side == 0)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_WE)->content;
+		ray->tx = get_lst_elem(prm->dlist, ID_TX_WE)->content;
 	else if (ray->id_side == 1)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_NO)->content;
+		ray->tx = get_lst_elem(prm->dlist, ID_TX_NO)->content;
 	else if (ray->id_side == 2)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_EA)->content;
+		ray->tx = get_lst_elem(prm->dlist, ID_TX_EA)->content;
 	else if (ray->id_side == 3)
-		ray->tx_ptr = get_lst_elem(prm->dlist, ID_TX_SO)->content;
+		ray->tx = get_lst_elem(prm->dlist, ID_TX_SO)->content;
 }
 
 void			ray_texture(t_ray *ray, t_param *prm)
@@ -110,12 +112,12 @@ void			ray_texture(t_ray *ray, t_param *prm)
 	else
 		ray->wall_x = player->pos.x + ray->perp_wall_dist * ray->dir.x;
 	ray->wall_x -= floor(ray->wall_x);
-	ray->tex.x = (int)(ray->wall_x * ray->tx_ptr->width);
+	ray->tex.x = (int)(ray->wall_x * ray->tx->width);
 	if ((ray->id_side % 2 == 0) && ray->dir.x > 0)
-		ray->tex.x = ray->tx_ptr->width - ray->tex.x - 1;
+		ray->tex.x = ray->tx->width - ray->tex.x - 1;
 	if (ray->id_side % 2 == 1 && ray->dir.y < 0)
-		ray->tex.x = ray->tx_ptr->width - ray->tex.x - 1;
-	ray->tex_step = 1.0 * ray->tx_ptr->height / ray->line_height;
+		ray->tex.x = ray->tx->width - ray->tex.x - 1;
+	ray->tex_step = 1.0 * ray->tx->height / ray->line_height;
 	ray->tex_pos = (ray->draw_start - player->pitch
 					- (player->pos_z / ray->perp_wall_dist)
 					- screen->height / 2 + ray->line_height / 2)

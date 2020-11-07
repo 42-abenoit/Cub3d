@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:59:55 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 18:33:02 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/23 11:18:53 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,12 @@
 # define MAL_ERR_GRID			-49
 # define MAL_ERR_PLAYER			-50
 # define MAL_ERR_RENDER			-51
-# define MAL_ERR_MINIMAP		-52
 
-# define MLX_INIT_FAIL			-61
-# define TX_IMPORT_FAIL			-62
-# define MAL_ERR_CONF			-63
-# define MAL_ERR_BUFF			-64
+# define MLX_INIT_FAIL			-81
+# define TX_IMPORT_FAIL			-82
+# define MAL_ERR_CONF			-83
+# define MAL_ERR_BUFF			-84
+# define MAL_ERR_MINIMAP		-85
 
 /*
 **	IMPORTANT CHARSETS AND STRINGS

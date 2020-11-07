@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 23:35:36 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 13:36:24 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/22 19:19:49 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,27 @@ int			minimap_init(t_param *prm)
 	return (0);
 }
 
-static void	get_minimap_color(int x, int y, t_int_coord mini, t_param *prm)
+static void	get_minimap_color(int y, t_int_coord mini, t_ray *ray, t_param *prm)
 {
-	int			color;
 	t_map		*map;
 	t_player	*player;
-	t_render	*render;
 
-	render = prm->ptr;
 	map = get_lst_elem(prm->dlist, ID_MAP)->content;
 	player = get_lst_elem(prm->dlist, ID_PLAYER)->content;
-	color = 0;
+	ray->color = 0;
 	if ((mini.y >= 0 && mini.y < map->size_y)
 		&& (mini.x >= 0 && mini.x < ft_strlen(map->grid[mini.y])))
 	{
 		if (map->grid[mini.y][mini.x] == '1')
-			color = 0x00909090;
+			ray->color = 0x00909090;
 		else if (map->grid[mini.y][mini.x] == '2')
-			color = 0x00FAFFFA;
+			ray->color = 0x00FAFFFA;
 		else if (mini.y == floor(player->pos.y)
 				&& mini.x == floor(player->pos.x))
-			color = 0x0000FFFF;
+			ray->color = 0x0000FFFF;
 	}
-	if ((color & 0x00FFFFFF) != 0)
-		my_mlx_pixel_put(&render->img, x, y, color);
+	if ((ray->color & 0x00FFFFFF) != 0)
+		ray->line_buff[y] = ray->color;
 }
 
 static int	resize_x_axis(int x, int offset_x, double persp, t_minimap *minimap)
@@ -83,7 +80,7 @@ static int	resize_x_axis(int x, int offset_x, double persp, t_minimap *minimap)
 	return (mini_x);
 }
 
-void		minimap_to_screen(int x, t_param *prm)
+void		minimap_to_screen(int x, t_ray *ray, t_param *prm)
 {
 	int			y;
 	int			offset_x;
@@ -104,7 +101,7 @@ void		minimap_to_screen(int x, t_param *prm)
 			&& x < minimap->start.x + minimap->width - offset_x)
 		{
 			mini.x = resize_x_axis(x, offset_x, persp, minimap);
-			get_minimap_color(x, y, mini, prm);
+			get_minimap_color(y, mini, ray, prm);
 		}
 		y++;
 		persp += minimap->step;

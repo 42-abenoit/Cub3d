@@ -6,7 +6,7 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 14:37:43 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/16 16:18:03 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/23 11:31:42 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@
 static int	move_valid_sprites(t_param *prm, double pos_x, double pos_y)
 {
 	t_sprite	*ptr;
+	double		new_dist;
 
 	ptr = get_lst_elem(prm->dlist, ID_SPRITES)->content;
 	while (ptr != NULL)
 	{
-		if (((ptr->pos.x + 0.5 >= pos_x)
-			&& (ptr->pos.x - 0.5 <= pos_x))
-			&& ((ptr->pos.y + 0.5 >= pos_y)
-			&& (ptr->pos.y - 0.5 <= pos_y)))
+		new_dist = ((pos_x - ptr->pos.x)
+					* (pos_x - ptr->pos.x)
+					+ (pos_y - ptr->pos.y)
+					* (pos_y - ptr->pos.y));
+		if (new_dist < 0.4)
 			return (0);
 		ptr = ptr->next;
 	}

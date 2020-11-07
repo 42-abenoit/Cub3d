@@ -6,21 +6,12 @@
 /*   By: abenoit <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 17:12:00 by abenoit           #+#    #+#             */
-/*   Updated: 2020/09/17 16:42:43 by abenoit          ###   ########.fr       */
+/*   Updated: 2020/09/23 11:34:39 by abenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-/*
-**	DEBUG TOOLS
-**
-**	# include <stdio.h>
-**	# include <unistd.h>
-**	# define malloc($) 0
-**	write(0, "OK\n", 3);
-*/
 
 /*
 **	GENERAL INCLUDES
