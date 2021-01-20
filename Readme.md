@@ -1,4 +1,4 @@
-<img src="https://framagit.org/abenoit/cub_parser/-/tree/master/ressources/Logo_cub3d.png">
+<img src="https://framagit.org/abenoit/cub_parser/-/raw/master/ressources/Logo_cub3d.png">
 
 Final version of Cub3d project for 42. <br>
 This project aims at creating a clone of Wolfenstein3D by implementing a simple raycaster with a custom graphic library.
